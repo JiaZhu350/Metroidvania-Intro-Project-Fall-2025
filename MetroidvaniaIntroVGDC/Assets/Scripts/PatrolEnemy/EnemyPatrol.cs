@@ -13,6 +13,7 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float speed;
     private Vector3 initScale;
     private bool movingLeft;
+    private bool patrolInterupted;
 
     private void Awake()
     {
@@ -21,29 +22,8 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
-        if (movingLeft)
-        {
-            if (enemy.position.x >= leftEdge.position.x)
-            {
-                MoveInDirection(-1);
-            }
-            else
-            {
-                DirectionChange();
-            }
-            MoveInDirection(-1);
-        }
-        else
-        {
-            if (enemy.position.x <= rightEdge.position.x)
-            {
-                MoveInDirection(1);
-            }
-            else
-            {
-                DirectionChange();
-            }
-        }
+        if (!patrolInterupted)
+            PatrolMode();
     }
 
     private void DirectionChange()
@@ -57,5 +37,54 @@ public class EnemyPatrol : MonoBehaviour
         enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
         enemy.position = new Vector3(enemy.position.x + _direction * Time.deltaTime * speed, enemy.position.y, enemy.position.z);
         Debug.Log("Moving in direction: " + _direction);
+    }
+
+    private void PatrolMode()
+    {
+         if (movingLeft)
+                {
+                    if (enemy.position.x >= leftEdge.position.x)
+                    {
+                        MoveInDirection(-1);
+                    }
+                    else
+                    {
+                        DirectionChange();
+                    }
+                    MoveInDirection(-1);
+                }
+                else
+                {
+                    if (enemy.position.x <= rightEdge.position.x)
+                    {
+                        MoveInDirection(1);
+                    }
+                    else
+                    {
+                        DirectionChange();
+                    }
+                }
+    }
+
+    public void Interupted()
+    {
+               patrolInterupted = true;
+    }
+
+    public void ResetPatrol()
+    {
+        float distanceToLeft = Vector3.Distance(enemy.position, leftEdge.position);
+        float distanceToRight = Vector3.Distance(enemy.position, rightEdge.position);
+
+
+        if (distanceToLeft < distanceToRight)
+        {
+            // Move to left edge
+        }
+        else
+        {
+            // Move to right edge
+        }
+        patrolInterupted = false;
     }
 }
