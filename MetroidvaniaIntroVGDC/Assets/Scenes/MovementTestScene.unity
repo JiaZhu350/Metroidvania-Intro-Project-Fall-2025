@@ -967,7 +967,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
-  jumpforce: 8
+  jumpForce: 8
+  highJumpForce: 12
   groundCheckTransform: {fileID: 1338552444}
   leftWallCheckTransform: {fileID: 1756848067}
   rightWallCheckTransform: {fileID: 1731700894}
