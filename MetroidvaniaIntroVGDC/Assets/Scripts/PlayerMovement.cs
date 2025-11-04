@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed;
 
-    public float jumpforce;
+    public float jumpForce;
+
+    public float highJumpForce;
 
     public Transform groundCheckTransform;
 
@@ -34,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     bool isTouchingLeftWall;
     bool isTouchingRightWall;
+
+    bool normal = false;
+
+    bool high = false;
     float move;
     float climb;
 
@@ -50,45 +57,74 @@ public class PlayerMovement : MonoBehaviour
     {
         actions.Player.Enable();
         actions.Player.Move.performed += Movement;
-        actions.Player.Jump.performed += Jumping;
+        actions.Player.Jump.performed += NormalJumping;
         actions.Player.Move.performed += ClimbingCheck;
+        
 
         actions.Player.Move.canceled += Movement;
-        actions.Player.Jump.canceled += Jumping;
+        actions.Player.Jump.canceled += NormalJumping;
         actions.Player.Move.canceled += ClimbingCheck;
+        
     }
 
     void OnDisable()
     {
         actions.Player.Disable();
         actions.Player.Move.performed -= Movement;
-        actions.Player.Jump.performed -= Jumping;
+        actions.Player.Jump.performed -= NormalJumping;
         actions.Player.Move.performed -= ClimbingCheck;
-
+        
     }
     void Movement(InputAction.CallbackContext ctx)
     {
         move = ctx.ReadValue<Vector2>().x;
     }
-    void Jumping(InputAction.CallbackContext ctx)
+    void NormalJumping(InputAction.CallbackContext ctx)
     {
-        jumpforce = ctx.duration * 2;
         if (ctx.performed)
         {
-            if (isGrounded || isTouchingLeftWall || isTouchingRightWall)
+            if (ctx.interaction is PressInteraction)
             {
-                rb.linearVelocityY = jumpforce;
-                doubleJumpUsed = false;
+                normal = true;
+                high = false;
+                JumpingMechanic();
             }
-            if (!isGrounded && (!doubleJumpUsed || doubleJumpMidAir) && !isTouchingLeftWall && !isTouchingRightWall && !doubleJumpMidAirUsed)
+            if (ctx.interaction is HoldInteraction)
             {
-                rb.linearVelocityY = jumpforce;
+                normal = false;
+                high = true;
+                JumpingMechanic();
+            }
+        }
+    }
+   
+    void JumpingMechanic()
+    {
+        if (isGrounded || isTouchingLeftWall || isTouchingRightWall)
+        {
+            JumpForce();
+            doubleJumpUsed = false;
+        }
+        if (!isGrounded && (!doubleJumpUsed || doubleJumpMidAir) && !isTouchingLeftWall && !isTouchingRightWall && !doubleJumpMidAirUsed)
+            {
+                JumpForce();
                 doubleJumpUsed = true;
                 doubleJumpMidAirUsed = true;
             }
-
-        }
     }
+    void JumpForce()
+        {
+            if (normal)
+            {
+            rb.linearVelocityY = jumpForce;
+                normal = false;
+            }
+            if (high)
+            {
+            rb.linearVelocityY = highJumpForce;
+                high = false;
+            }
+        }
     void DoubleJumpMidAirCheck()
     {
         if (!isGrounded && !isTouchingLeftWall && !isTouchingRightWall)
@@ -101,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpMidAirUsed = false;
         }
     }
+    
     void ClimbingCheck(InputAction.CallbackContext ctx)
     {
         climb = ctx.ReadValue<Vector2>().y;
@@ -127,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocityX = move * speed;
         Climbing();
         DoubleJumpMidAirCheck();
+
     }
     void OnDrawGizmosSelected()
     {
