@@ -103,6 +103,11 @@ public class meleeEnemy : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(direction * chaseSpeed, rb.linearVelocity.y);
         }
+
+        else if (!isGrounded || !gapAhead.collider)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
     }
 
 }

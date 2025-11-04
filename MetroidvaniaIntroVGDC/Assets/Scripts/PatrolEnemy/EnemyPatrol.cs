@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyPatrol : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private float speed;
     private Vector3 initScale;
     private bool movingLeft;
-    private bool patrolInterupted;
+    private bool patrolInterupted = false;
+    private bool isResetting = false;
 
     private void Awake()
     {
@@ -22,7 +24,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
-        if (!patrolInterupted)
+        if (!patrolInterupted && !isResetting)
             PatrolMode();
     }
 
@@ -36,7 +38,7 @@ public class EnemyPatrol : MonoBehaviour
         // Movement logic here
         enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
         enemy.position = new Vector3(enemy.position.x + _direction * Time.deltaTime * speed, enemy.position.y, enemy.position.z);
-        Debug.Log("Moving in direction: " + _direction);
+        //Debug.Log("Moving in direction: " + _direction);
     }
 
     private void PatrolMode()
@@ -51,7 +53,6 @@ public class EnemyPatrol : MonoBehaviour
                     {
                         DirectionChange();
                     }
-                    MoveInDirection(-1);
                 }
                 else
                 {
@@ -68,23 +69,41 @@ public class EnemyPatrol : MonoBehaviour
 
     public void Interupted()
     {
-               patrolInterupted = true;
+        patrolInterupted = true;
+        if (isResetting)
+        {
+            StopAllCoroutines(); // or keep a coroutine handle and StopCoroutine(handle)
+            isResetting = false;
+        }
+
     }
 
     public void ResetPatrol()
     {
-        float distanceToLeft = Vector3.Distance(enemy.position, leftEdge.position);
-        float distanceToRight = Vector3.Distance(enemy.position, rightEdge.position);
+        if(!isResetting)
+            StartCoroutine(ReturnToClosetEdge());
+    }
 
 
-        if (distanceToLeft < distanceToRight)
+    private IEnumerator ReturnToClosetEdge()
+    {
+        isResetting = true;
+        float distLeft = Vector3.Distance(enemy.position, leftEdge.position);
+        float distRight = Vector3.Distance(enemy.position, rightEdge.position);
+
+        Transform targetEdge = distLeft < distRight ? leftEdge : rightEdge;
+
+        while (Vector3.Distance(enemy.position, targetEdge.position) > 0.099f)
         {
-            // Move to left edge
+            int direction = targetEdge.position.x < enemy.position.x ? -1 : 1;
+            MoveInDirection(direction);
+            yield return null; // wait one frame
         }
-        else
-        {
-            // Move to right edge
-        }
+
+        enemy.position = new Vector3(targetEdge.position.x, enemy.position.y, enemy.position.z);
+
+        isResetting = false;
         patrolInterupted = false;
+        movingLeft = (targetEdge == rightEdge);
     }
 }
