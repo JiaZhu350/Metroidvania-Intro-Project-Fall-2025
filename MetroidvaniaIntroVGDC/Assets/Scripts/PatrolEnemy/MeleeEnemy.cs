@@ -16,16 +16,18 @@ public class meleeEnemy : MonoBehaviour
     private Animator anim;
 
     //Chase Parameters
-    public Transform player; // Reference to the player's transform
+    private GameObject player; // Reference to the player's transform
     public float chaseSpeed = 5f; // Speed at which the enemy chases the player
     public LayerMask groundLayer; // Layer mask to identify ground
     public float detectRadius = 5f;
     private bool playerInChaseRange = false;
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isAttacking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -39,29 +41,34 @@ public class meleeEnemy : MonoBehaviour
         {
             if (PlayerInRange())
             {
-                // Attack logic here
+                isAttacking = true;
                 Debug.Log("Melee enemy attacks for " + damage + " damage!");
                 CooldownTimer = 0f; // Reset the cooldown timer after attacking
                 anim.SetTrigger("meleeAttack");
             }
         }
         // Chase logic here
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= detectRadius && !playerInChaseRange)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer <= detectRadius && !playerInChaseRange && !isAttacking)
         {
             playerInChaseRange = true;
             enemyPatrol.Interupted();
         }
-        else if (distanceToPlayer > detectRadius && playerInChaseRange)
+        else if (distanceToPlayer > detectRadius && playerInChaseRange && !isAttacking)
         {
             playerInChaseRange = false;
             enemyPatrol.ResetPatrol();
 
         }
 
-        if (playerInChaseRange)
+        if (playerInChaseRange && !isAttacking)
         {
             ChaseLogic();
+        }
+
+        if (isAttacking)
+        {
+            rb.linearVelocity = Vector2.zero;
         }
 
     }
@@ -96,7 +103,7 @@ public class meleeEnemy : MonoBehaviour
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
 
-        float direction = Mathf.Sign(player.position.x - transform.position.x);
+        float direction = Mathf.Sign(player.transform.position.x - transform.position.x);
         RaycastHit2D gapAhead = Physics2D.Raycast(transform.position + new Vector3(direction * 0.5f, 0, 0), Vector2.down, 2f, groundLayer);
 
         if (isGrounded && gapAhead.collider)
@@ -108,6 +115,11 @@ public class meleeEnemy : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 
 }

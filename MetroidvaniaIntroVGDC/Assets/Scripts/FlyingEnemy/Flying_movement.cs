@@ -145,7 +145,6 @@ public class Flying_movement : MonoBehaviour
 
     private void Attacking()
     {
-        
 
         if (CooldownTimer >= attackCooldown)
         {
