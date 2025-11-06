@@ -41,6 +41,7 @@ public class meleeEnemy : MonoBehaviour
         {
             if (PlayerInRange())
             {
+                anim.SetBool("moving", false);
                 isAttacking = true;
                 Debug.Log("Melee enemy attacks for " + damage + " damage!");
                 CooldownTimer = 0f; // Reset the cooldown timer after attacking
@@ -108,11 +109,13 @@ public class meleeEnemy : MonoBehaviour
 
         if (isGrounded && gapAhead.collider)
         {
+            anim.SetBool("moving", true);
             rb.linearVelocity = new Vector2(direction * chaseSpeed, rb.linearVelocity.y);
         }
 
         else if (!isGrounded || !gapAhead.collider)
         {
+            anim.SetBool("moving", false);
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
     }

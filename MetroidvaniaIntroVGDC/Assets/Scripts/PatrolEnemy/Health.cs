@@ -25,7 +25,6 @@ public class Health : MonoBehaviour
             if (!dead)
             {
                 dead = true;
-                Debug.Log("I'm DEAD");
                 anim.SetTrigger("Die");
                 DropHealthItem();
                 if (GetComponent<meleeEnemy>() != null)
@@ -40,7 +39,6 @@ public class Health : MonoBehaviour
 
                 if (GetComponentInParent<EnemyPatrol>() != null)
                 {
-                    Debug.Log("Disabled EnemyPatrol on ");
                     GetComponentInParent<EnemyPatrol>().enabled = false;
 
                 }
@@ -49,13 +47,13 @@ public class Health : MonoBehaviour
 
         else
         {
-            //Debug.Log("Damage Taken" + currentHealth);
+            anim.SetTrigger("hurt");
         }
     }
 
     private void DropHealthItem()
     {
-        if (Random.value < itemDropChance) // 50% chance to drop the health item
+        if (Random.value < itemDropChance)
         {
             Instantiate(healthItem, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         }

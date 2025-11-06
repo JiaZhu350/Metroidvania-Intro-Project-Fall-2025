@@ -16,6 +16,7 @@ public class EnemyPatrol : MonoBehaviour
     private bool movingLeft;
     private bool patrolInterupted = false;
     private bool isResetting = false;
+    [SerializeField] private Animator anim;
 
     private void Awake()
     {
@@ -30,11 +31,13 @@ public class EnemyPatrol : MonoBehaviour
 
     private void DirectionChange()
     {
+        anim.SetBool("moving", false);
         movingLeft = !movingLeft;
     }
 
     private void MoveInDirection(int _direction)
     {
+        anim.SetBool("moving", true);
         // Movement logic here
         enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
         enemy.position = new Vector3(enemy.position.x + _direction * Time.deltaTime * speed, enemy.position.y, enemy.position.z);

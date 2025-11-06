@@ -259,6 +259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   startingHealth: 3
+  healthItem: {fileID: 9204543189580073736, guid: 633ae6bed737abf479c92007175c252c, type: 3}
+  itemDropChance: 0.3
 --- !u!114 &586363388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +281,7 @@ MonoBehaviour:
   playerlayer:
     serializedVersion: 2
     m_Bits: 16
-  speed: 5
+  speed: 4
   isChasing: 0
   startingPoint: {fileID: 172517594}
   detectRadius: 10

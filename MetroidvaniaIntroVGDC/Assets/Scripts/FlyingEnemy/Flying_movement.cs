@@ -76,6 +76,7 @@ public class Flying_movement : MonoBehaviour
         }
         else
         {
+            anim.SetBool("moving", true);
             Vector2 direction = (player.transform.position - transform.position).normalized;
             rb.linearVelocityX = direction.x * speed;
             rb.linearVelocityY = direction.y * speed;
@@ -106,6 +107,7 @@ public class Flying_movement : MonoBehaviour
         float distanceToStart = Vector3.Distance(transform.position, startingPoint.position);
         if (distanceToStart < 0.1f)
         {
+            anim.SetBool("moving", false);
             rb.linearVelocity = Vector2.zero;
             return;
         }
@@ -132,7 +134,6 @@ public class Flying_movement : MonoBehaviour
     {
         if (PlayerInRange())
         {
-            Debug.Log("boo");
             //playerhealth.TakeDamage(damage);
         }
     }
@@ -150,6 +151,7 @@ public class Flying_movement : MonoBehaviour
         {
             if (PlayerInRange())
             {
+                anim.SetBool("moving", false);
                 isAttacking = true;
                 rb.linearVelocity = Vector2.zero;
                 // Attack logic here

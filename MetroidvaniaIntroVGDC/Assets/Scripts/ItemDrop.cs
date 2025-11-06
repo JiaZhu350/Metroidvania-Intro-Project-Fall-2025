@@ -11,11 +11,6 @@ public class ItemDrop : MonoBehaviour
         itemRb.AddForce(Vector2.up * dropForce, ForceMode2D.Impulse);
     }
 
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
