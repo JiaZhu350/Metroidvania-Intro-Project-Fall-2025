@@ -12,6 +12,8 @@ public class PlayerClawAttack : MonoBehaviour
 
     bool isHitting;
 
+    private Animator animator;
+
     Rigidbody2D rb;
     void Awake()
     {
@@ -35,6 +37,9 @@ public class PlayerClawAttack : MonoBehaviour
             if (isHitting)
             {
                 Debug.Log("Claw Attack Hit!");
+                animator.SetTrigger("TrAttack");
+                animator.SetTrigger("TrNeutral");
+                
                 // Implement logic for when the claw attack hits an enemy
             }
             else
@@ -53,6 +58,7 @@ public class PlayerClawAttack : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
