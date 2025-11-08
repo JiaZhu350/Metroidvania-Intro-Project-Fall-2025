@@ -42,6 +42,16 @@ public class Health : MonoBehaviour
                     GetComponentInParent<EnemyPatrol>().enabled = false;
 
                 }
+
+                if (GetComponent<Collider2D>() != null)
+                {
+                    GetComponent<Collider2D>().enabled = false;
+                }
+
+                if (GetComponent<Rigidbody2D>() != null)
+                {
+                    GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                }
             }
         }
 
