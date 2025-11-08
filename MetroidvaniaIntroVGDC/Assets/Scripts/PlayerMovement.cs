@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jumping(InputAction.CallbackContext ctx)
     {
-        jumpforce = (float) (ctx.duration * 2);
+        jumpforce = (float)ctx.duration * 2;
         if (ctx.performed)
         {
             if (isGrounded || isTouchingLeftWall || isTouchingRightWall)
