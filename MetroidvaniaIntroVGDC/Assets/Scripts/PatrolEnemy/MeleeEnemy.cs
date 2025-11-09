@@ -12,7 +12,7 @@ public class meleeEnemy : MonoBehaviour
     private float CooldownTimer = Mathf.Infinity;
 
     //Refrences
-    private Health playerhealth;
+    private PlayerHealth playerhealth;
     private Animator anim;
 
     //Chase Parameters
@@ -80,7 +80,7 @@ public class meleeEnemy : MonoBehaviour
             0f, Vector2.left, 0.1f, playerlayer);
         if (hit.collider != null)
         {
-            playerhealth = hit.transform.GetComponent<Health>();
+            playerhealth = hit.transform.GetComponent<PlayerHealth>();
         }
         return hit.collider != null;
     }

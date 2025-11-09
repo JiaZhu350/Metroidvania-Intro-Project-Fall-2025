@@ -4,6 +4,7 @@ public class ItemDrop : MonoBehaviour
 {
     private Rigidbody2D itemRb;
     public float dropForce = 5.0f;
+    public int healingAmt = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +16,7 @@ public class ItemDrop : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //collision.GetComponent<PlayerHealth>().HealthItem();
+            collision.GetComponent<PlayerHealth>().HealthItem();
             Debug.Log("Yeah you got an item");
             Destroy(gameObject); // Destroy the item after pickup
         }
