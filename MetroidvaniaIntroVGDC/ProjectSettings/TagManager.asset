@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Damager
   - Enemy
+  - CameraZone
   layers:
   - Default
   - TransparentFX
