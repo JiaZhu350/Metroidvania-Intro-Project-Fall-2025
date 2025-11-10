@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float rightWallCheckRadius;
 
+    public bool doubleJumpUnlocked;
+
+    public bool climbUnlocked;
+
     bool doubleJumpUsed;
 
     bool doubleJumpMidAir;
@@ -105,12 +109,17 @@ public class PlayerMovement : MonoBehaviour
             JumpForce();
             doubleJumpUsed = false;
         }
-        if (!isGrounded && (!doubleJumpUsed || doubleJumpMidAir) && !isTouchingLeftWall && !isTouchingRightWall && !doubleJumpMidAirUsed)
+
+        if (doubleJumpUnlocked)
+        {
+            if (!isGrounded && (!doubleJumpUsed || doubleJumpMidAir) && !isTouchingLeftWall && !isTouchingRightWall &&
+                !doubleJumpMidAirUsed)
             {
                 JumpForce();
                 doubleJumpUsed = true;
                 doubleJumpMidAirUsed = true;
             }
+        }
     }
     void JumpForce()
         {
@@ -140,7 +149,10 @@ public class PlayerMovement : MonoBehaviour
     
     void ClimbingCheck(InputAction.CallbackContext ctx)
     {
-        climb = ctx.ReadValue<Vector2>().y;
+        if (climbUnlocked)
+        {
+            climb = ctx.ReadValue<Vector2>().y;
+        }
     }
     void Climbing()
     {
@@ -159,11 +171,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
-        isTouchingLeftWall = Physics2D.OverlapCircle(leftWallCheckTransform.position, leftWallCheckRadius, leftWallLayer);
-        isTouchingRightWall = Physics2D.OverlapCircle(rightWallCheckTransform.position, rightWallCheckRadius, rightWallLayer);
         rb.linearVelocityX = move * speed;
-        Climbing();
-        DoubleJumpMidAirCheck();
+        if (climbUnlocked)
+        {
+            isTouchingLeftWall = Physics2D.OverlapCircle(leftWallCheckTransform.position, leftWallCheckRadius, leftWallLayer);
+            isTouchingRightWall = Physics2D.OverlapCircle(rightWallCheckTransform.position, rightWallCheckRadius, rightWallLayer);
+            Climbing();
+        }
+        if (doubleJumpUnlocked)
+        {
+            DoubleJumpMidAirCheck();
+        }
 
     }
     void OnDrawGizmosSelected()
