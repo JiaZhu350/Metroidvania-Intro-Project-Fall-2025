@@ -1,4 +1,6 @@
 
+using System;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -7,12 +9,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public InputSystem_Actions actions;
 
-    public float speed;
+    [Header("Player Movement Settings:")]
+    [SerializeField] public float speed;
 
-    public float jumpForce;
+    [SerializeField] public float jumpForce;
 
-    public float highJumpForce;
+    [SerializeField] public float highJumpForce;
 
+    [Header("Ground & Wall Check Settings:")]
     public Transform groundCheckTransform;
 
     public Transform leftWallCheckTransform;
@@ -34,17 +38,34 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask leftWallLayer;
     public LayerMask rightWallLayer;
+
+    public SpriteRenderer spriteRenderer;
     bool isGrounded;
     bool isTouchingLeftWall;
     bool isTouchingRightWall;
 
     bool normal = false;
+    float previousTime = 0;
+    float currentTime = 0;
+    float newTime = 0;
 
     bool high = false;
-    float move;
+    public float move;
     float climb;
+    bool moveCondition = false;
 
     public float climbSpeed;
+
+    private float xPosLastFrame;
+
+    private float previousMove;
+
+    public PlayerTongueGun grapplingGun;
+
+    public PlayerTongueRope grappleRope;
+
+    public float time;
+    public float actualTime;
 
 
     Rigidbody2D rb;
@@ -56,12 +77,12 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         actions.Player.Enable();
-        actions.Player.Move.performed += Movement;
+        actions.Player.Move.performed += InitializeMovement;
         actions.Player.Jump.performed += NormalJumping;
         actions.Player.Move.performed += ClimbingCheck;
         
 
-        actions.Player.Move.canceled += Movement;
+        actions.Player.Move.canceled += InitializeMovement;
         actions.Player.Jump.canceled += NormalJumping;
         actions.Player.Move.canceled += ClimbingCheck;
         
@@ -70,15 +91,118 @@ public class PlayerMovement : MonoBehaviour
     void OnDisable()
     {
         actions.Player.Disable();
-        actions.Player.Move.performed -= Movement;
+        actions.Player.Move.performed -= InitializeMovement;
         actions.Player.Jump.performed -= NormalJumping;
         actions.Player.Move.performed -= ClimbingCheck;
+
+    }
+
+    //PHYSICS MECHANICS
+    void PhysicsMechanics()
+    {
         
     }
-    void Movement(InputAction.CallbackContext ctx)
+
+
+
+    //MOVEMENT MECHANICS
+    void InitializeMovement(InputAction.CallbackContext ctx)
     {
         move = ctx.ReadValue<Vector2>().x;
+        Debug.Log("MOVE" + move);
+
+        if (ctx.performed)
+        {
+            Debug.Log("Movement started");
+            moveCondition = true;
+            previousTime = 0;
+        }
+        if (ctx.canceled)
+        {
+            Debug.Log("Movement stopped");
+            moveCondition = false;
+            previousTime = 0;
+        }
     }
+    //Works but need to stop fast if change direction
+    private void FlipCharacterX()
+    {
+        if (transform.position.x > xPosLastFrame)
+        {
+            //Moving Right
+            spriteRenderer.flipX = false;
+        }
+        if (transform.position.x < xPosLastFrame)
+        {
+            //Moving Left
+            spriteRenderer.flipX = true;
+        }
+    }
+    void Movement()
+    {
+        float movementSpeed = move * speed;
+        float fastMovementSpeed = movementSpeed * 2f;
+        float updatedVelocity = grapplingGun.updatedVelocity;
+        if (moveCondition)
+        {
+            if ((newTime >= 1) && isGrounded)
+            {
+                if (previousMove != move)
+                {
+                    previousTime = 0;
+                    newTime = 0;
+                }
+                rb.linearVelocityX = Mathf.Lerp(movementSpeed, fastMovementSpeed, actualTime);
+                previousMove = move;
+                Debug.Log("RUNNNNN");
+            }
+            if(newTime >=1 && !isGrounded)
+            {
+                newTime = 0;
+                previousTime = 0;
+                rb.linearVelocityX = movementSpeed;
+            }
+            if (newTime < 1)
+            {
+                if (previousMove != move)
+                {
+                    previousTime = 0;
+                    newTime = 0;
+                }
+                rb.linearVelocityX = movementSpeed;
+                currentTime = previousTime;
+                newTime = currentTime + Time.deltaTime;
+                previousTime = newTime;
+                previousMove = move;
+                Debug.Log("Time: " + newTime);
+            }
+        }
+        if (!moveCondition && isGrounded)
+        {
+            Debug.Log("AHHHHHHHHHHHHH");
+            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, actualTime);
+            previousTime = 0;
+            newTime = 0;
+        }
+        if (!moveCondition && !isGrounded)
+        {
+            TimeFunction();
+            rb.linearVelocityX = Mathf.Lerp(updatedVelocity, 0, actualTime*0.1f);
+            previousTime = 0;
+            newTime = 0;
+        }
+    }
+    void TimeFunction()
+    {
+        time += Time.deltaTime;
+        actualTime = time % 60f;
+        if(actualTime > 1)
+        {
+            time = 0;
+        }
+    }
+
+    //JUMPING MECHANICS
     void NormalJumping(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -119,10 +243,14 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocityY = jumpForce;
                 normal = false;
             }
-            if (high)
+            if (high && isGrounded)
             {
             rb.linearVelocityY = highJumpForce;
-                high = false;
+            high = false;
+            }
+            else
+            {
+            rb.linearVelocityY = jumpForce;
             }
         }
     void DoubleJumpMidAirCheck()
@@ -138,6 +266,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+
+
+    //CLIMBING MECHANICS
     void ClimbingCheck(InputAction.CallbackContext ctx)
     {
         climb = ctx.ReadValue<Vector2>().y;
@@ -149,6 +280,10 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocityY = climb * climbSpeed;
         }
     }
+    
+
+
+    //BASE MECHANICS
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -158,10 +293,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Movement();
+        FlipCharacterX();
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
         isTouchingLeftWall = Physics2D.OverlapCircle(leftWallCheckTransform.position, leftWallCheckRadius, leftWallLayer);
         isTouchingRightWall = Physics2D.OverlapCircle(rightWallCheckTransform.position, rightWallCheckRadius, rightWallLayer);
-        rb.linearVelocityX = move * speed;
         Climbing();
         DoubleJumpMidAirCheck();
 

@@ -161,14 +161,14 @@ MonoBehaviour:
   m_rigidbody: {fileID: 1151985084}
   playerMovement: {fileID: 1151985088}
   rotateOverTime: 1
-  rotationSpeed: 11.8
-  hasMaxDistance: 0
-  maxDistnace: 20
+  rotationSpeed: 17.6
+  hasMaxDistance: 1
+  maxDistnace: 10
   launchToPoint: 1
   launchType: 1
-  launchSpeed: 1
-  autoConfigureDistance: 0
-  targetDistance: 3
+  launchSpeed: 0.5
+  autoConfigureDistance: 1
+  targetDistance: 5
   targetFrequncy: 1
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
@@ -652,12 +652,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1151985087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
@@ -1101,7 +1101,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1231,6 +1231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 519420032}
   - {fileID: 766174559}
   - {fileID: 972929686}
   - {fileID: 1731700894}
@@ -1268,7 +1269,13 @@ MonoBehaviour:
   rightWallLayer:
     serializedVersion: 2
     m_Bits: 8
+  spriteRenderer: {fileID: 1151985086}
+  move: 0
   climbSpeed: 5
+  grapplingGun: {fileID: 90256874}
+  grappleRope: {fileID: 1425826095}
+  time: 0
+  actualTime: 0
 --- !u!114 &1151985089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1323,7 @@ SpringJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
+  m_AutoConfigureDistance: 0
   m_Distance: 0.5
   m_DampingRatio: 0
   m_Frequency: 1
@@ -1384,51 +1391,51 @@ MonoBehaviour:
   grapplingGun: {fileID: 90256874}
   m_lineRenderer: {fileID: 1425826096}
   percision: 40
-  straightenLineSpeed: 5
+  straightenLineSpeed: 10
   ropeAnimationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1.4387959
-      outSlope: 1.4387959
+      inSlope: 0.4532976
+      outSlope: 0.4532976
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.19252738
-      value: 0.2770076
-      inSlope: -0.81136006
-      outSlope: -0.81136006
+      time: 0.18975028
+      value: 0.08601335
+      inSlope: -0.2387112
+      outSlope: -0.2387112
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.37902662
-      value: -0.29396278
-      inSlope: -0.0023665428
-      outSlope: -0.0023665428
+      time: 0.37350294
+      value: -0.08500892
+      inSlope: 0.03599769
+      outSlope: 0.03599769
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.60323334
-      value: 0.39138848
-      inSlope: 0.2079922
-      outSlope: 0.2079922
+      time: 0.6239548
+      value: 0.16612297
+      inSlope: -0.1590609
+      outSlope: -0.1590609
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8483001
-      value: -0.2557835
-      inSlope: -0.4773417
-      outSlope: -0.4773417
+      time: 0.8358489
+      value: -0.11375469
+      inSlope: -0.31392467
+      outSlope: -0.31392467
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1436,8 +1443,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 1.6861151
-      outSlope: 1.6861151
+      inSlope: 0.6929878
+      outSlope: 0.6929878
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1445,7 +1452,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  StartWaveSize: 4
+  StartWaveSize: 3
   ropeProgressionCurve:
     serializedVersion: 2
     m_Curve:
@@ -1470,7 +1477,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ropeProgressionSpeed: 1
+  ropeProgressionSpeed: 12
   isGrappling: 1
   currentPosition: {x: 0, y: 0}
 --- !u!120 &1425826096
@@ -1574,7 +1581,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 1
     numCapVertices: 10
-    alignment: 1
+    alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
@@ -2001,7 +2008,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1151985087}
   - {fileID: 1800631660}
