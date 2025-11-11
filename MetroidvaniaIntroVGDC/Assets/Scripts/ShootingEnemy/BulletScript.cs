@@ -5,8 +5,9 @@ public class BulletScript : MonoBehaviour
     GameObject target;
     public float speed;
     public int damage;
+    public float knockbackForce = 5f; // New: amount of knockback
     Rigidbody2D bulletRB;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         bulletRB = GetComponent<Rigidbody2D>();
@@ -35,21 +36,32 @@ public class BulletScript : MonoBehaviour
     {
         HandleHit(collision.gameObject);
     }
-
     private void HandleHit(GameObject other)
     {
         if (other == null) return;
 
-        // If we hit the player, try to apply damage via Health component
         if (other.CompareTag("Player"))
         {
-            //Attack logic here
+            // Deal damage (your existing logic)
             Debug.Log("Shooter enemy attacks for " + damage + " damage!");
+
+            // Apply knockback
+            Rigidbody2D playerRB = other.GetComponent<Rigidbody2D>();
+            if (playerRB != null)
+            {
+                // Direction from bullet to player
+                Vector2 knockbackDir = (other.transform.position - transform.position).normalized;
+
+                // Apply impulse force in that direction
+                playerRB.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+            }
+
             Destroy(gameObject);
             return;
         }
 
-        // Otherwise destroy on impact (walls, environment)
+        // Destroy on impact with walls, environment
         Destroy(this.gameObject);
     }
+
 }

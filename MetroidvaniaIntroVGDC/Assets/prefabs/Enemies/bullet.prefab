@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speed: 1
   damage: 1
+  knockbackForce: 10
 --- !u!61 &-6170434644110445771
 BoxCollider2D:
   m_ObjectHideFlags: 0
