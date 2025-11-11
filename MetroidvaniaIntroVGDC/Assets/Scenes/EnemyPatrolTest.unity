@@ -435,7 +435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   startingHealth: 3
-  healthItem: {fileID: 0}
+  currentHealth: 0
+  HPUI: {fileID: 0}
 --- !u!114 &987691688 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6488574245508071186, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
@@ -825,11 +826,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8479766947222235687, guid: 633ae6bed737abf479c92007175c252c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.89
+      value: 3.97
       objectReference: {fileID: 0}
     - target: {fileID: 8479766947222235687, guid: 633ae6bed737abf479c92007175c252c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.78
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 8479766947222235687, guid: 633ae6bed737abf479c92007175c252c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -866,6 +867,10 @@ PrefabInstance:
     - target: {fileID: 9204543189580073736, guid: 633ae6bed737abf479c92007175c252c, type: 3}
       propertyPath: m_Name
       value: HealthItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204543189580073736, guid: 633ae6bed737abf479c92007175c252c, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
