@@ -62,13 +62,9 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerTongueGun grapplingGun;
 
-    public PlayerTongueRope grappleRope;
-
-    public float time;
-    public float actualTime;
-
-
-    Rigidbody2D rb;
+    private float time;
+    private float actualTime;
+    public Rigidbody2D rb;
 
     void Awake()
     {
@@ -97,29 +93,18 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //PHYSICS MECHANICS
-    void PhysicsMechanics()
-    {
-        
-    }
-
-
-
     //MOVEMENT MECHANICS
     void InitializeMovement(InputAction.CallbackContext ctx)
     {
         move = ctx.ReadValue<Vector2>().x;
-        Debug.Log("MOVE" + move);
 
         if (ctx.performed)
         {
-            Debug.Log("Movement started");
             moveCondition = true;
             previousTime = 0;
         }
         if (ctx.canceled)
         {
-            Debug.Log("Movement stopped");
             moveCondition = false;
             previousTime = 0;
         }
@@ -154,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.linearVelocityX = Mathf.Lerp(movementSpeed, fastMovementSpeed, actualTime);
                 previousMove = move;
-                Debug.Log("RUNNNNN");
             }
             if(newTime >=1 && !isGrounded)
             {
@@ -174,12 +158,10 @@ public class PlayerMovement : MonoBehaviour
                 newTime = currentTime + Time.deltaTime;
                 previousTime = newTime;
                 previousMove = move;
-                Debug.Log("Time: " + newTime);
             }
         }
         if (!moveCondition && isGrounded)
         {
-            Debug.Log("AHHHHHHHHHHHHH");
             rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, actualTime);
             previousTime = 0;
             newTime = 0;

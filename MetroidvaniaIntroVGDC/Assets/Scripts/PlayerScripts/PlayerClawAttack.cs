@@ -14,7 +14,8 @@ public class PlayerClawAttack : MonoBehaviour
 
     private Animator animator;
 
-    Rigidbody2D rb;
+    public PlayerMovement playerMovement;
+
     void Awake()
     {
         actions = new InputSystem_Actions();
@@ -57,7 +58,6 @@ public class PlayerClawAttack : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -66,6 +66,17 @@ public class PlayerClawAttack : MonoBehaviour
     {
         isHitting = Physics2D.OverlapCircle(
             hitboxTransform.position, hitboxRadius, hitLayers);
+        float direction = playerMovement.move;
+        if (direction == 1)
+        {
+            Vector3 localTarget = new Vector3(0.5f, 0, 0);
+            hitboxTransform.localPosition = localTarget;
+        }
+        if (direction == -1)
+        {
+            Vector3 localTarget = new Vector3(-0.5f, 0, 0);
+            hitboxTransform.localPosition = localTarget;
+        }
     }
     void OnDrawGizmosSelected()
     {

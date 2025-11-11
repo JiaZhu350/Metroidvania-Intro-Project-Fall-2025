@@ -1045,6 +1045,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 2
+  playerMovement: {fileID: 1151985088}
 --- !u!114 &972929690
 MonoBehaviour:
   m_ObjectHideFlags: 0

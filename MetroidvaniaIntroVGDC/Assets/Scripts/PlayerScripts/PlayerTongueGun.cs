@@ -103,7 +103,6 @@ public class PlayerTongueGun : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("TEST: " + m_rigidbody.linearVelocityX);
         if(m_rigidbody.linearVelocityX != 0)
         {
             updatedVelocity = m_rigidbody.linearVelocityX;
