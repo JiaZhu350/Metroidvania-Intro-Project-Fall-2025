@@ -6,7 +6,6 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
     private Animator anim;
     private bool dead = false;
-    public GameObject healthItem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
