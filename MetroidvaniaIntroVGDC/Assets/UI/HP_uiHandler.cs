@@ -19,7 +19,7 @@ public class HP_uiHandler : MonoBehaviour
         barParts[2] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_3");
         barParts[3] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_4");
         barParts[4] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_5");
-        HealthChanged(1);
+        HealthChanged();
     }
 
     //void Update()
@@ -27,20 +27,20 @@ public class HP_uiHandler : MonoBehaviour
         
     //}
 
-    private float timer = .1f;
-    void Update()
-    {
-        if ((timer-=Time.deltaTime) < 0)
-        {
-            timer = (1/60); // reset timer
-            HealthChanged(1);
-        }
-    }
+    //private float timer = .1f;
+    //void Update()
+    // {
+    //     if ((timer-=Time.deltaTime) < 0)
+    //     {
+    //         timer = (1/30); // reset timer
+    //         HealthChanged();
+    //    }
+    //}
 
-
-    public void HealthChanged(int CurrentHealth)
+    public void HealthChanged()
     {
-        CurrentHealth = (int)(Mathf.Abs(player.transform.position.y))%5;
+        int CurrentHealth = (int)player.GetComponent<PlayerHealth>().currentHealth;
+        //CurrentHealth = (int)(Mathf.Abs(player.transform.position.y))%5;
         bool[] showList = new bool[5];
         for (int i = 1; i <= 5; i++)
         {
