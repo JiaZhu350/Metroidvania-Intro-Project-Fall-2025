@@ -7,13 +7,18 @@ public class GameUIHandler : MonoBehaviour
     public UIDocument UIDoc;
     public GameObject player;
 
-    private VisualElement m_HealthBarMask;
+    private VisualElement[] barParts = new VisualElement[5];
 
     private void Start()
     {
         //PlayerControl.OnHealthChange += HealthChanged;
 
-        m_HealthBarMask = UIDoc.rootVisualElement.Q<VisualElement>("barMask");
+        
+        barParts[0] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_1");
+        barParts[1] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_2");
+        barParts[2] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_3");
+        barParts[3] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_4");
+        barParts[4] = UIDoc.rootVisualElement.Q<VisualElement>("barFill_5");
         HealthChanged();
     }
 
@@ -37,8 +42,15 @@ public class GameUIHandler : MonoBehaviour
     {
         //float healthRatio = (float)PlayerControl.CurrentHealth / PlayerControl.MaxHealth;
         float healthRatio = player.transform.position.y;
-        float healthPercent = Mathf.Lerp(0, 66, healthRatio);
-        m_HealthBarMask.style.width = Length.Percent(healthPercent);
+        //float healthPercent = Mathf.Lerp(0, 66, healthRatio);
+        bool[] showList = new bool[5];
+        for (int i = 1; i <= 5; i++)
+        {
+            VisualElement part = barParts[i-1];
+            Visibility vis = (Mathf.Floor(healthRatio)>=i) ? Visibility.Visible : Visibility.Hidden;
+            part.style.visibility = vis;
+        }
+        //m_barMask.style.width = Length.Percent(healthPercent);
     }
 
 }
