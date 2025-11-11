@@ -19,7 +19,7 @@ public class RespawnPoint : MonoBehaviour
     {
         if(_collision.CompareTag("Player") && Input.GetButtonDown("Interact"))
         {
-            interacted = true
+            interacted = true;
         }
     }
 }

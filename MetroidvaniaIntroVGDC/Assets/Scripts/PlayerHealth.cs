@@ -3,9 +3,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
-    private float currentHealth;
+    public float currentHealth;  // made public -Bryce
     private Animator anim;
     private bool dead = false;
+
+    public GameObject HPUI;  // -Bryce
+    private void updateUI(){HPUI.GetComponent<HP_uiHandler>().HealthChanged();}  // -Bryce
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -32,11 +36,13 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player hurt");
             // anim.SetTrigger("hurt");
         }
+        updateUI();  // -Bryce
     }
 
     public void HealthItem()
     {
         currentHealth = Mathf.Clamp(currentHealth + 20, 0, startingHealth);
         Debug.Log("Player health increased: " + currentHealth);
+        updateUI();  // -Bryce
     }
 }
