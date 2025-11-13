@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 101
+  controlID: 41
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 512
     height: 920
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -121,14 +121,14 @@ MonoBehaviour:
     y: 592.6667
     width: 1194.6666
     height: 327.3333
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 231, y: 276}
+  m_MaxSize: {x: 10001, y: 10026}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
   - {fileID: 19}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 19
+  controlID: 42
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 20
+  controlID: 43
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -302,10 +302,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Animator\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 277.6
-    y: 79.200005
-    width: 795.6
-    height: 435.6
+    x: 308.6667
+    y: 78.66667
+    width: 884
+    height: 566.6667
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 1929747599786701545, guid: df58dbd188786584fa7cee73de434f87, type: 2}
     - {fileID: -8214507626186742271, guid: df58dbd188786584fa7cee73de434f87, type: 2}
+    - {fileID: 7551676765244938125, guid: 42854faa02a422c4b9d946a21695f0ba, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.8424272
       e01: 0
@@ -346,6 +347,22 @@ MonoBehaviour:
       e11: 0.5173556
       e12: 0
       e13: 147.7178
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -391,10 +408,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Asset Store\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 496
-    y: 79.200005
-    width: 659.6
-    height: 435.6
+    x: 308.6667
+    y: 78.66667
+    width: 884
+    height: 566.6667
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -453,7 +470,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Sprites
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -463,30 +480,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Sprites
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\antho\OneDrive\Documents\GitHub\Metroidvania-Intro-Project-Fall-2025\MetroidvaniaIntroVGDC
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 86b80000
-    m_LastClickedID: 47238
-    m_ExpandedIDs: 0000000044b7000046b7000000ca9a3bffffff7f
+    m_SelectedIDs: 00b90000
+    m_LastClickedID: 47360
+    m_ExpandedIDs: 00000000a2b70000a4b7000000b9000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: prefabs
-      m_OriginalName: prefabs
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 46918
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 5}
@@ -501,7 +518,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 7e020000
     m_LastClickedID: 638
-    m_ExpandedIDs: 0000000044b7000046b70000
+    m_ExpandedIDs: 00000000a2b70000a4b70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -527,8 +544,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: eab80000
-    m_LastClickedInstanceID: 47338
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -647,9 +664,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: eab80000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: bee4ffffc2f6ffff02fbffff0eb90000
+      m_ExpandedIDs: 02fbffff94b60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1239,9 +1256,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.800626, y: -0.0940244, z: -0.06658454}
+    m_Target: {x: -1.8921123, y: 2.2712526, z: -7.6230254}
     speed: 2
-    m_Value: {x: 0.800626, y: -0.0940244, z: -0.06658454}
+    m_Value: {x: -1.8921123, y: 2.2712526, z: -7.6230254}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1291,9 +1308,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 7.372629
+    m_Target: 9.606343
     speed: 2
-    m_Value: 7.372629
+    m_Value: 9.606343
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1311,7 +1328,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.15904374, y: 0.032669626, z: -0.0052656992, w: -0.98672086}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 17}
@@ -1366,7 +1383,7 @@ MonoBehaviour:
   m_SerializedViewNames: []
   m_SerializedViewValues: []
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 0
+  m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1920, y: 1080}
@@ -1376,7 +1393,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_Stats: 0
   m_SelectedSizes: 03000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:

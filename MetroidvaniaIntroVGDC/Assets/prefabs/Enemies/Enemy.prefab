@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8581234185426754677}
   - component: {fileID: 1550398676456034049}
   - component: {fileID: 29557966451263964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   boxCollider: {fileID: 3652720400205525097}
   playerlayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   enemyPatrol: {fileID: 0}
   chaseSpeed: 3.4
   groundLayer:

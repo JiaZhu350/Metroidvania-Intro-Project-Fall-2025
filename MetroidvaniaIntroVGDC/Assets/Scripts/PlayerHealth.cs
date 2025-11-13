@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public InputSystem_Actions actions;
     private bool dead = false;
     public float _heal = 1f;
-    public int healthItems = 3;
+    public int healthItems = 10;
 
     public GameObject HPUI;  // -Bryce
     private void updateUI(){HPUI.GetComponent<HP_uiHandler>().HealthChanged();}  // -Bryce
@@ -27,12 +28,16 @@ public class PlayerHealth : MonoBehaviour
     {
         actions.Player.Heal.performed += Heal;
         actions.Player.Heal.canceled += Heal;
+        actions.Player.Interact.performed += OnInteractRespawn;
+        actions.Player.Interact.canceled += OnInteractRespawn;
     }
 
     void OnDisable()
     {
-        actions.Player.Attack.performed -= Heal;
-        actions.Player.Attack.canceled -= Heal;
+        actions.Player.Heal.performed -= Heal;
+        actions.Player.Heal.canceled -= Heal;
+        actions.Player.Interact.performed -= OnInteractRespawn;
+        actions.Player.Interact.canceled -= OnInteractRespawn;
     }
 
     // Update is called once per frame
@@ -44,9 +49,11 @@ public class PlayerHealth : MonoBehaviour
             if (!dead)
             {
                 dead = true;
+                updateUI();
                 //anim.SetTrigger("Die");
                 Debug.Log("Player died");
                 // Implement player death logic here (e.g., reload scene, show game over screen)
+                GameManager.Instance.RespawnPlayer(); // Notify GameManager of player death
             }
         }
         else
@@ -74,6 +81,29 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Player healed: " + currentHealth);
                 updateUI();  // -Bryce
             }
+        }
+    }
+
+   public void Respawn()
+    {
+        if (dead)
+        {
+            dead = false;
+            currentHealth = startingHealth;
+            //anim.Play("Idle");
+            Debug.Log("Player respawned with health: " + currentHealth);
+            updateUI();  // -Bryce
+        }
+    }
+    private void OnInteractRespawn(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interact button pressed for respawn point");
+        // Find the respawn point in the scene
+        RespawnPoint rp = Object.FindAnyObjectByType<RespawnPoint>();
+
+        if (rp != null && rp.playerInside)
+        {
+            rp.TryActivate();
         }
     }
 }

@@ -2,24 +2,35 @@ using UnityEngine;
 
 public class RespawnPoint : MonoBehaviour
 {
-    public bool interacted;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public bool interacted; // Has this checkpoint been activated?
+    [HideInInspector] public bool playerInside = false; // Is the player currently in the trigger?
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            playerInside = true;
+            Debug.Log("Player entered respawn area!");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            playerInside = false;
+            Debug.Log("Player left respawn area!");
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D _collision)
+    // Called by PlayerHealth when player presses Interact
+    public void TryActivate()
     {
-        if(_collision.CompareTag("Player") && Input.GetButtonDown("Interact"))
+        if (playerInside && !interacted)
         {
             interacted = true;
+            GameManager.Instance.SetRespawn(this);
+            Debug.Log("Respawn point activated!");
         }
     }
 }
