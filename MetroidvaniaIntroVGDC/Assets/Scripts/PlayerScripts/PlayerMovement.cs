@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
     private float actualTime;
     public Rigidbody2D rb;
 
+    private Animator animator;
+
     void Awake()
     {
         actions = new InputSystem_Actions();
@@ -100,11 +102,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (ctx.performed)
         {
+            animator.SetTrigger("TrigRun");
             moveCondition = true;
             previousTime = 0;
         }
         if (ctx.canceled)
         {
+            animator.SetTrigger("TrigIdle");
             moveCondition = false;
             previousTime = 0;
         }
@@ -112,12 +116,12 @@ public class PlayerMovement : MonoBehaviour
     //Works but need to stop fast if change direction
     private void FlipCharacterX()
     {
-        if (transform.position.x > xPosLastFrame)
+        if (move == 1)
         {
             //Moving Right
             spriteRenderer.flipX = false;
         }
-        if (transform.position.x < xPosLastFrame)
+        if (move == -1)
         {
             //Moving Left
             spriteRenderer.flipX = true;
@@ -270,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
