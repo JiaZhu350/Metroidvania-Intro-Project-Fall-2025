@@ -64,6 +64,11 @@ public class Flying_movement : MonoBehaviour
         {
             ReturnToStart();
         }
+
+        if (player.GetComponent<PlayerHealth>().dead)
+        {
+            isChasing = false;
+        }
         Flip();
     }
 

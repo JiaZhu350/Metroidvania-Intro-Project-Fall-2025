@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using UnityEngine.Windows;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,9 +9,11 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth;  // made public -Bryce
     private Animator anim;
     public InputSystem_Actions actions;
-    private bool dead = false;
+    public bool dead = false;
     public float _heal = 1f;
     public int healthItems = 10;
+    public int MaxHealthItems = 3;
+    public float RespawnTime = 1f;
 
     public GameObject HPUI;  // -Bryce
     private void updateUI(){HPUI.GetComponent<HP_uiHandler>().HealthChanged();}  // -Bryce
@@ -18,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        currentHealth = startingHealth - 2;
+        currentHealth = startingHealth;
         Debug.Log("Player health: " + currentHealth);
         actions = new InputSystem_Actions();
         actions.Player.Enable();
@@ -50,23 +53,28 @@ public class PlayerHealth : MonoBehaviour
             {
                 dead = true;
                 updateUI();
+                FreezeMovement();
                 //anim.SetTrigger("Die");
                 Debug.Log("Player died");
                 // Implement player death logic here (e.g., reload scene, show game over screen)
-                GameManager.Instance.RespawnPlayer(); // Notify GameManager of player death
+                GameManager.Instance.StartFadeAndRespawn(RespawnTime); // Notify GameManager of player death
             }
         }
         else
         {
             Debug.Log("Player hurt");
-            // anim.SetTrigger("hurt");
+            Debug.Log("current Health: " + currentHealth);
         }
         updateUI();  // -Bryce
     }
 
     public void HealthItem()
     {
-        healthItems++;
+        if (healthItems < MaxHealthItems)
+        {
+            healthItems++;
+        }
+            
     }
 
     public void Heal(InputAction.CallbackContext context)
@@ -78,7 +86,6 @@ public class PlayerHealth : MonoBehaviour
             {
                 healthItems--;
                 currentHealth = Mathf.Clamp(currentHealth + _heal, 0, startingHealth);
-                Debug.Log("Player healed: " + currentHealth);
                 updateUI();  // -Bryce
             }
         }
@@ -93,6 +100,7 @@ public class PlayerHealth : MonoBehaviour
             //anim.Play("Idle");
             Debug.Log("Player respawned with health: " + currentHealth);
             updateUI();  // -Bryce
+            UnfreezeMovement();
         }
     }
     private void OnInteractRespawn(InputAction.CallbackContext context)
@@ -101,9 +109,30 @@ public class PlayerHealth : MonoBehaviour
         // Find the respawn point in the scene
         RespawnPoint rp = Object.FindAnyObjectByType<RespawnPoint>();
 
-        if (rp != null && rp.playerInside)
+        if (rp != null && rp.playerInside && !rp.interacted)
         {
             rp.TryActivate();
+            resting();
         }
+    }
+
+    private void resting()
+    {
+        FreezeMovement();
+        currentHealth = startingHealth;
+        updateUI();  // -Bryce
+        Debug.Log("Player healed: " + currentHealth);
+    }
+
+    public void FreezeMovement()
+    {
+        GetComponent<PlayerMovement>().enabled = false;
+        Object.FindAnyObjectByType<PlayerClawAttack>().enabled = false;
+    }
+
+    public void UnfreezeMovement()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        Object.FindAnyObjectByType<PlayerClawAttack>().enabled = true;
     }
 }

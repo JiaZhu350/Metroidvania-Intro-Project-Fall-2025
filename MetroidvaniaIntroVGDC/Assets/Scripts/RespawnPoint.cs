@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -7,15 +9,14 @@ public class RespawnPoint : MonoBehaviour
     [HideInInspector] public bool playerInside = false; // Is the player currently in the trigger?
     private Transform child;
     public CanvasGroup canvasGroup;
-
+    FadeInOut fade;
     private void Start()
     {
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 0f;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
         }
+        fade = GetComponent<FadeInOut>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,8 +27,6 @@ public class RespawnPoint : MonoBehaviour
             if (canvasGroup != null)
             {
                 canvasGroup.alpha = 1f;
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
             }
         }
     }
@@ -41,8 +40,6 @@ public class RespawnPoint : MonoBehaviour
             if (canvasGroup != null)
             {
                 canvasGroup.alpha = 0f;
-                canvasGroup.interactable = false;
-                canvasGroup.blocksRaycasts = false;
             }
         }
     }
@@ -53,8 +50,21 @@ public class RespawnPoint : MonoBehaviour
         if (playerInside && !interacted)
         {
             interacted = true;
+            StartCoroutine(SetSpawn(1));
+           // Debug.Log("Respawn point activated!");
+        }
+    }
+
+    public IEnumerator SetSpawn(float fadeTime)
+    {
+        if (fade != null)
+        {
+            fade.TimeToFade = fadeTime;
+            fade.FadeIn();
+            yield return new WaitForSeconds(fadeTime + 2);
             GameManager.Instance.SetRespawn(this);
-            Debug.Log("Respawn point activated!");
+            fade.FadeOut();
+            interacted = false;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Vector2 respawnPoint;
     [HideInInspector] public string respawnScene;
     [SerializeField] private GameObject player;
+
+    FadeInOut fade;
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -38,13 +41,15 @@ public class GameManager : MonoBehaviour
         {
             respawnPoint = player.transform.position;
         }
-            
+        fade = Object.FindAnyObjectByType<FadeInOut>();
+
     }
     public void SetRespawn(RespawnPoint rp)
     {
         respawnPoint = rp.transform.position;
         respawnScene = SceneManager.GetActiveScene().name;
-        Debug.Log($"Respawn set in scene {respawnScene} at {respawnPoint}");
+        player.GetComponent<PlayerHealth>().UnfreezeMovement();
+        //Debug.Log($"Respawn set in scene {respawnScene} at {respawnPoint}");
     }
     public void RespawnPlayer()
     {
@@ -75,17 +80,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void MovePlayerToRespawn()
     {
         if (player != null)
         {
             player.transform.position = respawnPoint;
             player.GetComponent<PlayerHealth>().Respawn();
+
         }
         else
         {
             Debug.LogWarning("Player object not found for respawn.");
         }
+    }
+
+
+    public IEnumerator FadeAndRespawn(float fadeTime)
+    {
+        if (fade != null)
+        {
+            fade.TimeToFade = fadeTime;
+            fade.FadeIn();
+            yield return new WaitForSeconds(fadeTime + 1);
+            RespawnPlayer();
+            fade.FadeOut();
+        }
+        else
+        {
+            Debug.LogWarning("FadeInOut component not found. Respawning without fade.");
+            RespawnPlayer();
+        }
+    }
+
+    public void StartFadeAndRespawn(float fadeTime)
+    {
+        StartCoroutine(FadeAndRespawn(fadeTime));
     }
 }
