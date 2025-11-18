@@ -24,12 +24,14 @@ public class meleeEnemy : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isAttacking = false;
+    private Vector3 initScale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        initScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -124,6 +126,7 @@ public class meleeEnemy : MonoBehaviour
             anim.SetBool("moving", false);
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
+        transform.localScale = new Vector3(Mathf.Abs(initScale.x) * direction, initScale.y, initScale.z);
     }
 
     public void EndAttack()
