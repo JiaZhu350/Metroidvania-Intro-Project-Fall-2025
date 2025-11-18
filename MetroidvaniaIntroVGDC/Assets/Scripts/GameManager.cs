@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             respawnPoint = player.transform.position;
         }
-        fade = Object.FindAnyObjectByType<FadeInOut>();
+        fade = GetComponent<FadeInOut>();
 
     }
     public void SetRespawn(RespawnPoint rp)
