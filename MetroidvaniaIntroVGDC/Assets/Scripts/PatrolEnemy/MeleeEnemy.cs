@@ -72,6 +72,12 @@ public class meleeEnemy : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
         }
 
+        if (player.GetComponent<PlayerHealth>().dead && playerInChaseRange && !isAttacking)
+        {
+            playerInChaseRange = false;
+            enemyPatrol.ResetPatrol();
+        }
+
     }
     private bool PlayerInRange()
     {
