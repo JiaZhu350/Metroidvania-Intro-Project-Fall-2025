@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6588418628acc804d86567ee797fe174
+guid: f5347615b9e6a734bbde2d6701071ce4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1338717360119168268
-    second: hpBar_fill_5_0
+      213: 8327692462643645340
+    second: hpBar_fill_3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hpBar_fill_5_0
+      name: hpBar_fill_3_0
       rect:
         serializedVersion: 2
-        x: 2214
-        y: 449
-        width: 281
-        height: 108
+        x: 1504
+        y: 301
+        width: 462
+        height: 178
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c0d3d80a854149210800000000000000
-      internalID: 1338717360119168268
+      spriteID: c9b829a3c28e19370800000000000000
+      internalID: 8327692462643645340
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hpBar_fill_5_0: 1338717360119168268
+      hpBar_fill_3_0: 8327692462643645340
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
