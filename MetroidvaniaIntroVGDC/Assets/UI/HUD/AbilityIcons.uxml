@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Tongue_bw" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/tongue_icon_bw.png?fileID=2800000&amp;guid=88a04d614e0551c4982cea3950e6a542&amp;type=3#tongue_icon_bw&quot;); background-size: contain; width: 9%; position: absolute; height: 10%; left: 14%; top: 15%; flex-direction: row;">
+    <ui:VisualElement name="Tongue_bw" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/HUD/tongue_icon_bw.png?fileID=2800000&amp;guid=88a04d614e0551c4982cea3950e6a542&amp;type=3#tongue_icon_bw&quot;); background-size: contain; width: 9%; position: absolute; height: 10%; left: 14%; top: 15%; flex-direction: row;">
         <ui:VisualElement name="Tongue_c" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/UI/tongue_icon_c.png?fileID=2800000&amp;guid=677b1b5250bc9124b95b6111a22ea7e3&amp;type=3#tongue_icon_c&quot;); overflow: visible; position: absolute; background-size: contain;" />
     </ui:VisualElement>
 </ui:UXML>
