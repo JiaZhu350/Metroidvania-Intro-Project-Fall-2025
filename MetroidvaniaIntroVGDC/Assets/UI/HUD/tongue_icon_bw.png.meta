@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c80fc855e730cae4e8029fc4fe2fe569
+guid: 88a04d614e0551c4982cea3950e6a542
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8250006969438208858
-    second: hpBar_fill_4_0
+      213: -5069241870224499375
+    second: tongue_icon_bw_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hpBar_fill_4_0
+      name: tongue_icon_bw_0
       rect:
         serializedVersion: 2
-        x: 1889
-        y: 409
-        width: 431
-        height: 146
+        x: 12
+        y: 0
+        width: 667
+        height: 383
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a538cd7d0a9ed7270800000000000000
-      internalID: 8250006969438208858
+      spriteID: 15d5bb4806f66a9b0800000000000000
+      internalID: -5069241870224499375
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hpBar_fill_4_0: 8250006969438208858
+      tongue_icon_bw_0: -5069241870224499375
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
