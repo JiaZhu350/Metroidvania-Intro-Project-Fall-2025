@@ -20,10 +20,10 @@ public class CameraFollowScript : MonoBehaviour
         // Debug.Log("Y position: " + transform.position.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.collider.CompareTag("CameraZone"))
+        if (other.CompareTag("CameraZone"))
         {
             Debug.Log(other.gameObject.name);
             _cameraZone = other.gameObject;
