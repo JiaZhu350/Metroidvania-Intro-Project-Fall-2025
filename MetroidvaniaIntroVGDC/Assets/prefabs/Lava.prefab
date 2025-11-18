@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3029615827098662272}
   - component: {fileID: 131526347752339856}
   - component: {fileID: 4389024369783742749}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8792453, g: 0.30241555, b: 0, a: 0.61960787}
   m_FlipX: 0
@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
   damage: 25
-  playerHealthScript: {fileID: 4595892324493835812, guid: 38ec787deab66d245b58b47818a96e28, type: 3}
+  playerHealthScript: {fileID: 0}
