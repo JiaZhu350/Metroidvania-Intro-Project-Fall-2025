@@ -25,13 +25,13 @@ public class PlayerTongueAttack : MonoBehaviour
     }
     void OnEnable()
     {
-        actions.Player.Attack.performed += OnClawAttack;
-        actions.Player.Attack.canceled += OnClawAttack;
+        actions.Player.Tongue.performed += OnClawAttack;
+        actions.Player.Tongue.canceled += OnClawAttack;
     }
     void OnDisable()
     {
-        actions.Player.Attack.performed -= OnClawAttack;
-        actions.Player.Attack.canceled -= OnClawAttack;
+        actions.Player.Tongue.performed -= OnClawAttack;
+        actions.Player.Tongue.canceled -= OnClawAttack;
     }
     private void OnClawAttack(InputAction.CallbackContext context)
     {
