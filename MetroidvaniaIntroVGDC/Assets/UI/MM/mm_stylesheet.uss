@@ -1,3 +1,17 @@
 :root {
+}
 
+.my-button {
+    background-color: lightgray;
+    color: black;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.my-button:hover {
+    background-color: darkgray;
+    color: white;
+    -unity-font-style: normal;
+    font-size: 26px;
+    translate: 10% 0;
+    scale: 1.1 1;
 }
