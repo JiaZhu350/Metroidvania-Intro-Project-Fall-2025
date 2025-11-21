@@ -65,12 +65,12 @@ public class PlayerClawAttack : MonoBehaviour
         float direction = playerMovement.move;
         if (direction == 1)
         {
-            Vector3 localTarget = new Vector3(0.5f, 0, -0.1f);
+            Vector3 localTarget = new Vector3(2f, 0, -0.1f);
             hitboxTransform.localPosition = localTarget;
         }
         if (direction == -1)
         {
-            Vector3 localTarget = new Vector3(-0.5f, 0, -0.1f);
+            Vector3 localTarget = new Vector3(-2f, 0, -0.1f);
             hitboxTransform.localPosition = localTarget;
         }
     }
