@@ -16,7 +16,7 @@ public class Flying_movement : MonoBehaviour
     public bool isChasing = false;
     public Transform startingPoint;
     public float detectRadius = 5f;
-    private Health playerhealth;
+    private PlayerHealth playerhealth;
     private Vector3 lastPosition;
     private Rigidbody2D rb;
     private bool isAttacking = false;
@@ -63,6 +63,11 @@ public class Flying_movement : MonoBehaviour
         else
         {
             ReturnToStart();
+        }
+
+        if (player.GetComponent<PlayerHealth>().dead)
+        {
+            isChasing = false;
         }
         Flip();
     }
@@ -125,7 +130,7 @@ public class Flying_movement : MonoBehaviour
             0f, Vector2.left, 0.1f, playerlayer);
         if (hit.collider != null)
         {
-            playerhealth = hit.transform.GetComponent<Health>();
+            playerhealth = hit.transform.GetComponent<PlayerHealth>();
         }
         return hit.collider != null;
     }
@@ -134,7 +139,7 @@ public class Flying_movement : MonoBehaviour
     {
         if (PlayerInRange())
         {
-            //playerhealth.TakeDamage(damage);
+            playerhealth.TakeDamage(damage);
         }
     }
     private void OnDrawGizmos()

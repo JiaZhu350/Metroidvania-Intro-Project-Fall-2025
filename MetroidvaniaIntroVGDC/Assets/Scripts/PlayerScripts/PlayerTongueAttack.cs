@@ -1,0 +1,71 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerTongueAttack : MonoBehaviour
+{
+    public InputSystem_Actions actions;
+    public float hitboxRadius = 0.5f;
+    public LayerMask hitLayers = 6;
+
+    public PlayerTongueRope grapplingRope;
+
+    public float damage;
+
+    bool isHitting;
+
+    public Vector2 hit;
+
+    public Vector2 hitEnd;
+
+    public Health enemyHealth;
+
+    Rigidbody2D rb;
+    void Awake()
+    {
+        actions = new InputSystem_Actions();
+        actions.Player.Enable();
+    }
+    void OnEnable()
+    {
+        actions.Player.Tongue.performed += OnClawAttack;
+        actions.Player.Tongue.canceled += OnClawAttack;
+    }
+    void OnDisable()
+    {
+        actions.Player.Tongue.performed -= OnClawAttack;
+        actions.Player.Tongue.canceled -= OnClawAttack;
+    }
+    private void OnClawAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (isHitting)
+            {
+                enemyHealth.TakeDamage(damage);
+                // Implement logic of when the tongue attack hits an enemy
+            }
+            else
+            {
+                // Implement logic for when the tongue attack misses
+            }
+        }
+    }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        hit = grapplingRope.currentPosition;
+        isHitting = Physics2D.OverlapCircle(hit, hitboxRadius, hitLayers);
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(hit, hitboxRadius);
+    }
+}
+

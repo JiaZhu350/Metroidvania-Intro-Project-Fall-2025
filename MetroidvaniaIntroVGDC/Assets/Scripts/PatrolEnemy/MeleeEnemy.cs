@@ -12,7 +12,7 @@ public class meleeEnemy : MonoBehaviour
     private float CooldownTimer = Mathf.Infinity;
 
     //Refrences
-    private Health playerhealth;
+    private PlayerHealth playerhealth;
     private Animator anim;
 
     //Chase Parameters
@@ -24,12 +24,14 @@ public class meleeEnemy : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isAttacking = false;
+    private Vector3 initScale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        initScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -72,17 +74,24 @@ public class meleeEnemy : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
         }
 
+        if (player.GetComponent<PlayerHealth>().dead && playerInChaseRange && !isAttacking)
+        {
+            playerInChaseRange = false;
+            enemyPatrol.ResetPatrol();
+        }
+
     }
     private bool PlayerInRange()
     {
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
             0f, Vector2.left, 0.1f, playerlayer);
-        if (hit.collider != null)
+        if (hit.collider && hit.collider.CompareTag("Player"))
         {
-            playerhealth = hit.transform.GetComponent<Health>();
+            playerhealth = hit.transform.GetComponent<PlayerHealth>();
+            return true;
         }
-        return hit.collider != null;
+        return false;
     }
 
     private void OnDrawGizmos()
@@ -118,6 +127,7 @@ public class meleeEnemy : MonoBehaviour
             anim.SetBool("moving", false);
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
+        transform.localScale = new Vector3(Mathf.Abs(initScale.x) * direction, initScale.y, initScale.z);
     }
 
     public void EndAttack()
