@@ -88,18 +88,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Heal",
-                    "type": "Button",
-                    "id": "bf515f0b-b306-47fa-8362-fc434a46766e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Tongue",
                     "type": "Button",
-                    "id": "cb869e14-e916-45fa-9d93-93430bd8aaaf",
+                    "id": "80c8d487-49aa-4a54-a621-7bf1f26a38ad",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -494,29 +485,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ddf706c1-6064-42c2-a480-3a78606f1510",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "98733d84-d18b-492d-b624-d0bfa8469756",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1bf05970-62a7-435c-a8d7-8be900a960d4",
+                    "id": "21a0f10b-fb6e-43ec-b4e0-a41d5100f027",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",

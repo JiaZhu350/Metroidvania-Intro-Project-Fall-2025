@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float climbSpeed;
 
-    private float xPosLastFrame;
 
     private float previousMove;
 
@@ -65,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
     private float time;
     private float actualTime;
     public Rigidbody2D rb;
+
+    public bool performed;
+    public bool canceled;
+
+    public PlayerAnimations playerAnimations;
 
     private Animator animator;
 
@@ -99,16 +103,17 @@ public class PlayerMovement : MonoBehaviour
     void InitializeMovement(InputAction.CallbackContext ctx)
     {
         move = ctx.ReadValue<Vector2>().x;
-
+        performed = ctx.performed;
+        canceled = ctx.canceled;
         if (ctx.performed)
         {
-            animator.SetTrigger("TrigRun");
+            Debug.Log("PERFOMRED");
             moveCondition = true;
             previousTime = 0;
         }
         if (ctx.canceled)
         {
-            animator.SetTrigger("TrigIdle");
+            Debug.Log("CANCELED");
             moveCondition = false;
             previousTime = 0;
         }
@@ -278,6 +283,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
         Movement();
