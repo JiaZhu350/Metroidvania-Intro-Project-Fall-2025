@@ -9,6 +9,7 @@ public class meleeEnemy : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerlayer;
     [SerializeField] private EnemyPatrol enemyPatrol;
+    [SerializeField] private AudioClip meleeAttackSound;
     private float CooldownTimer = Mathf.Infinity;
 
     //Refrences
@@ -45,9 +46,10 @@ public class meleeEnemy : MonoBehaviour
             {
                 anim.SetBool("moving", false);
                 isAttacking = true;
-                Debug.Log("Melee enemy attacks for " + damage + " damage!");
+                //Debug.Log("Melee enemy attacks for " + damage + " damage!");
                 CooldownTimer = 0f; // Reset the cooldown timer after attacking
                 anim.SetTrigger("meleeAttack");
+                SoundEffectManager.Instance.PlaySoundFXClip(meleeAttackSound, transform);
             }
         }
         // Chase logic here
