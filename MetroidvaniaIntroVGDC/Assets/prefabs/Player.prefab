@@ -232,7 +232,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 2
   playerMovement: {fileID: 898198653609782028}
+  enemyHealth: {fileID: 0}
 --- !u!114 &347321977224426548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +284,7 @@ MonoBehaviour:
   damage: 2
   hit: {x: 0, y: 0}
   hitEnd: {x: 0, y: 0}
+  enemyHealth: {fileID: 0}
 --- !u!1 &1693410451272574117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1024,9 @@ MonoBehaviour:
   climbSpeed: 5
   grapplingGun: {fileID: 7702995079734917441}
   rb: {fileID: 0}
+  performed: 0
+  canceled: 0
+  playerAnimations: {fileID: 0}
 --- !u!231 &4149163757221645045
 SpringJoint2D:
   m_ObjectHideFlags: 0
