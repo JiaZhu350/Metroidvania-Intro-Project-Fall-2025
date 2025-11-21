@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7960620215057928900}
   - component: {fileID: 2420117332840508885}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,9 +78,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.26415092, g: 0.01619794, b: 0.01619794, a: 1}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8820568348624194935}
   - component: {fileID: 6190713824773203963}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spike (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,9 +168,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.26415092, g: 0.01619794, b: 0.01619794, a: 1}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6959144398040717047}
   - component: {fileID: 8410742713654921404}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spike (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,9 +258,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.26415092, g: 0.01619794, b: 0.01619794, a: 1}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 3067345147338517286}
   - component: {fileID: 3406717477491747065}
   - component: {fileID: 2991287318973155770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spikes
   m_TagString: Damager
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8310651288717326374}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.227, y: 0.039000034, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -364,4 +364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c78d8466ae65b4f95426eb3c58d8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  damage: 1.5
+  damage: 1
+  damageCooldown: 1
+  player: {fileID: 0}

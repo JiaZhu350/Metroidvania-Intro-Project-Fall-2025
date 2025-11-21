@@ -43,7 +43,8 @@ public class BulletScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Deal damage (your existing logic)
-            Debug.Log("Shooter enemy attacks for " + damage + " damage!");
+            var playerHealthScript = other.GetComponent<PlayerHealth>();
+            playerHealthScript.TakeDamage(damage);
 
             // Apply knockback
             Rigidbody2D playerRB = other.GetComponent<Rigidbody2D>();
