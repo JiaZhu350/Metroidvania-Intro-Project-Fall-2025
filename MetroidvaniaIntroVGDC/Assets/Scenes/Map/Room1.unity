@@ -124,6 +124,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3029615827098662272, guid: b0a88dd4e3c3222459dff85d55c328c6, type: 3}
   m_PrefabInstance: {fileID: 1904553335}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &286609569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963669965669622400, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
+  m_PrefabInstance: {fileID: 1094483226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37cb104f6f0dbd4ebdb72050522e1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1001 &300808795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25087,6 +25098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
   damage: 2
   damageCooldown: 1
+  player: {fileID: 0}
 --- !u!1001 &1094483226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25504,10 +25516,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 347321977224426548, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: damage
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 347321977224426548, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: enemyHealth
+      value: 
+      objectReference: {fileID: 286609569}
     - target: {fileID: 5772060771205168807, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6049758781683950566, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049758781683950566, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049758781683950566, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554005760158567288, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: damage
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554005760158567288, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: enemyHealth
+      value: 
+      objectReference: {fileID: 286609569}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

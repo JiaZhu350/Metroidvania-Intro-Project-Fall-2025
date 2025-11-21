@@ -5,7 +5,7 @@ public class PlayerTongueAttack : MonoBehaviour
 {
     public InputSystem_Actions actions;
     public float hitboxRadius = 0.5f;
-    public LayerMask hitLayers;
+    public LayerMask hitLayers = 6;
 
     public PlayerTongueRope grapplingRope;
 
@@ -17,6 +17,8 @@ public class PlayerTongueAttack : MonoBehaviour
 
     public Vector2 hitEnd;
 
+    public Health enemyHealth;
+
     Rigidbody2D rb;
     void Awake()
     {
@@ -25,13 +27,13 @@ public class PlayerTongueAttack : MonoBehaviour
     }
     void OnEnable()
     {
-        actions.Player.Attack.performed += OnClawAttack;
-        actions.Player.Attack.canceled += OnClawAttack;
+        actions.Player.Tongue.performed += OnClawAttack;
+        actions.Player.Tongue.canceled += OnClawAttack;
     }
     void OnDisable()
     {
-        actions.Player.Attack.performed -= OnClawAttack;
-        actions.Player.Attack.canceled -= OnClawAttack;
+        actions.Player.Tongue.performed -= OnClawAttack;
+        actions.Player.Tongue.canceled -= OnClawAttack;
     }
     private void OnClawAttack(InputAction.CallbackContext context)
     {
@@ -39,7 +41,7 @@ public class PlayerTongueAttack : MonoBehaviour
         {
             if (isHitting)
             {
-                Debug.Log("Tongue Hit!");
+                enemyHealth.TakeDamage(damage);
                 // Implement logic of when the tongue attack hits an enemy
             }
             else

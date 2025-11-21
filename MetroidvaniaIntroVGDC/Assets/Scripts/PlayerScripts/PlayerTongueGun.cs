@@ -69,14 +69,14 @@ public class PlayerTongueGun : MonoBehaviour
     public void OnEnable()
     {
         actions.Enable();
-        actions.Player.Attack.performed += GrappleAction;
-        actions.Player.Attack.canceled += GrappleAction;
+        actions.Player.Tongue.performed += GrappleAction;
+        actions.Player.Tongue.canceled += GrappleAction;
     }
     public void OnDisable()
     {
         actions.Disable();
-        actions.Player.Attack.performed -= GrappleAction;
-        actions.Player.Attack.canceled -= GrappleAction;
+        actions.Player.Tongue.performed -= GrappleAction;
+        actions.Player.Tongue.canceled -= GrappleAction;
     }
     void GrappleAction(InputAction.CallbackContext context)
     {

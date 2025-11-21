@@ -16,6 +16,9 @@ public class PlayerClawAttack : MonoBehaviour
 
     public PlayerMovement playerMovement;
 
+    public Health enemyHealth;
+
+
     void Awake()
     {
         actions = new InputSystem_Actions();
@@ -35,23 +38,16 @@ public class PlayerClawAttack : MonoBehaviour
     {
         if (context.performed)
         {
+            animator.SetTrigger("TrAttack");
             if (isHitting)
             {
-                Debug.Log("Claw Attack Hit!");
-                animator.SetTrigger("TrAttack");
-                animator.SetTrigger("TrNeutral");
-                
+                enemyHealth.TakeDamage(damage);
                 // Implement logic for when the claw attack hits an enemy
-            }
-            else
-            {
-                Debug.Log("Claw Attack Missed!");
-                // Implement logic for when the claw attack misses
             }
         }
         else if (context.canceled)
         {
-            Debug.Log("Claw Attack Canceled");
+            animator.SetTrigger("TrNeutral");
             // Implement logic for when the claw attack is canceled, if needed
         }
     }
@@ -69,12 +65,12 @@ public class PlayerClawAttack : MonoBehaviour
         float direction = playerMovement.move;
         if (direction == 1)
         {
-            Vector3 localTarget = new Vector3(0.5f, 0, 0);
+            Vector3 localTarget = new Vector3(0.5f, 0, -0.1f);
             hitboxTransform.localPosition = localTarget;
         }
         if (direction == -1)
         {
-            Vector3 localTarget = new Vector3(-0.5f, 0, 0);
+            Vector3 localTarget = new Vector3(-0.5f, 0, -0.1f);
             hitboxTransform.localPosition = localTarget;
         }
     }
