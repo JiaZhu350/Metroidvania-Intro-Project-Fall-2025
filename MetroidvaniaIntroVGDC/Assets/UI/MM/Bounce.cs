@@ -13,25 +13,45 @@ public class Bounce : MonoBehaviour
     void Start()
     {
         ui_element = ui_doc.rootVisualElement.Q<VisualElement>("Title");
+        baseRot = ui_element.style.rotate.value;
     }
 
-    private float func(float p)
+    private float func(float p, float td)
     {
-        t+=.001f;
-        while (t >= 10*Mathf.PI)
+        t+=td*bounceSpeed;
+        while (t >= rotPeriod*sizePeriod*2*Mathf.PI)
         {
-            t -= 10*Mathf.PI;
+            t -= rotPeriod*sizePeriod*2*Mathf.PI;
         }
 
         return(
-            8*(Mathf.Sin(t*p))
+            Mathf.Sin(t*p)
         );
     }
+    
+
+    public Vector2 scaleRange = new Vector2(1,1);
+    public float bounceSpeed = 1f;
+    public float rotAmount = 8;
+    public int rotPeriod = 1;
+    public int sizePeriod = 5;
+    private Rotate baseRot = new Rotate(0);
 
     // Update is called once per frame
     void Update()
     {
-        ui_element.style.rotate = new Rotate(func(1f));
-        ui_element.style.scale = new Scale( new Vector2(Mathf.Abs(func(1f/5)/40)+1, Mathf.Abs(func(1f/5)/40)+1 ));
+        // checks
+        if (rotPeriod<1)
+        {rotPeriod = (int)1;}
+        if (sizePeriod<1)
+        {sizePeriod = (int)1;}
+
+        //rotate
+        ui_element.style.rotate = new Rotate(baseRot.angle.value + (rotAmount*func( 1f/(float)rotPeriod,  Time.deltaTime)) );
+
+        //scale
+        float T = Mathf.Abs( func(1f/(float)sizePeriod,  Time.deltaTime) );
+        T = scaleRange.x + T*Mathf.Abs(scaleRange.y - scaleRange.x);
+        ui_element.style.scale = new Scale(new Vector2(T, T));
     }
 }
