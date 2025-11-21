@@ -17,6 +17,7 @@ public class PlayerClawAttack : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public Health enemyHealth;
+    [SerializeField] AudioClip ClawAttackSound;
 
 
     void Awake()
@@ -38,6 +39,7 @@ public class PlayerClawAttack : MonoBehaviour
     {
         if (context.performed)
         {
+            SoundEffectManager.Instance.PlaySoundFXClip(ClawAttackSound, transform);
             animator.SetTrigger("TrAttack");
             if (isHitting)
             {

@@ -119,6 +119,7 @@ MonoBehaviour:
   rotationSpeed: 17.6
   hasMaxDistance: 1
   maxDistnace: 10
+  grappleShootSound: {fileID: 8300000, guid: bfb814e114164524a8f375883b265cf9, type: 3}
   launchToPoint: 1
   launchType: 1
   launchSpeed: 0.5
@@ -264,6 +265,7 @@ MonoBehaviour:
   damage: 2
   playerMovement: {fileID: 898198653609782028}
   enemyHealth: {fileID: 0}
+  ClawAttackSound: {fileID: 8300000, guid: 073858ce32200984fadca38d55bc4a11, type: 3}
 --- !u!114 &347321977224426548
 MonoBehaviour:
   m_ObjectHideFlags: 0

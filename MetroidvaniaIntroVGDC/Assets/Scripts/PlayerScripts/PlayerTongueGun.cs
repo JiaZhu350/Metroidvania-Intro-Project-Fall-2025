@@ -32,7 +32,7 @@ public class PlayerTongueGun : MonoBehaviour
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = false;
     [SerializeField] private float maxDistnace = 20;
-
+    [SerializeField] private AudioClip grappleShootSound;
     private enum LaunchType
     {
         Transform_Launch,
@@ -82,6 +82,7 @@ public class PlayerTongueGun : MonoBehaviour
     {
         if (context.performed)
         {
+            SoundEffectManager.Instance.PlaySoundFXClip(grappleShootSound, transform);
             mousePos = m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             hit = Physics2D.Raycast(firePoint.position, (m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gunPivot.position).normalized, maxDistnace, grappableLayer);
             Debug.DrawRay(firePoint.position, (m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gunPivot.position).normalized * maxDistnace, Color.red);
