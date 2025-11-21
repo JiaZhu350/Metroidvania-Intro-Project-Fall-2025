@@ -162,6 +162,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   enemyPatrol: {fileID: 0}
+  meleeAttackSound: {fileID: 8300000, guid: 35eb697ad7e151f4c89c0a6094d1715e, type: 3}
   chaseSpeed: 3.4
   groundLayer:
     serializedVersion: 2

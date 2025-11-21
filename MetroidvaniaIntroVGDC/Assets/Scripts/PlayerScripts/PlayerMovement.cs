@@ -107,13 +107,12 @@ public class PlayerMovement : MonoBehaviour
         canceled = ctx.canceled;
         if (ctx.performed)
         {
-            Debug.Log("PERFOMRED");
+            animator.SetTrigger("TrigRun");
             moveCondition = true;
             previousTime = 0;
         }
         if (ctx.canceled)
         {
-            Debug.Log("CANCELED");
             moveCondition = false;
             previousTime = 0;
         }
