@@ -10,6 +10,7 @@ public class RespawnPoint : MonoBehaviour
     private Transform child;
     public CanvasGroup canvasGroup;
     FadeInOut fade;
+    [SerializeField] private AudioClip respawnSound;
     private void Start()
     {
         if (canvasGroup != null)
@@ -23,7 +24,7 @@ public class RespawnPoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInside = true;
-            Debug.Log("Player entered respawn area!");
+           // Debug.Log("Player entered respawn area!");
             if (canvasGroup != null)
             {
                 canvasGroup.alpha = 1f;
@@ -36,7 +37,7 @@ public class RespawnPoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInside = false;
-            Debug.Log("Player left respawn area!");
+           // Debug.Log("Player left respawn area!");
             if (canvasGroup != null)
             {
                 canvasGroup.alpha = 0f;
@@ -61,6 +62,7 @@ public class RespawnPoint : MonoBehaviour
         {
             fade.TimeToFade = fadeTime;
             fade.FadeIn();
+            SoundEffectManager.Instance.PlaySoundFXClip(respawnSound, transform);
             yield return new WaitForSeconds(fadeTime + 2);
             GameManager.Instance.SetRespawn(this);
             fade.FadeOut();

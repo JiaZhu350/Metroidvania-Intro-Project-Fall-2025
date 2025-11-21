@@ -70,25 +70,27 @@ public class PlayerHealth : MonoBehaviour
 
     public void HealthItem()
     {
-        if (healthItems < MaxHealthItems)
-        {
-            healthItems++;
-        }
+       // if (healthItems < MaxHealthItems)
+        //{
+           // healthItems++;
+        //}
+        currentHealth = Mathf.Clamp(currentHealth + _heal, 0, startingHealth);
+        updateUI();  // -Bryce
+
             
     }
 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Debug.Log("Heal button pressed");
-            if (healthItems > 0 && currentHealth < startingHealth && !dead)
-            {
-                healthItems--;
-                currentHealth = Mathf.Clamp(currentHealth + _heal, 0, startingHealth);
-                updateUI();  // -Bryce
-            }
-        }
+        //if (context.performed)
+       // {
+           // if (healthItems > 0 && currentHealth < startingHealth && !dead)
+           // {
+               // healthItems--;
+               // currentHealth = Mathf.Clamp(currentHealth + _heal, 0, startingHealth);
+               // updateUI();  // -Bryce
+           // }
+       // }
     }
 
    public void Respawn()
@@ -105,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnInteractRespawn(InputAction.CallbackContext context)
     {
-        Debug.Log("Interact button pressed for respawn point");
+       // Debug.Log("Interact button pressed for respawn point");
         // Find the respawn point in the scene
         RespawnPoint rp = Object.FindAnyObjectByType<RespawnPoint>();
 
