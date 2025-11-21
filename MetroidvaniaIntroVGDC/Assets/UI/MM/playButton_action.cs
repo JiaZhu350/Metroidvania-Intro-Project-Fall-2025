@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class playButton_action : MonoBehaviour
 {
@@ -11,9 +12,24 @@ public class playButton_action : MonoBehaviour
     }
 
     // What happens when button is clicked.
-     public void action()
+    public void action()
     {
-        LoadSpecificScene(targetSceneName); 
+        StartCoroutine(LoadLevel(targetSceneName)); 
+    }
+
+    public Animator transition;
+    public float transitionTime = 1f;
+
+    IEnumerator LoadLevel(string targetSceneName)
+    {
+        //start transition animation
+        transition.SetTrigger("Start");
+
+        //wait
+        yield return new WaitForSeconds(transitionTime);
+
+        //load new scene.
+        LoadSpecificScene(targetSceneName);
     }
 
 }
