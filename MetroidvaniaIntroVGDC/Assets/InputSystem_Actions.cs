@@ -183,13 +183,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    """"name"""": """"Heal"""",
-                    """"type"""": """"Button"""",
-                    """"id"""": """"bf515f0b-b306-47fa-8362-fc434a46766e"""",
-                    """"expectedControlType"""": """""""",
-                    """"processors"""": """""""",
-                    """"interactions"""": """""""",
-                    """"initialStateCheck"""": false
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf615c5e-4618-4897-8665-9da48d15ebf5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -590,26 +590,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    """"name"""": """""""",
-                    """"id"""": """"ddf706c1-6064-42c2-a480-3a78606f1510"""",
-                    """"path"""": """""""",
-                    """"interactions"""": """""""",
-                    """"processors"""": """""""",
-                    """"groups"""": """""""",
-                    """"action"""": """"Heal"""",
-                    """"isComposite"""": false,
-                    """"isPartOfComposite"""": false
-                },
-                {
-                    """"name"""": """""""",
-                    """"id"""": """"98733d84-d18b-492d-b624-d0bfa8469756"""",
-                    """"path"""": """"<Keyboard>/f"""",
-                    """"interactions"""": """""""",
-                    """"processors"""": """""""",
-                    """"groups"""": """""""",
-                    """"action"""": """"Heal"""",
-                    """"isComposite"""": false,
-                    """"isPartOfComposite"""": false
+                    ""name"": """",
+                    ""id"": ""a9eb2dd8-142e-48a3-a6a5-11ca2cc1a7ff"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1358,13 +1347,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Heal".
-        /// </summary>
-        public InputAction @Heal => m_Wrapper.m_Player_Heal;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Tongue".
         /// </summary>
         public InputAction @Tongue => m_Wrapper.m_Player_Tongue;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Heal".
+        /// </summary>
+        public InputAction @Heal => m_Wrapper.m_Player_Heal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>

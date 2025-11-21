@@ -5,7 +5,7 @@ public class PlayerTongueAttack : MonoBehaviour
 {
     public InputSystem_Actions actions;
     public float hitboxRadius = 0.5f;
-    public LayerMask hitLayers = 6;
+    public LayerMask hitLayers;
 
     public PlayerTongueRope grapplingRope;
 
@@ -41,6 +41,7 @@ public class PlayerTongueAttack : MonoBehaviour
         {
             if (isHitting)
             {
+                Debug.Log("ENEMY HIT TONGUE");
                 enemyHealth.TakeDamage(damage);
                 // Implement logic of when the tongue attack hits an enemy
             }

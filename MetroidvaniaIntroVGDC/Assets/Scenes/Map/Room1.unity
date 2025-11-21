@@ -25524,6 +25524,10 @@ PrefabInstance:
       propertyPath: enemyHealth
       value: 
       objectReference: {fileID: 286609569}
+    - target: {fileID: 347321977224426548, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: hitLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1656177062952742953, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -25552,6 +25556,10 @@ PrefabInstance:
       propertyPath: enemyHealth
       value: 
       objectReference: {fileID: 286609569}
+    - target: {fileID: 7702995079734917441, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: grappableLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
