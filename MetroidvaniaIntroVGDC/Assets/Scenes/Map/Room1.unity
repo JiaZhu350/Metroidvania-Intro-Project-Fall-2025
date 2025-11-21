@@ -243,6 +243,37 @@ Transform:
   - {fileID: 1179905799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &440143091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5772060771205168807, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+  m_PrefabInstance: {fileID: 1501231089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &440143092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7515529499963780339, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+  m_PrefabInstance: {fileID: 1501231089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440143091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34e5a2d04e89c34c85b55bd3cf7c65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &440143101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440143091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a3a4f8f34d6754abc9cc46d09b3ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  respawnPoint: {x: 0, y: 0}
+  respawnScene: 
+  player: {fileID: 440143091}
 --- !u!4 &441678414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3029615827098662272, guid: b0a88dd4e3c3222459dff85d55c328c6, type: 3}
@@ -25098,7 +25129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
   damage: 2
   damageCooldown: 1
-  player: {fileID: 0}
+  player: {fileID: 440143092}
 --- !u!1001 &1094483226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25545,6 +25576,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6049758781683950566, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049758781683950566, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.1
       objectReference: {fileID: 0}
@@ -25563,7 +25598,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5772060771205168807, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 440143101}
   m_SourcePrefab: {fileID: 100100000, guid: 2331da4b2fdeef349b7381b5aec7ae6b, type: 3}
 --- !u!4 &1796998927 stripped
 Transform:
