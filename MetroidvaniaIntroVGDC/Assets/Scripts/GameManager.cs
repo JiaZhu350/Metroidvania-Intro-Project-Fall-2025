@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Vector2 respawnPoint;
     [HideInInspector] public string respawnScene;
-    [SerializeField] private GameObject player;
+    private GameObject player;
 
     FadeInOut fade;
     private void Awake()
