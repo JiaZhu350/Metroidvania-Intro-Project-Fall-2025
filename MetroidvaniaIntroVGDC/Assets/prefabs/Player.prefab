@@ -108,7 +108,7 @@ MonoBehaviour:
   grappableLayer:
     serializedVersion: 2
     m_Bits: 8
-  m_camera: {fileID: 0}
+  m_camera: {fileID: 8976248449094732554, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
   gunHolder: {fileID: 8594085237966787854}
   gunPivot: {fileID: 9025314490422644819}
   firePoint: {fileID: 680512902064258815}
