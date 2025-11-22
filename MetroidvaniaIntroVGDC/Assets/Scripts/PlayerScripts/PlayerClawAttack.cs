@@ -10,7 +10,7 @@ public class PlayerClawAttack : MonoBehaviour
 
     public float damage;
 
-    bool isHitting;
+    Collider2D hit;
 
     private Animator animator;
 
@@ -41,8 +41,10 @@ public class PlayerClawAttack : MonoBehaviour
         {
             SoundEffectManager.Instance.PlaySoundFXClip(ClawAttackSound, transform);
             animator.SetTrigger("TrAttack");
-            if (isHitting)
+            if (hit != null)
             {
+                Debug.Log("ENEMY HIT CLAW");
+                enemyHealth = hit.GetComponent<Health>();
                 enemyHealth.TakeDamage(damage);
                 // Implement logic for when the claw attack hits an enemy
             }
@@ -62,8 +64,8 @@ public class PlayerClawAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isHitting = Physics2D.OverlapCircle(
-            hitboxTransform.position, hitboxRadius, hitLayers);
+        hit = Physics2D.OverlapCircle(
+    hitboxTransform.position, hitboxRadius, hitLayers);
         float direction = playerMovement.move;
         if (direction == 1)
         {

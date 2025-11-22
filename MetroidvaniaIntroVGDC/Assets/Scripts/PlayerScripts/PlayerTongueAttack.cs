@@ -11,7 +11,7 @@ public class PlayerTongueAttack : MonoBehaviour
 
     public float damage;
 
-    bool isHitting;
+    Collider2D hitEM;
 
     public Vector2 hit;
 
@@ -39,9 +39,11 @@ public class PlayerTongueAttack : MonoBehaviour
     {
         if (context.performed)
         {
-            if (isHitting)
+            if (hitEM != null)
             {
                 Debug.Log("ENEMY HIT TONGUE");
+                if (hitEM.CompareTag("Enemy") == false) return;
+                enemyHealth = hitEM.GetComponent<Health>();
                 enemyHealth.TakeDamage(damage);
                 // Implement logic of when the tongue attack hits an enemy
             }
@@ -61,7 +63,7 @@ public class PlayerTongueAttack : MonoBehaviour
     void Update()
     {
         hit = grapplingRope.currentPosition;
-        isHitting = Physics2D.OverlapCircle(hit, hitboxRadius, hitLayers);
+        hitEM = Physics2D.OverlapCircle(hit, hitboxRadius, hitLayers);
     }
     void OnDrawGizmosSelected()
     {
