@@ -6,7 +6,7 @@ public class DamageOverTimeScript : MonoBehaviour
 {
     public float damage;
     public float damageCooldown;
-    public PlayerHealth player;
+    private GameObject player;
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,6 +22,8 @@ public class DamageOverTimeScript : MonoBehaviour
         Collider2D thisCollider = GetComponent<Collider2D>();
         thisCollider.enabled = false;
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        
         var playerHealthScript = player.GetComponent<PlayerHealth>();
         playerHealthScript.TakeDamage(damage);
 

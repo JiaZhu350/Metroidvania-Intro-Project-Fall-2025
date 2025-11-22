@@ -8,20 +8,19 @@ public class RoomChanger : MonoBehaviour
     public RoomConnection connection;
     public string targetSceneName;
     public Transform spawnPoint;
-    public GameObject myPrefab;
     
     private void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player") == null)
-        {
-            GameObject player = Instantiate(myPrefab, new Vector3(0.24f, 8.84f, 0f), Quaternion.identity);
-        }
-        
         if (connection == RoomConnection.ActiveConnection)
         {
-            FindObjectOfType<PlayerMovement>().gameObject.transform.position = spawnPoint.position;
+            GameObject.FindGameObjectWithTag("Player").transform.position = spawnPoint.position;
+        }
+        else if (SceneManager.GetActiveScene().name == "Room1" && connection == null)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 8f, 0.0f);
         }
     }
+
 
 
     private void OnCollisionEnter2D(Collision2D other)
