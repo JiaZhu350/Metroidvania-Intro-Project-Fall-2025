@@ -45,10 +45,6 @@ public class PlayerTongueAttack : MonoBehaviour
                 enemyHealth.TakeDamage(damage);
                 // Implement logic of when the tongue attack hits an enemy
             }
-            else
-            {
-                // Implement logic for when the tongue attack misses
-            }
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
