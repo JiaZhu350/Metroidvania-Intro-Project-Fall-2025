@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class RoomChanger : MonoBehaviour
 {
@@ -17,30 +16,13 @@ public class RoomChanger : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         var player = other.collider.gameObject;
         if (player != null && player.CompareTag("Player"))
         {
-            StartCoroutine(crossFade());
-
-            //RoomConnection.ActiveConnection = connection;
-            //SceneManager.LoadScene(targetSceneName);
+            RoomConnection.ActiveConnection = connection;
+            SceneManager.LoadScene(targetSceneName);
         }
-    }
-
-
-    public Animator transition;
-    public float transitionTime = 1f;
-
-    IEnumerator crossFade()
-    {
-        transition.SetTrigger("Start");
-
-        yield return new WaitForSeconds(transitionTime);
-
-        RoomConnection.ActiveConnection = connection;
-        SceneManager.LoadScene(targetSceneName);
     }
 }
