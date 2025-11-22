@@ -5,6 +5,7 @@ using System.Collections;
 public class playButton_action : MonoBehaviour
 {
     public string targetSceneName;
+    
     private void LoadSpecificScene(string sceneName)
     {
         //Debug.Log("PlayButton did action.");
@@ -14,6 +15,7 @@ public class playButton_action : MonoBehaviour
     // What happens when button is clicked.
     public void action()
     {
+        var player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(LoadLevel(targetSceneName)); 
     }
 
@@ -27,7 +29,7 @@ public class playButton_action : MonoBehaviour
 
         //wait
         yield return new WaitForSeconds(transitionTime);
-
+        
         //load new scene.
         LoadSpecificScene(targetSceneName);
     }
