@@ -4,8 +4,13 @@ using UnityEngine.Serialization;
 
 public class CameraFollowScript : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public float minX, minY, maxX, maxY;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     
     private void Update()
     {

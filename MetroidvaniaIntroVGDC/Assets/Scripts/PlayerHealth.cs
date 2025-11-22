@@ -25,7 +25,6 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player health: " + currentHealth);
         actions = new InputSystem_Actions();
         actions.Player.Enable();
-        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
