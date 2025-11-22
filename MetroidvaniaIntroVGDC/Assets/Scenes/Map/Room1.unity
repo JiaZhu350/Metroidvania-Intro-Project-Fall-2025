@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vignette
       objectReference: {fileID: 0}
+    - target: {fileID: 300048220503628948, guid: 0a63068d583dd314987a1a0a61c67681, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2784966560707428023, guid: 0a63068d583dd314987a1a0a61c67681, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -356,6 +360,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2784966560707428023, guid: 0a63068d583dd314987a1a0a61c67681, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976515856611488551, guid: 0a63068d583dd314987a1a0a61c67681, type: 3}
+      propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -25460,7 +25468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
   damage: 2
   damageCooldown: 1
-  player: {fileID: 0}
 --- !u!1001 &1094483226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25891,6 +25898,10 @@ PrefabInstance:
     - target: {fileID: 3572763332805017582, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572763332805017582, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9218799748278701716, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
       propertyPath: maxX

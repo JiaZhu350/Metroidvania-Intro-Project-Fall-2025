@@ -117,7 +117,7 @@ public class PlayerTongueRope : MonoBehaviour
         m_lineRenderer.SetPosition(0, grapplingGun.firePoint.position);
         m_lineRenderer.SetPosition(1, grapplingGun.grapplePoint);
     }
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         //Works need to add condition where its equal to 0 when its not awake
         Gizmos.color = Color.purple;

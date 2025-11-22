@@ -294,7 +294,7 @@ public class PlayerMovement : MonoBehaviour
         DoubleJumpMidAirCheck();
 
     }
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);

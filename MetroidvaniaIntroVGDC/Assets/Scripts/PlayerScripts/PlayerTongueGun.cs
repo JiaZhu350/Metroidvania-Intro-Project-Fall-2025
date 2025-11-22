@@ -88,6 +88,8 @@ public class PlayerTongueGun : MonoBehaviour
             Debug.DrawRay(firePoint.position, (m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gunPivot.position).normalized * maxDistnace, Color.red);
             HasPerformed = true;
             playerMovement.enabled = false;
+            Debug.Log("mouspos: "+ mousePos);
+            Debug.Log("hit: "+ hit.point);
         }
         if (context.canceled)
         {
@@ -214,7 +216,7 @@ public class PlayerTongueGun : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (firePoint != null && hasMaxDistance)
         {
