@@ -123,18 +123,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 3253181746968008356}
     m_Modifications:
     - target: {fileID: 1326334714122569886, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 1326334714122569886, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 1326334714122569886, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 1326334714122569886, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.40292358
       objectReference: {fileID: 0}
@@ -174,54 +162,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1326334714122569886, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3652720400205525097, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3276138
-      objectReference: {fileID: 0}
-    - target: {fileID: 3652720400205525097, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.4914203
-      objectReference: {fileID: 0}
-    - target: {fileID: 3652720400205525097, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3652720400205525097, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 3652720400205525097, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 5273618558574196885, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 399011688117046084, guid: 394ab397fad50ea49a3409efbb4ea3b8, type: 3}
     - target: {fileID: 7441006340274739172, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7694528850181706916, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: range
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7694528850181706916, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7694528850181706916, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
       propertyPath: enemyPatrol
       value: 
       objectReference: {fileID: 6488574245508071186}
-    - target: {fileID: 7694528850181706916, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
-      propertyPath: colliderDistance
-      value: 0.71
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

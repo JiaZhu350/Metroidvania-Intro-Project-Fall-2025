@@ -107,7 +107,7 @@ public class meleeEnemy : MonoBehaviour
     {
         if (PlayerInRange())
         {
-            playerhealth.TakeDamage(damage);
+            //playerhealth.TakeDamage(damage);
         }
     }
 
