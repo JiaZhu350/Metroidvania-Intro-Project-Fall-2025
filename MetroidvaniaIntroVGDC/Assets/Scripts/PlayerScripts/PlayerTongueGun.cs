@@ -106,7 +106,6 @@ public class PlayerTongueGun : MonoBehaviour
             if(cameraPosition != playerPosition)
             {
                 diff = playerPosition - cameraPosition;
-                Debug.Log("DIFF" + diff);
                 mousePos = mousePos - diff;
             }
             mouseClickPosition = mousePos + playerPosition;
@@ -114,11 +113,6 @@ public class PlayerTongueGun : MonoBehaviour
             Debug.DrawRay(firePoint.position, (mouseClickPosition - gun).normalized * maxDistnace, Color.red);
             HasPerformed = true;
             playerMovement.enabled = false;
-            Debug.Log("mouspos: "+ mousePos);
-            Debug.Log("cameraPosition: "+ cameraPosition);
-            Debug.Log("player: "+ playerPosition);
-            Debug.Log("click: "+ mouseClickPosition);
-            Debug.Log("hit: "+ hit.point);
         }
         if (context.canceled)
         {

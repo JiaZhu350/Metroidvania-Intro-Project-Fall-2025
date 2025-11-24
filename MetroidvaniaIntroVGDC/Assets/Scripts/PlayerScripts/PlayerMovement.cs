@@ -25,9 +25,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float groundCheckRadius;
 
-    public float leftWallCheckRadius;
+    public Vector2 leftWallSize;
 
-    public float rightWallCheckRadius;
+    public Vector2 rightWallSize;
 
     bool doubleJumpUsed;
 
@@ -138,8 +138,9 @@ public class PlayerMovement : MonoBehaviour
         float updatedVelocity = grapplingGun.updatedVelocity;
         if (moveCondition)
         {
-            if ((newTime >= 1) && isGrounded)
+            if (newTime >= 1)
             {
+                Debug.Log("FAST");
                 if (previousMove != move)
                 {
                     previousTime = 0;
@@ -148,14 +149,9 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocityX = Mathf.Lerp(movementSpeed, fastMovementSpeed, actualTime);
                 previousMove = move;
             }
-            if(newTime >=1 && !isGrounded)
-            {
-                newTime = 0;
-                previousTime = 0;
-                rb.linearVelocityX = movementSpeed;
-            }
             if (newTime < 1)
             {
+                Debug.Log("SLOW");
                 if (previousMove != move)
                 {
                     previousTime = 0;
@@ -265,8 +261,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void Climbing()
     {
-        if (isTouchingLeftWall || isTouchingRightWall)
+        if (isTouchingLeftWall || isTouchingRightWall && move == 1)
         {
+            Debug.Log("CLIMG");
+            rb.linearVelocityX = 0;
+            moveCondition = false;
             rb.linearVelocityY = climb * climbSpeed;
         }
     }
@@ -288,8 +287,8 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         FlipCharacterX();
         isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
-        isTouchingLeftWall = Physics2D.OverlapCircle(leftWallCheckTransform.position, leftWallCheckRadius, leftWallLayer);
-        isTouchingRightWall = Physics2D.OverlapCircle(rightWallCheckTransform.position, rightWallCheckRadius, rightWallLayer);
+        isTouchingLeftWall = Physics2D.OverlapBox(leftWallCheckTransform.position, leftWallSize, 0f, leftWallLayer);
+        isTouchingRightWall = Physics2D.OverlapBox(rightWallCheckTransform.position, rightWallSize, 0f, rightWallLayer);
         Climbing();
         DoubleJumpMidAirCheck();
 
@@ -298,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(leftWallCheckTransform.position, leftWallCheckRadius);
-        Gizmos.DrawWireSphere(rightWallCheckTransform.position, rightWallCheckRadius);
+        Gizmos.DrawWireCube(leftWallCheckTransform.position,leftWallSize);
+        Gizmos.DrawWireCube(rightWallCheckTransform.position, rightWallSize);
     }
 }
