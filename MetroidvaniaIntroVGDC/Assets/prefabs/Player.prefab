@@ -109,6 +109,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   m_camera: {fileID: 8976248449094732554, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+  cameraPos: {fileID: 0}
+  player: {fileID: 303182859493588486}
   gunHolder: {fileID: 8594085237966787854}
   gunPivot: {fileID: 9025314490422644819}
   firePoint: {fileID: 680512902064258815}
@@ -116,7 +118,7 @@ MonoBehaviour:
   m_rigidbody: {fileID: 4294006495713777840}
   playerMovement: {fileID: 898198653609782028}
   rotateOverTime: 1
-  rotationSpeed: 17.6
+  rotationSpeed: 30.4
   hasMaxDistance: 1
   maxDistnace: 10
   grappleShootSound: {fileID: 8300000, guid: bfb814e114164524a8f375883b265cf9, type: 3}
@@ -130,6 +132,9 @@ MonoBehaviour:
   grappleDistanceVector: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
   updatedVelocity: 0
+  playerPosition: {x: 0, y: 0}
+  cameraPosition: {x: 0, y: 0}
+  mouseClickPosition: {x: 0, y: 0}
 --- !u!1 &1380964582220518999
 GameObject:
   m_ObjectHideFlags: 0
