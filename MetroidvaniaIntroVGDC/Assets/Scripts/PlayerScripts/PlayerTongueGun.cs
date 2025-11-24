@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using NUnit.Framework.Internal;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,9 +10,14 @@ public class PlayerTongueGun : MonoBehaviour
     [SerializeField] LayerMask grappableLayer;
 
     [Header("Main Camera:")]
-    public Camera m_camera;
+
+    [SerializeField] Camera m_camera;
+
+    private GameObject mainCamera;
 
     [Header("Transform Ref:")]
+
+    public Transform player;
     public Transform gunHolder;
     public Transform gunPivot;
     public Transform firePoint;
@@ -62,6 +64,13 @@ public class PlayerTongueGun : MonoBehaviour
 
     public float updatedVelocity;
 
+    public Vector2 playerPosition;
+
+    public Vector2 cameraPosition;
+    public Vector2 mouseClickPosition;
+
+    private Vector2 diff;
+
     private void Awake()
     {
         actions = new InputSystem_Actions();
@@ -82,12 +91,34 @@ public class PlayerTongueGun : MonoBehaviour
     {
         if (context.performed)
         {
+            Vector2 gun = gunPivot.position;
             SoundEffectManager.Instance.PlaySoundFXClip(grappleShootSound, transform);
             mousePos = m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            hit = Physics2D.Raycast(firePoint.position, (m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gunPivot.position).normalized, maxDistnace, grappableLayer);
-            Debug.DrawRay(firePoint.position, (m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gunPivot.position).normalized * maxDistnace, Color.red);
+            playerPosition = player.position;
+            if(mainCamera == null)
+            {
+                mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            }
+            if(mainCamera != null)
+            {
+                cameraPosition = mainCamera.GetComponent<CameraFollowScript>().transform.position;
+            }
+            if(cameraPosition != playerPosition)
+            {
+                diff = playerPosition - cameraPosition;
+                Debug.Log("DIFF" + diff);
+                mousePos = mousePos - diff;
+            }
+            mouseClickPosition = mousePos + playerPosition;
+            hit = Physics2D.Raycast(firePoint.position, (mouseClickPosition - gun).normalized, maxDistnace, grappableLayer);
+            Debug.DrawRay(firePoint.position, (mouseClickPosition - gun).normalized * maxDistnace, Color.red);
             HasPerformed = true;
             playerMovement.enabled = false;
+            Debug.Log("mouspos: "+ mousePos);
+            Debug.Log("cameraPosition: "+ cameraPosition);
+            Debug.Log("player: "+ playerPosition);
+            Debug.Log("click: "+ mouseClickPosition);
+            Debug.Log("hit: "+ hit.point);
         }
         if (context.canceled)
         {
@@ -99,7 +130,7 @@ public class PlayerTongueGun : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     private void Update()
@@ -214,7 +245,7 @@ public class PlayerTongueGun : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (firePoint != null && hasMaxDistance)
         {

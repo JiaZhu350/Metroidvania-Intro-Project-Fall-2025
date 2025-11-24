@@ -65,7 +65,7 @@ public class PlayerTongueAttack : MonoBehaviour
         hit = grapplingRope.currentPosition;
         hitEM = Physics2D.OverlapCircle(hit, hitboxRadius, hitLayers);
     }
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(hit, hitboxRadius);

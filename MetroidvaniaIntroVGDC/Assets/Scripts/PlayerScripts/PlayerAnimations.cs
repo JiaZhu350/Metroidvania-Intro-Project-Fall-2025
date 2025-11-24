@@ -39,7 +39,7 @@ public class PlayerAnimations : MonoBehaviour
         }
         if(canceled && endCondition)
         {
-            animator.SetTrigger("TrigRun");
+            animator.SetTrigger("TrigIdle");
         }
     }
     // Update is called once per frame

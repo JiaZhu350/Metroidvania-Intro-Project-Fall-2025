@@ -8,6 +8,8 @@ public class CameraFollowScript : MonoBehaviour
     private GameObject player;
     public float minX, minY, maxX, maxY;
 
+    public Vector3 desiredCameraPos;
+
     private void Awake()
     {
         
@@ -21,7 +23,7 @@ public class CameraFollowScript : MonoBehaviour
         }
         else
         {
-            Vector3 desiredCameraPos = new Vector3(
+            desiredCameraPos = new Vector3(
                 Mathf.Clamp(player.transform.position.x, minX, maxX),
                 Mathf.Clamp(player.transform.position.y, minY, maxY),
                 transform.position.z);

@@ -78,7 +78,7 @@ public class PlayerClawAttack : MonoBehaviour
             hitboxTransform.localPosition = localTarget;
         }
     }
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;
         Gizmos.DrawWireSphere(hitboxTransform.position, hitboxRadius);

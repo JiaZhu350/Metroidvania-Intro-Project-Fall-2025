@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d08733242b65444ac5db077d505ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollowScript
-  player: {fileID: 0}
   minX: -37
   minY: -17
   maxX: 46.5

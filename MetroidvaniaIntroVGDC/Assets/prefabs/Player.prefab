@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7702995079734917441}
   m_Layer: 7
   m_Name: TongueShoot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 717111093769940399}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.5, y: 1.25, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 680512902064258815}
@@ -109,6 +109,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   m_camera: {fileID: 8976248449094732554, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+  cameraPos: {fileID: 0}
+  player: {fileID: 303182859493588486}
   gunHolder: {fileID: 8594085237966787854}
   gunPivot: {fileID: 9025314490422644819}
   firePoint: {fileID: 680512902064258815}
@@ -116,7 +118,7 @@ MonoBehaviour:
   m_rigidbody: {fileID: 4294006495713777840}
   playerMovement: {fileID: 898198653609782028}
   rotateOverTime: 1
-  rotationSpeed: 17.6
+  rotationSpeed: 30.4
   hasMaxDistance: 1
   maxDistnace: 10
   grappleShootSound: {fileID: 8300000, guid: bfb814e114164524a8f375883b265cf9, type: 3}
@@ -130,6 +132,9 @@ MonoBehaviour:
   grappleDistanceVector: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
   updatedVelocity: 0
+  playerPosition: {x: 0, y: 0}
+  cameraPosition: {x: 0, y: 0}
+  mouseClickPosition: {x: 0, y: 0}
 --- !u!1 &1380964582220518999
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +334,7 @@ GameObject:
   - component: {fileID: 9025314490422644819}
   m_Layer: 7
   m_Name: Pivot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,7 +348,7 @@ Transform:
   m_GameObject: {fileID: 3025122871179962468}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 1.25, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -394,7 +399,7 @@ GameObject:
   - component: {fileID: 2024564081352857042}
   m_Layer: 7
   m_Name: TongueRope
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 5221912655212649010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -978,7 +983,7 @@ GameObject:
   - component: {fileID: 680512902064258815}
   m_Layer: 7
   m_Name: FirePoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -992,8 +997,8 @@ Transform:
   m_GameObject: {fileID: 8026796486119405086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.5, y: 1.25, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1924037269970822108}
