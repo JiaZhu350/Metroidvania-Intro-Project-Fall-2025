@@ -109,7 +109,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   m_camera: {fileID: 8976248449094732554, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
-  cameraPos: {fileID: 0}
   player: {fileID: 303182859493588486}
   gunHolder: {fileID: 8594085237966787854}
   gunPivot: {fileID: 9025314490422644819}
@@ -286,7 +285,7 @@ MonoBehaviour:
   hitboxRadius: 0.5
   hitLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   grapplingRope: {fileID: 2024564081352857042}
   damage: 2
   hit: {x: 0, y: 0}
@@ -859,8 +858,8 @@ MonoBehaviour:
   leftWallCheckTransform: {fileID: 7141575731756572010}
   rightWallCheckTransform: {fileID: 597382874347509222}
   groundCheckRadius: 0.1
-  leftWallCheckRadius: 0.1
-  rightWallCheckRadius: 0.1
+  leftWallSize: {x: 0.05, y: 1.4}
+  rightWallSize: {x: 0.05, y: 1.4}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

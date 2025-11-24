@@ -19,6 +19,8 @@ public class PlayerTongueAttack : MonoBehaviour
 
     public Health enemyHealth;
 
+    private GameObject enemy;
+
     Rigidbody2D rb;
     void Awake()
     {
@@ -42,10 +44,13 @@ public class PlayerTongueAttack : MonoBehaviour
             if (hitEM != null)
             {
                 Debug.Log("ENEMY HIT TONGUE");
-                if (hitEM.CompareTag("Enemy") == false) return;
                 enemyHealth = hitEM.GetComponent<Health>();
                 enemyHealth.TakeDamage(damage);
                 // Implement logic of when the tongue attack hits an enemy
+            }
+            if (hitEM == null)
+            {
+                //Nothing
             }
             else
             {
@@ -57,6 +62,7 @@ public class PlayerTongueAttack : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     // Update is called once per frame
