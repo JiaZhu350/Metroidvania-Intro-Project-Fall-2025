@@ -62,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+            StartCoroutine(Stun());
             Debug.Log("Player hurt");
             Debug.Log("current Health: " + currentHealth);
         }
@@ -136,5 +137,12 @@ public class PlayerHealth : MonoBehaviour
     {
         GetComponent<PlayerMovement>().enabled = true;
         Object.FindAnyObjectByType<PlayerClawAttack>().enabled = true;
+    }
+
+    public IEnumerator Stun()
+    {
+        FreezeMovement();
+        yield return new WaitForSeconds(0.5f);
+        UnfreezeMovement();
     }
 }

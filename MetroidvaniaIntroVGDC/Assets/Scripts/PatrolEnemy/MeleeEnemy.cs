@@ -109,16 +109,15 @@ public class meleeEnemy : MonoBehaviour
     {
         if (PlayerInRange())
         {
-            //playerhealth.TakeDamage(damage);
+            playerhealth.TakeDamage(damage);
             Rigidbody2D playerRB = playerhealth.GetComponent<Rigidbody2D>();
             if (playerRB != null)
             {
-                // Direction from enemy to player
-                Vector2 knockbackDir = (player.transform.position - transform.position);
-                knockbackDir.y += 0.8f; // Add some vertical lift to the knockback
-                knockbackDir = knockbackDir.normalized;
-                // Apply impulse force in that direction
+                
+                Vector2 knockbackDir = (player.transform.position - transform.position).normalized;
+                knockbackDir = new Vector2(knockbackDir.x, 1.3f).normalized;
                 Debug.Log(knockbackDir);
+                playerRB.linearVelocity = Vector2.zero;
                 playerRB.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
             }
         }

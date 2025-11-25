@@ -174,9 +174,13 @@ PrefabInstance:
       propertyPath: enemyPatrol
       value: 
       objectReference: {fileID: 6488574245508071186}
+    - target: {fileID: 7694528850181706916, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
+      propertyPath: knockbackForce
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8581234185426754677, guid: 8e8b7a41346a2444e8e654767804ca46, type: 3}
       propertyPath: itemDropChance
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -217,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
   damage: 1
+  knockbackForce: 8
 --- !u!61 &8456680553107570792
 BoxCollider2D:
   m_ObjectHideFlags: 0
