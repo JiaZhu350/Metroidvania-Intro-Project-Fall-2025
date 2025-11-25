@@ -11,6 +11,7 @@ public class meleeEnemy : MonoBehaviour
     [SerializeField] private EnemyPatrol enemyPatrol;
     [SerializeField] private AudioClip meleeAttackSound;
     private float CooldownTimer = Mathf.Infinity;
+    public float knockbackForce = 5f;
 
     //Refrences
     private PlayerHealth playerhealth;
@@ -29,7 +30,7 @@ public class meleeEnemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
+        player = Object.FindAnyObjectByType<PlayerHealth>().gameObject;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         initScale = transform.localScale;
@@ -38,6 +39,7 @@ public class meleeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         CooldownTimer += Time.deltaTime;
 
         if (CooldownTimer >= attackCooldown)
@@ -108,6 +110,17 @@ public class meleeEnemy : MonoBehaviour
         if (PlayerInRange())
         {
             //playerhealth.TakeDamage(damage);
+            Rigidbody2D playerRB = playerhealth.GetComponent<Rigidbody2D>();
+            if (playerRB != null)
+            {
+                // Direction from enemy to player
+                Vector2 knockbackDir = (player.transform.position - transform.position);
+                knockbackDir.y += 0.8f; // Add some vertical lift to the knockback
+                knockbackDir = knockbackDir.normalized;
+                // Apply impulse force in that direction
+                Debug.Log(knockbackDir);
+                playerRB.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+            }
         }
     }
 
