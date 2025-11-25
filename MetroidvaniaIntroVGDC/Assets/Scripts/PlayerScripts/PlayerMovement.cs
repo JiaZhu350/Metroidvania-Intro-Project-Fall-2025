@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform rightWallCheckTransform;
 
-    public float groundCheckRadius;
+    public Vector2 groundCheckSize;
 
     public Vector2 leftWallSize;
 
@@ -81,12 +81,12 @@ public class PlayerMovement : MonoBehaviour
         actions.Player.Enable();
         actions.Player.Move.performed += InitializeMovement;
         actions.Player.Jump.performed += NormalJumping;
-        actions.Player.Move.performed += ClimbingCheck;
+        actions.Player.Climb.performed += ClimbingCheck;
         
 
         actions.Player.Move.canceled += InitializeMovement;
         actions.Player.Jump.canceled += NormalJumping;
-        actions.Player.Move.canceled += ClimbingCheck;
+        actions.Player.Climb.canceled += ClimbingCheck;
         
     }
 
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         actions.Player.Disable();
         actions.Player.Move.performed -= InitializeMovement;
         actions.Player.Jump.performed -= NormalJumping;
-        actions.Player.Move.performed -= ClimbingCheck;
+        actions.Player.Climb.performed -= ClimbingCheck;
 
     }
 
@@ -113,6 +113,9 @@ public class PlayerMovement : MonoBehaviour
         }
         if (ctx.canceled)
         {
+            //FIX TRIG IDLE TURNING ON WHEN MASHING A/D QUICKLY
+            //Transition animations in same animator controller smoother. (Youtube)
+            animator.SetTrigger("TrigIdle");
             moveCondition = false;
             previousTime = 0;
         }
@@ -136,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
         float movementSpeed = move * speed;
         float fastMovementSpeed = movementSpeed * 2f;
         float updatedVelocity = grapplingGun.updatedVelocity;
+        Debug.Log(moveCondition);
+        if(moveCondition && (updatedVelocity > 0))
+        {
+            //Test later(swing keeps momentum of run if continosuly holding down the key)
+        }
         if (moveCondition)
         {
             if (newTime >= 1)
@@ -166,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!moveCondition && isGrounded)
         {
+            Debug.Log("SLOWWWdown");
             rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, actualTime);
             previousTime = 0;
             newTime = 0;
@@ -257,16 +266,22 @@ public class PlayerMovement : MonoBehaviour
     //CLIMBING MECHANICS
     void ClimbingCheck(InputAction.CallbackContext ctx)
     {
-        climb = ctx.ReadValue<Vector2>().y;
+        float gravity = rb.gravityScale;
+        Debug.Log(gravity);
+        if (ctx.performed && (isTouchingLeftWall || isTouchingRightWall))
+        {
+            //rb.linearVelocityY = gravity;
+        }
     }
     void Climbing()
     {
-        if (isTouchingLeftWall || isTouchingRightWall && move == 1)
+        if (isTouchingLeftWall && move == -1)
         {
-            Debug.Log("CLIMG");
             rb.linearVelocityX = 0;
-            moveCondition = false;
-            rb.linearVelocityY = climb * climbSpeed;
+        }
+        if(isTouchingRightWall && move == 1)
+        {
+            rb.linearVelocityX = 0;
         }
     }
     
@@ -286,7 +301,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         FlipCharacterX();
-        isGrounded = Physics2D.OverlapCircle(groundCheckTransform.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapBox(groundCheckTransform.position, groundCheckSize, 0f, groundLayer);
         isTouchingLeftWall = Physics2D.OverlapBox(leftWallCheckTransform.position, leftWallSize, 0f, leftWallLayer);
         isTouchingRightWall = Physics2D.OverlapBox(rightWallCheckTransform.position, rightWallSize, 0f, rightWallLayer);
         Climbing();
@@ -296,7 +311,7 @@ public class PlayerMovement : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckRadius);
+        Gizmos.DrawWireCube(groundCheckTransform.position, groundCheckSize);
         Gizmos.DrawWireCube(leftWallCheckTransform.position,leftWallSize);
         Gizmos.DrawWireCube(rightWallCheckTransform.position, rightWallSize);
     }

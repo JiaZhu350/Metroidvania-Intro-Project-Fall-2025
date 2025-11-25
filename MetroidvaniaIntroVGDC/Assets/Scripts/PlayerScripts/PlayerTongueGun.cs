@@ -71,6 +71,14 @@ public class PlayerTongueGun : MonoBehaviour
 
     private Vector2 diff;
 
+    private float previousTime = 0;
+    private float currentTime = 0;
+    private float newTime = 0;
+
+    private bool shootCondition;
+
+    public float shootDelay;
+
     private void Awake()
     {
         actions = new InputSystem_Actions();
@@ -87,9 +95,13 @@ public class PlayerTongueGun : MonoBehaviour
         actions.Player.Tongue.performed -= GrappleAction;
         actions.Player.Tongue.canceled -= GrappleAction;
     }
+
+    //TEST GRAPPLE WHEN RELEASE RIGHTCLICK
+    //NEED TO ADD DELAY FOR EVERY GRAPPLE
+
     void GrappleAction(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && (currentTime >= shootDelay))
         {
             Vector2 gun = gunPivot.position;
             SoundEffectManager.Instance.PlaySoundFXClip(grappleShootSound, transform);
@@ -113,11 +125,16 @@ public class PlayerTongueGun : MonoBehaviour
             Debug.DrawRay(firePoint.position, (mouseClickPosition - gun).normalized * maxDistnace, Color.red);
             HasPerformed = true;
             playerMovement.enabled = false;
+            shootCondition = true;
+            ResetTime();
+            //If you don't grapple or shoot out of bounds it resets, need to fix later
+            //when i figure out visual mechanics/shooting but not grapple
         }
         if (context.canceled)
         {
             HasPerformed = false;
             playerMovement.enabled = true;
+            shootCondition = false;
         }
     }
     private void Start()
@@ -129,6 +146,7 @@ public class PlayerTongueGun : MonoBehaviour
 
     private void Update()
     {
+        TimeFunction();
         if(m_rigidbody.linearVelocityX != 0)
         {
             updatedVelocity = m_rigidbody.linearVelocityX;
@@ -238,7 +256,22 @@ public class PlayerTongueGun : MonoBehaviour
             }
         }
     }
-
+    void TimeFunction()
+    {
+        if(!shootCondition)
+        {
+            Debug.Log(currentTime);
+            currentTime = previousTime;
+            newTime = currentTime + Time.deltaTime;
+            previousTime = newTime;
+        }
+    }
+    void ResetTime()
+    {
+        currentTime = 0;
+        newTime = 0;
+        previousTime = 0;
+    }
     private void OnDrawGizmos()
     {
         if (firePoint != null && hasMaxDistance)
