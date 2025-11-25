@@ -853,6 +853,7 @@ MonoBehaviour:
   damage: 2
   playerMovement: {fileID: 0}
   enemyHealth: {fileID: 0}
+  ClawAttackSound: {fileID: 0}
 --- !u!212 &1547846539
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1126,6 +1127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1422837956323987785, guid: cc69c7be7b6779c4ca317783ae12582f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2256406989580265327, guid: cc69c7be7b6779c4ca317783ae12582f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1190,6 +1195,10 @@ PrefabInstance:
     - target: {fileID: 997516550521830191, guid: 56fc02834452c274e9fc08ce73af095b, type: 3}
       propertyPath: m_Name
       value: UI_abilities
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688740085860311322, guid: 56fc02834452c274e9fc08ce73af095b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6708196591227200494, guid: 56fc02834452c274e9fc08ce73af095b, type: 3}
       propertyPath: m_LocalPosition.x
