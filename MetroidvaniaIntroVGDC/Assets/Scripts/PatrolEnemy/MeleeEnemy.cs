@@ -27,6 +27,9 @@ public class meleeEnemy : MonoBehaviour
     private bool isGrounded;
     private bool isAttacking = false;
     private Vector3 initScale;
+
+    private AudioSource walkingAudio;
+    //bool isWalking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class meleeEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         initScale = transform.localScale;
+        walkingAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +45,19 @@ public class meleeEnemy : MonoBehaviour
     {
 
         CooldownTimer += Time.deltaTime;
+
+        if (!isAttacking)
+        {
+            if (walkingAudio != null && !walkingAudio.isPlaying)
+                walkingAudio.Play();
+        }
+        else if (isAttacking)
+        {
+            if (walkingAudio != null)
+            {
+                walkingAudio.Stop();
+            }
+        }
 
         if (CooldownTimer >= attackCooldown)
         {

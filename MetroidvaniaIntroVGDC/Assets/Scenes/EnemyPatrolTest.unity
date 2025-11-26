@@ -886,6 +886,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2667351639946759836, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
+      propertyPath: m_Size.x
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667351639946759836, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 3253181746968008356, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.66
@@ -929,6 +937,18 @@ PrefabInstance:
     - target: {fileID: 5408841790272467684, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
       propertyPath: m_Name
       value: EnemyPatrol
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497162446347262148, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042439488199256657, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
+      propertyPath: range
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042439488199256657, guid: b49b5ff708e59fa4490bc2e1e268d0a6, type: 3}
+      propertyPath: colliderDistance
+      value: 2.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5889,6 +5889,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: respawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3350443236218314531, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350443236218314531, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.76
+      objectReference: {fileID: 0}
     - target: {fileID: 3917117668323084265, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -5916,6 +5924,18 @@ PrefabInstance:
     - target: {fileID: 5469190220014308209, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487642603456883892, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487642603456883892, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487642603456883892, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
+      propertyPath: InitialModule.startSizeY.minScalar
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8924415324441173806, guid: 25f876d755ad4cf48b76992e839d9984, type: 3}
       propertyPath: m_LocalPosition.x

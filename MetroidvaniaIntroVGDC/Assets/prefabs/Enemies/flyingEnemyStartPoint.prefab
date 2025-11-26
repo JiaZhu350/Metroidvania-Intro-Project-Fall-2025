@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   startingHealth: 3
   healthItem: {fileID: 9204543189580073736, guid: 633ae6bed737abf479c92007175c252c, type: 3}
-  itemDropChance: 0.3
+  itemDropChance: 0.4
 --- !u!61 &6655704212317649860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -308,6 +308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4923970638146785971}
     m_Modifications:
+    - target: {fileID: 1758099982824774086, guid: e24b922af124bc94e82a22c8d123eead, type: 3}
+      propertyPath: itemDropChance
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4127263141674524177, guid: e24b922af124bc94e82a22c8d123eead, type: 3}
       propertyPath: startingPoint
       value: 
