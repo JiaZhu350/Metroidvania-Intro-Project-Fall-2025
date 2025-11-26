@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 4149163757221645045}
   - component: {fileID: 903947292807614608}
   - component: {fileID: 7515529499963780339}
+  - component: {fileID: 6099844327902049382}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -798,7 +799,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0
-  m_GravityScale: 2.5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -941,6 +942,47 @@ MonoBehaviour:
   MaxHealthItems: 3
   RespawnTime: 1
   HPUI: {fileID: 5090920835809227083}
+--- !u!114 &6099844327902049382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5772060771205168807}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8996e941308ea654dacd9a33dd0380bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUpdatedMovement
+  speed: 5
+  jumpForce: 3
+  highJumpForce: 6
+  groundCheckTransform: {fileID: 7738405337338645356}
+  leftWallCheckTransform: {fileID: 7141575731756572010}
+  rightWallCheckTransform: {fileID: 597382874347509222}
+  groundCheckSize: {x: 0.8, y: 0.05}
+  leftWallSize: {x: 0.05, y: 1.4}
+  rightWallSize: {x: 0.05, y: 1.4}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  leftWallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  rightWallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  spriteRenderer: {fileID: 5860873130978954756}
+  move: 0
+  grapplingGun: {fileID: 7702995079734917441}
+  rb: {fileID: 4294006495713777840}
+  performed: 0
+  canceled: 0
+  playerAnimations: {fileID: 0}
+  gravity: 20
+  maxFallSpeed: 20
+  jumpHangTimeThreshold: 0.5
+  jumpHangTimeGravity: 0.5
 --- !u!1 &7337541119643692236
 GameObject:
   m_ObjectHideFlags: 0

@@ -180,7 +180,7 @@ public class PlayerTongueGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = 1;
+            // (m_rigidbody.gravityScale = 1;)
         }
         else
         {
@@ -260,7 +260,7 @@ public class PlayerTongueGun : MonoBehaviour
     {
         if(!shootCondition)
         {
-            Debug.Log(currentTime);
+            //Debug.Log(currentTime);
             currentTime = previousTime;
             newTime = currentTime + Time.deltaTime;
             previousTime = newTime;
