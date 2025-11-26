@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6655704212317649860}
   - component: {fileID: 8718930870616123337}
   - component: {fileID: 2796914045727907844}
+  - component: {fileID: 5274550957354608178}
   m_Layer: 6
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -169,13 +170,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flying_movement
   attackCooldown: 2
   damage: 1
-  range: 2
-  colliderDistance: 0.75
+  range: 1.05
+  colliderDistance: 1.09
   boxCollider: {fileID: 6655704212317649860}
   playerlayer:
     serializedVersion: 2
     m_Bits: 128
   speed: 4
+  knockbackForce: 7
   isChasing: 0
   startingPoint: {fileID: 4923970638146785971}
   detectRadius: 10
@@ -210,7 +212,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -270,12 +272,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.3787726
 --- !u!95 &2796914045727907844
 Animator:
   serializedVersion: 7
@@ -361,5 +363,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5234436517692592209, guid: e24b922af124bc94e82a22c8d123eead, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5274550957354608178}
   m_SourcePrefab: {fileID: 100100000, guid: e24b922af124bc94e82a22c8d123eead, type: 3}
+--- !u!114 &5274550957354608178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675262947702453883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4190efc19c11c4d8b7fc0d6ab9a2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
+  damage: 1
+  knockbackForce: 8
