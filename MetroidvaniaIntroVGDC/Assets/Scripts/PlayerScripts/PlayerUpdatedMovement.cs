@@ -1,5 +1,6 @@
 
 using System;
+using NUnit.Framework;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -79,12 +80,10 @@ public class PlayerUpdatedMovement : MonoBehaviour
         actions.Player.Enable();
         actions.Player.Move.performed += InitializeMovement;
         actions.Player.Jump.performed += NormalJumping;
-        actions.Player.Climb.performed += ClimbingCheck;
         
 
         actions.Player.Move.canceled += InitializeMovement;
         actions.Player.Jump.canceled += NormalJumping;
-        actions.Player.Climb.canceled += ClimbingCheck;
         
     }
 
@@ -93,7 +92,6 @@ public class PlayerUpdatedMovement : MonoBehaviour
         actions.Player.Disable();
         actions.Player.Move.performed -= InitializeMovement;
         actions.Player.Jump.performed -= NormalJumping;
-        actions.Player.Climb.performed -= ClimbingCheck;
 
     }
 
@@ -137,19 +135,6 @@ public class PlayerUpdatedMovement : MonoBehaviour
         float movementSpeed = move * speed;
         float fastMovementSpeed = movementSpeed * 2f;
         float updatedVelocity = grapplingGun.updatedVelocity;
-        if(rb.linearVelocityY < 0)
-        {
-            if(rb.linearVelocityY < maxFallSpeed*-1f)
-            {
-                rb.linearVelocityY = maxFallSpeed*-1f;
-            }
-            rb.gravityScale = 1.5f;
-            //Debug.Log("Gravity: " + rb.gravityScale);
-        }
-        if(rb.linearVelocityY > 0)
-        {
-            rb.gravityScale = 1f;
-        }
         if(moveCondition && (updatedVelocity > 0))
         {
             //Test later(swing keeps momentum of run if continosuly holding down the key)
@@ -220,11 +205,10 @@ public class PlayerUpdatedMovement : MonoBehaviour
     private bool falling = false;
     void JumpForce()
         {
-            Debug.Log(condition);
             if(condition && (rb.linearVelocityY != highJumpForce) && !falling && (doubleJumpCounter == 1))
             {
                 //Debug.Log("RISE");
-                rb.linearVelocityY = Mathf.Lerp(jumpForce,highJumpForce,currentTimeJump*0.5f);
+                rb.linearVelocityY = Mathf.Lerp(jumpForce,highJumpForce,currentTimeJump*2f);
                 doubleJumpUsed = false;
             }
             if(condition && (rb.linearVelocityY == highJumpForce) && (doubleJumpCounter == 1))
@@ -235,7 +219,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
             }
             if(condition && doubleJumpCounter == 0 && !doubleJumpUsed)
             {
-                rb.linearVelocityY = jumpForce;
+                rb.linearVelocityY = highJumpForce;
                 doubleJumpUsed = true;
             }
             //Debug.Log("rb.linear"+rb.linearVelocityY);
@@ -271,26 +255,60 @@ public class PlayerUpdatedMovement : MonoBehaviour
     public float jumpHangTimeThreshold;
 
     public float jumpHangTimeGravity;
+
+    private bool airTimeCondition = false;
     void AirTime()
     {
-        if((isJumping || isTouchingLeftWall || isTouchingRightWall) && Mathf.Abs(rb.linearVelocityY) < jumpHangTimeThreshold)
+        if((isJumping || !isTouchingLeftWall || !isTouchingRightWall || !isGrounded) && Mathf.Abs(rb.linearVelocityY) < jumpHangTimeThreshold)
         {
             rb.gravityScale = rb.gravityScale * jumpHangTimeGravity;
-            Debug.Log("gravity fall "+rb.gravityScale);
+            airTimeCondition = true;
         }
-    }
-
-
-    //CLIMBING MECHANICS
-    void ClimbingCheck(InputAction.CallbackContext ctx)
-    {
-        //float gravity = rb.gravityScale;
-        if (ctx.performed && (isTouchingLeftWall || isTouchingRightWall))
+        if((isJumping || !isTouchingLeftWall || !isTouchingRightWall || !isGrounded) && Mathf.Abs(rb.linearVelocityY) >= jumpHangTimeThreshold)
         {
-            //rb.linearVelocityY = gravity;
+            airTimeCondition = false;
+        }
+        if(rb.linearVelocityY < 0 && !airTimeCondition)
+        {
+            if(rb.linearVelocityY < maxFallSpeed*-1f)
+            {
+                rb.linearVelocityY = maxFallSpeed*-1f;
+            }
+            rb.gravityScale = 2f;
+        }
+        if((rb.linearVelocityY >= 0 && !airTimeCondition)||(isGrounded || isTouchingLeftWall || isTouchingRightWall))
+        {
+            rb.gravityScale = 1.5f;
+        }
+        Debug.Log("grav" + rb.gravityScale);
+    }
+
+
+    //WALL JUMP MECHANICS
+    
+    void WallJump()
+    {
+        
+        if(!isGrounded && isTouchingLeftWall)
+        {
+            if(condition)
+            {
+                rb.linearVelocityX = Mathf.Lerp(0,move,0.7f);
+                rb.linearVelocityY = jumpForce;
+            }
+        }
+        if(!isGrounded && isTouchingRightWall)
+        {
+            if(condition)
+            {
+                rb.linearVelocityX = (Mathf.Lerp(0,move,0.7f)) * -1f;
+                rb.linearVelocityY = jumpForce;
+            }
         }
     }
-    void Climbing()
+
+
+    void SlidingAlongWall()
     {
         if (isTouchingLeftWall && move == -1)
         {
@@ -302,6 +320,10 @@ public class PlayerUpdatedMovement : MonoBehaviour
         }
     }
     
+    
+
+    //TIME REFERENCES
+
     float currentTimeJump = 0;
     float previousTimeJump = 0;
     float newTimeJump = 0;
@@ -343,7 +365,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapBox(groundCheckTransform.position, groundCheckSize, 0f, groundLayer);
         isTouchingLeftWall = Physics2D.OverlapBox(leftWallCheckTransform.position, leftWallSize, 0f, leftWallLayer);
         isTouchingRightWall = Physics2D.OverlapBox(rightWallCheckTransform.position, rightWallSize, 0f, rightWallLayer);
-        Climbing();
+        SlidingAlongWall();
 
     }
     void OnDrawGizmos()

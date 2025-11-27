@@ -955,8 +955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUpdatedMovement
   speed: 5
-  jumpForce: 3
-  highJumpForce: 6
+  jumpForce: 5
+  highJumpForce: 8
   groundCheckTransform: {fileID: 7738405337338645356}
   leftWallCheckTransform: {fileID: 7141575731756572010}
   rightWallCheckTransform: {fileID: 597382874347509222}
@@ -982,7 +982,7 @@ MonoBehaviour:
   gravity: 20
   maxFallSpeed: 20
   jumpHangTimeThreshold: 0.5
-  jumpHangTimeGravity: 0.5
+  jumpHangTimeGravity: 1
 --- !u!1 &7337541119643692236
 GameObject:
   m_ObjectHideFlags: 0
