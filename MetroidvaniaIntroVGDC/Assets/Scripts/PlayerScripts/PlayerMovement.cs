@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask rightWallLayer;
 
     public SpriteRenderer spriteRenderer;
-    bool isGrounded;
-    bool isTouchingLeftWall;
-    bool isTouchingRightWall;
+    public bool isGrounded;
+    public bool isTouchingLeftWall;
+    public bool isTouchingRightWall;
 
     bool normal = false;
     float previousTime = 0;
@@ -304,7 +304,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapBox(groundCheckTransform.position, groundCheckSize, 0f, groundLayer);
         isTouchingLeftWall = Physics2D.OverlapBox(leftWallCheckTransform.position, leftWallSize, 0f, leftWallLayer);
         isTouchingRightWall = Physics2D.OverlapBox(rightWallCheckTransform.position, rightWallSize, 0f, rightWallLayer);
-        Climbing();
+        //Climbing();
         DoubleJumpMidAirCheck();
 
     }

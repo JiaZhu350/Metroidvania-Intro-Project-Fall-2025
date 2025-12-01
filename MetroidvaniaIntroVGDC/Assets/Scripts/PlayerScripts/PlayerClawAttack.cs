@@ -12,6 +12,8 @@ public class PlayerClawAttack : MonoBehaviour
 
     Collider2D hit;
 
+    public bool performed;
+
     private Animator animator;
 
     public PlayerMovement playerMovement;
@@ -39,8 +41,8 @@ public class PlayerClawAttack : MonoBehaviour
     {
         if (context.performed)
         {
+            performed = true;
             SoundEffectManager.Instance.PlaySoundFXClip(ClawAttackSound, transform);
-            animator.SetTrigger("TrAttack");
             if (hit != null)
             {
                 Debug.Log("ENEMY HIT CLAW");
@@ -51,7 +53,7 @@ public class PlayerClawAttack : MonoBehaviour
         }
         else if (context.canceled)
         {
-            animator.SetTrigger("TrNeutral");
+            performed = false;
             // Implement logic for when the claw attack is canceled, if needed
         }
     }

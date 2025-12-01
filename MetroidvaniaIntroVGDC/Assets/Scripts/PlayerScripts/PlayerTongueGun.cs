@@ -62,6 +62,8 @@ public class PlayerTongueGun : MonoBehaviour
 
     public RaycastHit2D hit;
 
+    public SpriteRenderer spriteRenderer;
+
     public float updatedVelocity;
 
     public Vector2 playerPosition;
@@ -271,6 +273,20 @@ public class PlayerTongueGun : MonoBehaviour
         currentTime = 0;
         newTime = 0;
         previousTime = 0;
+    }
+
+    private void FlipCharacterX()
+    {
+        if (playerMovement.move == 1)
+        {
+            //Moving Right
+            spriteRenderer.flipX = false;
+        }
+        if (playerMovement.move == -1)
+        {
+            //Moving Left
+            spriteRenderer.flipX = true;
+        }
     }
     private void OnDrawGizmos()
     {

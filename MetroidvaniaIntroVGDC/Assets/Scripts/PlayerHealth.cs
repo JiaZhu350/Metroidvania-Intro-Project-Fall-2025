@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
     public float currentHealth;  // made public -Bryce
+    public float previousHealth;
     private Animator anim;
     public InputSystem_Actions actions;
     public bool dead = false;
@@ -46,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     public void TakeDamage(float _damage)
     {
+        previousHealth = currentHealth;
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
         if (currentHealth <= 0)
         {
