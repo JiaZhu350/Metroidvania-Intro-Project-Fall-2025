@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class DoubleJumpPickup : MonoBehaviour
+public class grapplePickUp : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        if (player.GetComponent<PlayerUpdatedMovement>().doubleJumpAble)
+        if (player.GetComponent<PlayerUpdatedMovement>().wallJumpAble)
         {
             Destroy(gameObject);
         }
@@ -18,7 +18,8 @@ public class DoubleJumpPickup : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerUpdatedMovement>().doubleJumpAble = true;
+            collision.GetComponentInChildren<PlayerTongueGun>().grappleAble = true;
+            collision.GetComponentInChildren<PlayerTongueAttack>().grappleAble = true;
             Destroy(gameObject);
         }
     }

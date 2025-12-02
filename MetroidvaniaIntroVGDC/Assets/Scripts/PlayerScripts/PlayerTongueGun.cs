@@ -81,6 +81,8 @@ public class PlayerTongueGun : MonoBehaviour
 
     public float shootDelay;
 
+    public bool grappleAble = false;
+
     private void Awake()
     {
         actions = new InputSystem_Actions();
@@ -103,7 +105,7 @@ public class PlayerTongueGun : MonoBehaviour
 
     void GrappleAction(InputAction.CallbackContext context)
     {
-        if (context.performed && (currentTime >= shootDelay))
+        if (context.performed && (currentTime >= shootDelay) && grappleAble)
         {
             Vector2 gun = gunPivot.position;
             SoundEffectManager.Instance.PlaySoundFXClip(grappleShootSound, transform);

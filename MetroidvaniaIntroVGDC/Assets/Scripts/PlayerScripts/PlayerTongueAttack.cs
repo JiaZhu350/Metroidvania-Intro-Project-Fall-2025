@@ -21,6 +21,8 @@ public class PlayerTongueAttack : MonoBehaviour
 
     private GameObject enemy;
 
+    public bool grappleAble = false;
+
     Rigidbody2D rb;
     void Awake()
     {
@@ -39,7 +41,7 @@ public class PlayerTongueAttack : MonoBehaviour
     }
     private void OnClawAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && grappleAble)
         {
             if (hitEM != null)
             {
