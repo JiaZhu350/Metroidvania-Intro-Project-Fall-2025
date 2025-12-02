@@ -107,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
         canceled = ctx.canceled;
         if (ctx.performed)
         {
-            animator.SetTrigger("TrigRun");
             moveCondition = true;
             previousTime = 0;
         }
@@ -115,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
         {
             //FIX TRIG IDLE TURNING ON WHEN MASHING A/D QUICKLY
             //Transition animations in same animator controller smoother. (Youtube)
-            animator.SetTrigger("TrigIdle");
             moveCondition = false;
             previousTime = 0;
         }
@@ -198,10 +196,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //JUMPING MECHANICS
+    public bool jumpPerformed = false;
     void NormalJumping(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
+            jumpPerformed = true;
             if (ctx.interaction is PressInteraction)
             {
                 normal = true;
@@ -214,6 +214,10 @@ public class PlayerMovement : MonoBehaviour
                 high = true;
                 JumpingMechanic();
             }
+        }
+        if(ctx.canceled)
+        {
+            jumpPerformed = false;
         }
     }
    

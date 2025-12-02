@@ -1,55 +1,82 @@
 using System.Runtime.CompilerServices;
+using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator animator;
     private float move;
-
+    private string currentState;
     private float velocity_x;
     private float velocity_y;
+
+    private float healthDifference;
 
     public bool performed;
     public bool canceled;
 
+    private bool attackPerformed;
+
     private bool isGrounded;
     private bool isTouchingLeftWall;
     private bool isTouchingRightWall;
+    private float currentHealth;
+    private float updatedHealth;
+    private Sprite spriteff;
+    //private Sprite attackSprite = 0013;
     public PlayerMovement playerMovement;
     public PlayerClawAttack playerClawAttack;
     public PlayerHealth playerHealth;
+
+    private bool attackCondition = false;
+    const string Running = "Run";
+    const string Jumping = "Jump";
+    const string Falling = "Falling";
+    const string WallJump = "WallJump";
+    const string Attacking = "Attack";
+    const string Damage = "Damage";
+    const string Dead = "Death";
+    const string Idle = "Idle";
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        updatedHealth = playerHealth.currentHealth;
+    }
+    void ChangeAnimationState(string newState)
+    {
+        if(currentState == newState) return;
+        animator.Play(newState);
+        currentState = newState;
+    }
+    public void IdleAnimation()
+    {
+        if(velocity_x == 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
+        {
+            Debug.Log("Idle");
+            ChangeAnimationState(Idle);
+        }
     }
     public void MovingAnimation()
     {
-        if(velocity_x == 0)
+        if(Mathf.Abs(velocity_x) != 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
         {
-            animator.SetBool("Running", false);
-        }
-        if(Mathf.Abs(velocity_x) > 0.1f)
-        {
-            animator.SetBool("Running", true);
+            Debug.Log("Running");
+            ChangeAnimationState(Running);
         }
     }
     public void JumpingAndFallingAnimation()
     {
-       if (isGrounded)
-        {
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Falling", false);
-        }
-        if(Mathf.Abs(velocity_y) > 0.1f && !isGrounded)
+        if(Mathf.Abs(velocity_y) > 0.1f && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
         {
             if(velocity_y > 0)
             {
-                animator.SetBool("Jumping", true);
-                animator.SetBool("Falling", false);
+                ChangeAnimationState(Jumping);
             }
             if(velocity_y <= 0)
             {
-                animator.SetBool("Falling", true);
-                animator.SetBool("Jumping", false);
+                ChangeAnimationState(Falling);
             }
         } 
     }
@@ -57,59 +84,40 @@ public class PlayerAnimations : MonoBehaviour
     {
          if(isTouchingLeftWall || isTouchingRightWall)
         {
-            if(!isGrounded)
+            if(!isGrounded && !playerHealth.dead && playerHealth.currentHealth == playerHealth.previousHealth)
             {
-                animator.SetBool("WallJumping", true);
-                if(isTouchingLeftWall)
-                {
-                    playerMovement.spriteRenderer.flipX = false;
-                }
-                if(isTouchingRightWall)
-                {
-                    playerMovement.spriteRenderer.flipX = true;
-                }
+                ChangeAnimationState(WallJump);
             }
-            else
-            {
-                animator.SetBool("WallJumping", false);
-            }
-        }
-        else
-        {
-            animator.SetBool("WallJumping", false);
         }
     }
     public void AttackAnimation()
     {
-        if(playerClawAttack.performed)
+        if((attackPerformed || attackCondition) && !playerHealth.dead && currentHealth == updatedHealth)
         {
-            animator.SetBool("Attacking", true);
-        }
-        else
-        {
-            animator.SetBool("Attacking", false);
+            ChangeAnimationState(Attacking);
+            if(spriteff.name != "0013_0")
+            {
+                attackCondition = true;
+            }
+            if(spriteff.name == "0013_0")
+            {
+                attackCondition = false;
+            }
+            Debug.Log(playerMovement.spriteRenderer.sprite);
         }
     }
     public void DamageAnimation()
     {
-        if(playerHealth.currentHealth < playerHealth.previousHealth)
+        if(currentHealth != updatedHealth && !playerHealth.dead)
         {
-            animator.SetBool("Damage", true);
-        }
-        else
-        {
-            animator.SetBool("Damage", false);
+            ChangeAnimationState(Damage);
         }
     }
     public void DeathAnimation()
     {
         if(playerHealth.dead)
         {
-            animator.SetBool("Dead", true);
-        }
-        else
-        {
-            animator.SetBool("Dead", false);
+            ChangeAnimationState(Dead);
         }
     }
     // Update is called once per frame
@@ -123,9 +131,15 @@ public class PlayerAnimations : MonoBehaviour
         isGrounded = playerMovement.isGrounded;
         isTouchingLeftWall = playerMovement.isTouchingLeftWall;
         isTouchingRightWall = playerMovement.isTouchingRightWall;
+        currentHealth = playerHealth.currentHealth;
+        attackPerformed = playerClawAttack.performed;
+        spriteff = playerMovement.spriteRenderer.sprite;
+        
+
     }
     void FixedUpdate()
     {
+        IdleAnimation();
         MovingAnimation();
         JumpingAndFallingAnimation();
         WallJumpingAnimation();

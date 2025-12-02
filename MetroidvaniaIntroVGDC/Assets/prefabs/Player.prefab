@@ -269,6 +269,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 2
+  performed: 0
   playerMovement: {fileID: 898198653609782028}
   enemyHealth: {fileID: 0}
   ClawAttackSound: {fileID: 8300000, guid: 073858ce32200984fadca38d55bc4a11, type: 3}
@@ -941,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   startingHealth: 5
   currentHealth: 5
+  previousHealth: 0
   dead: 0
   _heal: 2
   healthItems: 10
@@ -1003,6 +1005,8 @@ MonoBehaviour:
   performed: 0
   canceled: 0
   playerMovement: {fileID: 898198653609782028}
+  playerClawAttack: {fileID: 7554005760158567288}
+  playerHealth: {fileID: 7515529499963780339}
 --- !u!1 &7337541119643692236
 GameObject:
   m_ObjectHideFlags: 0
