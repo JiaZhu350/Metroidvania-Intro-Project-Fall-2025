@@ -34,6 +34,7 @@ public class RoomChanger : MonoBehaviour
         var player = other.collider.gameObject;
         if (player != null && player.CompareTag("Player"))
         {
+            Debug.Log("Collided with player, changing room to " + targetSceneName);
             StartCoroutine(crossFade());
 
             //RoomConnection.ActiveConnection = connection;

@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float startingHealth;
     private float currentHealth;
     private Animator anim;
-    private bool dead = false;
+    public bool dead = false;
     public GameObject healthItem;
     [Range(0f, 1f)]
     public float itemDropChance = 0.3f;

@@ -6,7 +6,7 @@ public class grapplePickUp : MonoBehaviour
     void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        if (player.GetComponent<PlayerTongueGun>().grappleAble)
+        if (player.GetComponentInChildren<PlayerTongueGun>().grappleAble)
         {
             Destroy(gameObject);
         }

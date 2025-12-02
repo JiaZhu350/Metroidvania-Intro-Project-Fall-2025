@@ -298,7 +298,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         {
             rb.gravityScale = 1.5f;
         }
-        Debug.Log("grav" + rb.gravityScale);
+        //Debug.Log("grav" + rb.gravityScale);
     }
 
 
