@@ -13,16 +13,15 @@ public class ability_ui : MonoBehaviour
     {
         //PlayerControl.OnHealthChange += HealthChanged;
 
-        
-        ability_icons[0] = UIDoc.rootVisualElement.Q<VisualElement>("wall_c");
-        ability_icons[1] = UIDoc.rootVisualElement.Q<VisualElement>("djump_c");
-        ability_icons[2] = UIDoc.rootVisualElement.Q<VisualElement>("tongue_c");
-        chargeChanged();
+        ability_icons[0] = UIDoc.rootVisualElement.Q<VisualElement>("wall_1");
+        ability_icons[1] = UIDoc.rootVisualElement.Q<VisualElement>("djump_1");
+        ability_icons[2] = UIDoc.rootVisualElement.Q<VisualElement>("tongue_1");
+        //chargeChanged();
     }
 
     //void Update()
     //{
-        
+
     //}
 
     //private float timer = .1f;
@@ -35,8 +34,18 @@ public class ability_ui : MonoBehaviour
     //    }
     //}
 
-    public void chargeChanged()
+    void Update()
     {
+
+
+        //abilityUI.rootVisualElement.Q("djump_1").style.display = DisplayStyle.Flex;
+        ability_icons[0].style.display = (player.GetComponent<PlayerUpdatedMovement>().wallJumpAble == true) ? DisplayStyle.Flex : DisplayStyle.None;
+
+        ability_icons[1].style.display = (player.GetComponent<PlayerUpdatedMovement>().doubleJumpAble == true) ? DisplayStyle.Flex : DisplayStyle.None;
+
+        ability_icons[2].style.display = (player.GetComponentInChildren<PlayerTongueGun>().grappleAble == true) ? DisplayStyle.Flex : DisplayStyle.None;
+
+
         //int CurrentHealth = (int)player.GetComponent<PlayerHealth>().currentHealth;
         //CurrentHealth = (int)(Mathf.Abs(player.transform.position.y))%5;
         //bool[] charged = new bool[5];
