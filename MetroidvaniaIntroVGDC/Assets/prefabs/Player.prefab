@@ -296,6 +296,7 @@ MonoBehaviour:
   hit: {x: 0, y: 0}
   hitEnd: {x: 0, y: 0}
   enemyHealth: {fileID: 0}
+  target: {x: 0, y: 0}
 --- !u!1 &1693410451272574117
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,6 +638,7 @@ MonoBehaviour:
   ropeProgressionSpeed: 12
   isGrappling: 1
   currentPosition: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
 --- !u!1 &5772060771205168807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,8 +1016,8 @@ MonoBehaviour:
   playerMovement: {fileID: 6099844327902049382}
   playerClawAttack: {fileID: 7554005760158567288}
   playerHealth: {fileID: 7515529499963780339}
-  clawAttack: {fileID: 7554005760158567288}
-  playerTongueGun: {fileID: 0}
+  playerTongueAttack: {fileID: 347321977224426548}
+  playerTongueGun: {fileID: 7702995079734917441}
 --- !u!1 &7337541119643692236
 GameObject:
   m_ObjectHideFlags: 0

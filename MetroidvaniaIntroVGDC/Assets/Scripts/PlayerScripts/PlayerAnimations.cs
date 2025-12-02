@@ -28,7 +28,6 @@ public class PlayerAnimations : MonoBehaviour
     public PlayerUpdatedMovement playerMovement;
     public PlayerClawAttack playerClawAttack;
     public PlayerHealth playerHealth;
-    public PlayerTongueAttack playerTongueAttack;
 
     private bool attackCondition = false;
     private bool damageCondition = false;
@@ -55,7 +54,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void IdleAnimation()
     {
-        if(Mathf.Abs(velocity_x) < 0.1f && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && (hitPoint != target))
+        if(Mathf.Abs(velocity_x) < 0.1f && isGrounded && !playerHealth.dead && (currentHealth == updatedHealth) && !attackCondition)
         {
             //Debug.Log("Idle");
             ChangeAnimationState(Idle);
@@ -63,7 +62,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void MovingAnimation()
     {
-        if(Mathf.Abs(velocity_x) != 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && (hitPoint != target))
+        if(Mathf.Abs(velocity_x) != 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
         {
             //Debug.Log("Running");
             ChangeAnimationState(Running);
@@ -71,7 +70,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void JumpingAndFallingAnimation()
     {
-        if(Mathf.Abs(velocity_y) > 0.1f && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && !isTouchingLeftWall && !isTouchingRightWall && (hitPoint != target))
+        if(Mathf.Abs(velocity_y) > 0.1f && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && !isTouchingLeftWall && !isTouchingRightWall)
         {
             if(velocity_y > 0)
             {
@@ -83,16 +82,9 @@ public class PlayerAnimations : MonoBehaviour
             }
         } 
     }
-    public void SwingingAnimation()
-    {
-        if((hitPoint == target) && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
-        {
-            ChangeAnimationState(Falling);
-        }
-    }
     public void WallJumpingAnimation()
     {
-         if((isTouchingLeftWall || isTouchingRightWall) && !attackCondition && !damageCondition && move == 0 && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && (hitPoint != target))
+         if((isTouchingLeftWall || isTouchingRightWall) && !attackCondition && !damageCondition && move == 0 && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth)
         {
             if(isTouchingLeftWall)
             {
@@ -107,7 +99,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void AttackAnimation()
     {
-        if((attackPerformed || attackCondition) && !playerHealth.dead && currentHealth == updatedHealth && !damageCondition && (hitPoint != target))
+        if((attackPerformed || attackCondition) && !playerHealth.dead && currentHealth == updatedHealth && !damageCondition)
         {
             ChangeAnimationState(Attacking);
             if(spriteff.name != "0013_0")
@@ -122,7 +114,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void DamageAnimation()
     {
-        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead && !attackCondition && (hitPoint != target))
+        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead && !attackCondition)
         {
             ChangeAnimationState(Damage);
             if(spriteff.name != "0010_0")
@@ -161,8 +153,6 @@ public class PlayerAnimations : MonoBehaviour
         attackPerformed = playerClawAttack.performed;
         spriteff = playerMovement.spriteRenderer.sprite;
         hit = playerClawAttack.hit;
-        hitPoint = playerTongueAttack.hit;
-        target = playerTongueAttack.target;
 
     }
     void FixedUpdate()
@@ -174,6 +164,5 @@ public class PlayerAnimations : MonoBehaviour
         AttackAnimation();
         DamageAnimation();
         DeathAnimation();
-        SwingingAnimation();
     }
 }
