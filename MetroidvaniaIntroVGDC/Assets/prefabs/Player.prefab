@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 717111093769940399}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5, y: -4, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 1.25, y: 1, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 680512902064258815}
@@ -129,6 +129,7 @@ MonoBehaviour:
   targetFrequncy: 1
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
+  HasPerformed: 0
   mousePos: {x: 0, y: 0}
   spriteRenderer: {fileID: 0}
   updatedVelocity: 0
@@ -269,6 +270,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 2
+  hit: {fileID: 0}
   performed: 0
   playerMovement: {fileID: 6099844327902049382}
   enemyHealth: {fileID: 0}
@@ -350,8 +352,8 @@ Transform:
   m_GameObject: {fileID: 3025122871179962468}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.25, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0}
+  m_LocalPosition: {x: 1.25, y: 1, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8594085237966787854}
@@ -474,7 +476,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -970,8 +972,8 @@ MonoBehaviour:
   leftWallCheckTransform: {fileID: 7141575731756572010}
   rightWallCheckTransform: {fileID: 597382874347509222}
   groundCheckSize: {x: 0.8, y: 0.05}
-  leftWallSize: {x: 0.05, y: 0}
-  rightWallSize: {x: 0.05, y: 1.4}
+  leftWallSize: {x: 0.05, y: 1}
+  rightWallSize: {x: 0.05, y: 1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1012,6 +1014,8 @@ MonoBehaviour:
   playerMovement: {fileID: 6099844327902049382}
   playerClawAttack: {fileID: 7554005760158567288}
   playerHealth: {fileID: 7515529499963780339}
+  clawAttack: {fileID: 7554005760158567288}
+  playerTongueGun: {fileID: 0}
 --- !u!1 &7337541119643692236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,8 +1072,8 @@ Transform:
   m_GameObject: {fileID: 8026796486119405086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.25, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 1.25, y: 1, z: 0}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1924037269970822108}
