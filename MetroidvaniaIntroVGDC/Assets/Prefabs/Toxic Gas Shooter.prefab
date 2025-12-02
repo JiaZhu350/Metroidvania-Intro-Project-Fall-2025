@@ -111,7 +111,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.26415092, g: 0.01619794, b: 0.01619794, a: 1}
   m_FlipX: 0
@@ -137,5 +137,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   gasCloudPrefab: {fileID: 1241325216239608948, guid: dc0ceada26ef48c4b8e184721c3ad7f0, type: 3}
   spawnPoint: {fileID: 3455004156383296663}
-  timeBetweenClouds: 1
-  gasCloudLifetime: 4
+  timeBetweenClouds: 2
+  gasCloudLifetime: 5
