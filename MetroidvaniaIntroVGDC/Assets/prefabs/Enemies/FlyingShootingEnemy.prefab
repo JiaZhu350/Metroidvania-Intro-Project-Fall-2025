@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8101843124845035771}
   - component: {fileID: 4391541179618641411}
   - component: {fileID: 8607419837100615473}
+  - component: {fileID: 1122938246908825837}
   m_Layer: 0
   m_Name: FlyingShootingEnemy
   m_TagString: Untagged
@@ -114,6 +115,21 @@ MonoBehaviour:
   spawnAngleOffset: 30
   keepAbovePlayer: 1
   aboveOffsetY: 3
+--- !u!114 &1122938246908825837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790742913782892509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37cb104f6f0dbd4ebdb72050522e1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  startingHealth: 3
+  healthItem: {fileID: 9204543189580073736, guid: 633ae6bed737abf479c92007175c252c, type: 3}
+  itemDropChance: 0.4
 --- !u!1 &7841062877945124323
 GameObject:
   m_ObjectHideFlags: 0
