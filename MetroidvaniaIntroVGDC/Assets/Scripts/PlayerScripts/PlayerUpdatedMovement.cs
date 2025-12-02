@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerUpdatedMovement : MonoBehaviour
 {
+    public static PlayerUpdatedMovement Instance { get; private set; }
     public InputSystem_Actions actions;
 
     [Header("Player Movement Settings:")]
@@ -74,6 +75,16 @@ public class PlayerUpdatedMovement : MonoBehaviour
     void Awake()
     {
         actions = new InputSystem_Actions();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
     void OnEnable()
     {
