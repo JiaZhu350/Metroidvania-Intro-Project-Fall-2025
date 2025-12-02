@@ -41,9 +41,9 @@ public class PlayerUpdatedMovement : MonoBehaviour
     public LayerMask rightWallLayer;
 
     public SpriteRenderer spriteRenderer;
-    bool isGrounded;
-    bool isTouchingLeftWall;
-    bool isTouchingRightWall;
+    public bool isGrounded;
+    public bool isTouchingLeftWall;
+    public bool isTouchingRightWall;
 
     bool normal = false;
     float previousTime = 0;
@@ -149,7 +149,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
                     previousTime = 0;
                     newTime = 0;
                 }
-                rb.linearVelocityX = Mathf.Lerp(movementSpeed, fastMovementSpeed, actualTime);
+                rb.linearVelocityX = fastMovementSpeed;
                 previousMove = move;
             }
             if (newTime < 1)
@@ -170,7 +170,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         if (!moveCondition && isGrounded)
         {
             //Debug.Log("SLOWWWdown");
-            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, actualTime);
+            rb.linearVelocityX = 0;
             previousTime = 0;
             newTime = 0;
         }
@@ -312,10 +312,12 @@ public class PlayerUpdatedMovement : MonoBehaviour
     {
         if (isTouchingLeftWall && move == -1)
         {
+            Debug.Log("SLIDING LEFT WALL");
             rb.linearVelocityX = 0;
         }
         if(isTouchingRightWall && move == 1)
         {
+            Debug.Log("SLIDING RIGHT WALL");
             rb.linearVelocityX = 0;
         }
     }

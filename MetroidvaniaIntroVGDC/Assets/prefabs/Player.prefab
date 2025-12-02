@@ -115,7 +115,7 @@ MonoBehaviour:
   firePoint: {fileID: 680512902064258815}
   m_springJoint2D: {fileID: 4149163757221645045}
   m_rigidbody: {fileID: 4294006495713777840}
-  playerMovement: {fileID: 898198653609782028}
+  playerMovement: {fileID: 6099844327902049382}
   rotateOverTime: 1
   rotationSpeed: 30.4
   hasMaxDistance: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 2
   performed: 0
-  playerMovement: {fileID: 898198653609782028}
+  playerMovement: {fileID: 6099844327902049382}
   enemyHealth: {fileID: 0}
   ClawAttackSound: {fileID: 8300000, guid: 073858ce32200984fadca38d55bc4a11, type: 3}
 --- !u!114 &347321977224426548
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5772060771205168807}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d5d75a4fdafa49a18174aef3b5598, type: 3}
   m_Name: 
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5772060771205168807}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8996e941308ea654dacd9a33dd0380bb, type: 3}
   m_Name: 
@@ -970,7 +970,7 @@ MonoBehaviour:
   leftWallCheckTransform: {fileID: 7141575731756572010}
   rightWallCheckTransform: {fileID: 597382874347509222}
   groundCheckSize: {x: 0.8, y: 0.05}
-  leftWallSize: {x: 0.05, y: 1.4}
+  leftWallSize: {x: 0.05, y: 0}
   rightWallSize: {x: 0.05, y: 1.4}
   groundLayer:
     serializedVersion: 2
@@ -982,6 +982,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   spriteRenderer: {fileID: 5860873130978954756}
+  isGrounded: 0
+  isTouchingLeftWall: 0
+  isTouchingRightWall: 0
   move: 0
   grapplingGun: {fileID: 7702995079734917441}
   rb: {fileID: 4294006495713777840}
@@ -1006,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimations
   performed: 0
   canceled: 0
-  playerMovement: {fileID: 898198653609782028}
+  playerMovement: {fileID: 6099844327902049382}
   playerClawAttack: {fileID: 7554005760158567288}
   playerHealth: {fileID: 7515529499963780339}
 --- !u!1 &7337541119643692236

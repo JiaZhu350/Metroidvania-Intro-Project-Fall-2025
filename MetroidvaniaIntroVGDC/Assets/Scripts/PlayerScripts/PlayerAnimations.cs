@@ -22,13 +22,18 @@ public class PlayerAnimations : MonoBehaviour
     private bool isTouchingRightWall;
     private float currentHealth;
     private float updatedHealth;
+    private Collider2D hit;
     private Sprite spriteff;
+
+    private Color spriteColor;
     //private Sprite attackSprite = 0013;
-    public PlayerMovement playerMovement;
+    public PlayerUpdatedMovement playerMovement;
     public PlayerClawAttack playerClawAttack;
     public PlayerHealth playerHealth;
+    public PlayerClawAttack clawAttack;
 
     private bool attackCondition = false;
+    private bool damageCondition = false;
     const string Running = "Run";
     const string Jumping = "Jump";
     const string Falling = "Falling";
@@ -52,7 +57,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void IdleAnimation()
     {
-        if(velocity_x == 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
+        if(Mathf.Abs(velocity_x) < 0.1f && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
         {
             Debug.Log("Idle");
             ChangeAnimationState(Idle);
@@ -108,9 +113,19 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void DamageAnimation()
     {
-        if(currentHealth != updatedHealth && !playerHealth.dead)
+        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead && !attackCondition)
         {
             ChangeAnimationState(Damage);
+            if(spriteff.name != "0010_0")
+            {
+                damageCondition = true;
+            }
+            if(spriteff.name == "0010_0")
+            {
+                damageCondition = false;
+                updatedHealth = currentHealth;
+            }
+            Debug.Log(playerMovement.spriteRenderer.sprite);
         }
     }
     public void DeathAnimation()
@@ -134,6 +149,7 @@ public class PlayerAnimations : MonoBehaviour
         currentHealth = playerHealth.currentHealth;
         attackPerformed = playerClawAttack.performed;
         spriteff = playerMovement.spriteRenderer.sprite;
+        hit = playerClawAttack.hit;
         
 
     }

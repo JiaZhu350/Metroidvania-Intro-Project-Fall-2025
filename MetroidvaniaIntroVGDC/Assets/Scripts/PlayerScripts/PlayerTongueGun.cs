@@ -25,7 +25,7 @@ public class PlayerTongueGun : MonoBehaviour
     [Header("Physics Ref:")]
     public SpringJoint2D m_springJoint2D;
     public Rigidbody2D m_rigidbody;
-    public PlayerMovement playerMovement;
+    public PlayerUpdatedMovement playerMovement;
 
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;

@@ -10,13 +10,13 @@ public class PlayerClawAttack : MonoBehaviour
 
     public float damage;
 
-    Collider2D hit;
+    public Collider2D hit;
 
     public bool performed;
 
     private Animator animator;
 
-    public PlayerMovement playerMovement;
+    public PlayerUpdatedMovement playerMovement;
 
     public Health enemyHealth;
     [SerializeField] AudioClip ClawAttackSound;
