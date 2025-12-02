@@ -137,6 +137,8 @@ MonoBehaviour:
   cameraPosition: {x: 0, y: 0}
   mouseClickPosition: {x: 0, y: 0}
   shootDelay: 2
+  onCooldown: 0
+  grappleAble: 0
 --- !u!1 &1380964582220518999
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +299,7 @@ MonoBehaviour:
   hit: {x: 0, y: 0}
   hitEnd: {x: 0, y: 0}
   enemyHealth: {fileID: 0}
+  grappleAble: 0
   target: {x: 0, y: 0}
 --- !u!1 &1693410451272574117
 GameObject:
@@ -734,7 +737,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1057433920782143790, guid: dcd57e90a6aca104b86ca437dcf06d02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -977,6 +980,7 @@ MonoBehaviour:
   groundCheckSize: {x: 0.8, y: 0.05}
   leftWallSize: {x: 0.05, y: 1.3}
   rightWallSize: {x: 0.05, y: 1.3}
+  doubleJumpUsed: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -998,6 +1002,8 @@ MonoBehaviour:
   playerAnimations: {fileID: 0}
   gravity: 20
   maxFallSpeed: 20
+  wallJumpAble: 0
+  doubleJumpAble: 0
   jumpHangTimeThreshold: 0.5
   jumpHangTimeGravity: 1
 --- !u!114 &6193354952673025296
