@@ -109,6 +109,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   m_camera: {fileID: 8976248449094732554, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+  player: {fileID: 303182859493588486}
   gunHolder: {fileID: 8594085237966787854}
   gunPivot: {fileID: 9025314490422644819}
   firePoint: {fileID: 680512902064258815}
@@ -974,8 +975,8 @@ MonoBehaviour:
   leftWallCheckTransform: {fileID: 7141575731756572010}
   rightWallCheckTransform: {fileID: 597382874347509222}
   groundCheckSize: {x: 0.8, y: 0.05}
-  leftWallSize: {x: 0.05, y: 1}
-  rightWallSize: {x: 0.05, y: 1}
+  leftWallSize: {x: 0.05, y: 1.3}
+  rightWallSize: {x: 0.05, y: 1.3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1011,13 +1012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabce31d0cd3e2f4584ca6f1a1d5f1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimations
-  performed: 0
-  canceled: 0
   playerMovement: {fileID: 6099844327902049382}
   playerClawAttack: {fileID: 7554005760158567288}
   playerHealth: {fileID: 7515529499963780339}
-  playerTongueAttack: {fileID: 347321977224426548}
-  playerTongueGun: {fileID: 7702995079734917441}
 --- !u!1 &7337541119643692236
 GameObject:
   m_ObjectHideFlags: 0
