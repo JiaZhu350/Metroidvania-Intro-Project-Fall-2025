@@ -9,9 +9,6 @@ public class PlayerAnimations : MonoBehaviour
 
     private float healthDifference;
 
-    public bool performed;
-    public bool canceled;
-
     private bool attackPerformed;
 
     private bool isGrounded;
@@ -114,7 +111,7 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void DamageAnimation()
     {
-        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead && !attackCondition)
+        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead)
         {
             ChangeAnimationState(Damage);
             if(spriteff.name != "0010_0")
@@ -144,8 +141,6 @@ public class PlayerAnimations : MonoBehaviour
         move = playerMovement.move;
         velocity_x = playerMovement.rb.linearVelocityX;
         velocity_y = playerMovement.rb.linearVelocityY;
-        performed = playerMovement.performed;
-        canceled = playerMovement.canceled;
         isGrounded = playerMovement.isGrounded;
         isTouchingLeftWall = playerMovement.isTouchingLeftWall;
         isTouchingRightWall = playerMovement.isTouchingRightWall;
