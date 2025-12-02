@@ -132,13 +132,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void FreezeMovement()
     {
-        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerUpdatedMovement>().enabled = false;
         Object.FindAnyObjectByType<PlayerClawAttack>().enabled = false;
     }
 
     public void UnfreezeMovement()
     {
-        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerUpdatedMovement>().enabled = true;
         Object.FindAnyObjectByType<PlayerClawAttack>().enabled = true;
     }
 

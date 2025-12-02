@@ -72,6 +72,10 @@ public class PlayerUpdatedMovement : MonoBehaviour
 
     public float maxFallSpeed;
 
+
+    public bool wallJumpAble = false;
+    public bool doubleJumpAble = false;
+
     void Awake()
     {
         actions = new InputSystem_Actions();
@@ -231,7 +235,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
                 //Debug.Log("FALL");
                 //Debug.Log("g "+rb.gravityScale);
             }
-            if(condition && doubleJumpCounter == 0 && !doubleJumpUsed)
+            if(condition && doubleJumpCounter == 0 && !doubleJumpUsed && doubleJumpAble)
             {
                 rb.linearVelocityY = highJumpForce;
                 doubleJumpUsed = true;
@@ -303,12 +307,12 @@ public class PlayerUpdatedMovement : MonoBehaviour
     void WallJump()
     {
         
-        if(!isGrounded && isTouchingLeftWall && condition && move == 0)
+        if(!isGrounded && isTouchingLeftWall && condition && move == 0 && wallJumpAble)
         {
                 rb.linearVelocityX = speed * 1f;
                 rb.linearVelocityY = jumpForce;
         }
-        if(!isGrounded && isTouchingRightWall && condition && move == 0)
+        if(!isGrounded && isTouchingRightWall && condition && move == 0 && wallJumpAble)
         {
                 rb.linearVelocityX = speed * -1f;
                 rb.linearVelocityY = jumpForce;
