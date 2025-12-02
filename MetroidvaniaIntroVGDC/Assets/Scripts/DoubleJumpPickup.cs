@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DoubleJumpPickup : MonoBehaviour
 {
+    public UIDocument abilityUI;
+    //private VisualElement icon = new VisualElement();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //icon = abilityUI.rootVisualElement.Q("djump_1");
         GameObject player = GameObject.FindWithTag("Player");
         if (player.GetComponent<PlayerUpdatedMovement>().doubleJumpAble)
         {
@@ -19,6 +23,7 @@ public class DoubleJumpPickup : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerUpdatedMovement>().doubleJumpAble = true;
+            //icon.style.display = DisplayStyle.Flex;
             Destroy(gameObject);
         }
     }

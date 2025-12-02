@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084720b83d9e5546957d375ef549bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallClimbPickUp
+  abilityUI: {fileID: 5360057603967436719, guid: 371c3e527e12d844dbdd0a5d35cb9457, type: 3}
 --- !u!95 &3354885462309623806
 Animator:
   serializedVersion: 7

@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a59655fd2f462478df07bb06ce5883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoubleJumpPickup
+  abilityUI: {fileID: 5686140428384878042, guid: 371c3e527e12d844dbdd0a5d35cb9457, type: 3}
 --- !u!95 &8467346930285097417
 Animator:
   serializedVersion: 7

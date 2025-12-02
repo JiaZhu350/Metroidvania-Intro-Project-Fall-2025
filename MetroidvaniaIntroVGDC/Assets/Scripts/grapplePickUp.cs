@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class grapplePickUp : MonoBehaviour
 {
+    public UIDocument abilityUI;
+    //private VisualElement icon = new VisualElement();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //icon = abilityUI.rootVisualElement.Q("tongue_1");
         GameObject player = GameObject.FindWithTag("Player");
         if (player.GetComponentInChildren<PlayerTongueGun>().grappleAble)
         {
@@ -20,6 +24,7 @@ public class grapplePickUp : MonoBehaviour
         {
             collision.GetComponentInChildren<PlayerTongueGun>().grappleAble = true;
             collision.GetComponentInChildren<PlayerTongueAttack>().grappleAble = true;
+            //icon.style.display = DisplayStyle.Flex;
             Destroy(gameObject);
         }
     }
