@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5232495065459464181}
   - component: {fileID: 6687011728587829832}
   - component: {fileID: 5121746678718178271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemDrop
   dropForce: 4
+  pickupDelay: 0.6
   healingAmt: 1
 --- !u!61 &5121746678718178271
 BoxCollider2D:

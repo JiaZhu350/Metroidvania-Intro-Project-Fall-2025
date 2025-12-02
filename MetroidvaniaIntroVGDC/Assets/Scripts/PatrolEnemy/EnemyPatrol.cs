@@ -95,8 +95,9 @@ public class EnemyPatrol : MonoBehaviour
 
         Transform targetEdge = distLeft < distRight ? leftEdge : rightEdge;
 
-        while (Vector3.Distance(enemy.position, targetEdge.position) > 0.099f)
+        while (Mathf.Abs(enemy.position.x - targetEdge.position.x) > 0.099f)
         {
+            Debug.Log("Returning to closest edge");
             int direction = targetEdge.position.x < enemy.position.x ? -1 : 1;
             MoveInDirection(direction);
             yield return null; // wait one frame

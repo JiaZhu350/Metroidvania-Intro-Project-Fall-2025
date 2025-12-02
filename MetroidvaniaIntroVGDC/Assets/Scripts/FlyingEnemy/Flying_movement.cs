@@ -12,6 +12,7 @@ public class Flying_movement : MonoBehaviour
 
 
     public float speed = 5f;
+    public float knockbackForce = 5f;
     private GameObject player;
     public bool isChasing = false;
     public Transform startingPoint;
@@ -94,7 +95,7 @@ public class Flying_movement : MonoBehaviour
         float moveDirection = transform.position.x - lastPosition.x;
         if (Mathf.Abs(moveDirection) > 0.01f) // only flip if actually moving
         {
-            // Flip depending on which direction we’re moving
+            // Flip depending on which direction we're moving
             if (moveDirection > 0)
                 transform.localScale = new Vector3(1, 1, 1);  // facing right
             else
@@ -140,6 +141,15 @@ public class Flying_movement : MonoBehaviour
         if (PlayerInRange())
         {
             playerhealth.TakeDamage(damage);
+            Rigidbody2D playerRB = playerhealth.GetComponent<Rigidbody2D>();
+            if (playerRB != null)
+            {
+                Vector2 knockbackDir = (player.transform.position - transform.position).normalized;
+                knockbackDir = new Vector2(knockbackDir.x, 1.3f).normalized;
+                Debug.Log(knockbackDir);
+                playerRB.linearVelocity = Vector2.zero;
+                playerRB.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+            }
         }
     }
     private void OnDrawGizmos()

@@ -43,14 +43,22 @@ public class Health : MonoBehaviour
 
                 }
 
-                if (GetComponent<Collider2D>() != null)
+                if (GetComponents<Collider2D>() != null)
                 {
-                    GetComponent<Collider2D>().enabled = false;
+                    Collider2D[] colliders = GetComponents<Collider2D>();
+                    foreach (Collider2D col in colliders)
+                    {
+                        col.enabled = false;
+                    }
                 }
 
                 if (GetComponent<Rigidbody2D>() != null)
                 {
                     GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                }
+                if (GetComponent<ContactDamage>() != null)
+                {
+                    GetComponent<ContactDamage>().enabled = false;
                 }
             }
         }

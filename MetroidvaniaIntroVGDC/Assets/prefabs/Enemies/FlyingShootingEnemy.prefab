@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8101843124845035771}
   - component: {fileID: 4391541179618641411}
   - component: {fileID: 8607419837100615473}
+  - component: {fileID: 1122938246908825837}
   m_Layer: 0
   m_Name: FlyingShootingEnemy
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.11, y: 2.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.60136896, y: 0.60136896, z: 0.60136896}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2875399516684202626}
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 8338824113619948734, guid: 44a2bb262d469e3468df7fd22fa507c8, type: 3}
   m_Color: {r: 0.96981126, g: 0.37145594, b: 0.37145594, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,6 +115,21 @@ MonoBehaviour:
   spawnAngleOffset: 30
   keepAbovePlayer: 1
   aboveOffsetY: 3
+--- !u!114 &1122938246908825837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790742913782892509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37cb104f6f0dbd4ebdb72050522e1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  startingHealth: 3
+  healthItem: {fileID: 9204543189580073736, guid: 633ae6bed737abf479c92007175c252c, type: 3}
+  itemDropChance: 0.4
 --- !u!1 &7841062877945124323
 GameObject:
   m_ObjectHideFlags: 0

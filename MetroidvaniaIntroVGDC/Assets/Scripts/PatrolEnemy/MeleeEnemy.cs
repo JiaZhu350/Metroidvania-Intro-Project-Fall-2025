@@ -11,10 +11,12 @@ public class meleeEnemy : MonoBehaviour
     [SerializeField] private EnemyPatrol enemyPatrol;
     [SerializeField] private AudioClip meleeAttackSound;
     private float CooldownTimer = Mathf.Infinity;
+    public float knockbackForce = 5f;
 
     //Refrences
     private PlayerHealth playerhealth;
     private Animator anim;
+    private Animator attack_anim;
 
     //Chase Parameters
     private GameObject player; // Reference to the player's transform
@@ -26,19 +28,46 @@ public class meleeEnemy : MonoBehaviour
     private bool isGrounded;
     private bool isAttacking = false;
     private Vector3 initScale;
+
+    private AudioSource walkingAudio;
+    //bool isWalking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
+        player = Object.FindAnyObjectByType<PlayerHealth>().gameObject;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         initScale = transform.localScale;
+        walkingAudio = GetComponent<AudioSource>();
+        attack_anim = transform.Find("Attack_Animation").GetComponent<Animator>(); ;
+        if (attack_anim != null )
+        {             
+            Debug.Log("Attack animator found");
+        }
+        else
+        {
+            Debug.Log("Attack animator NOT found");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         CooldownTimer += Time.deltaTime;
+
+        if (!isAttacking)
+        {
+            if (walkingAudio != null && !walkingAudio.isPlaying)
+                walkingAudio.Play();
+        }
+        else if (isAttacking)
+        {
+            if (walkingAudio != null)
+            {
+                walkingAudio.Stop();
+            }
+        }
 
         if (CooldownTimer >= attackCooldown)
         {
@@ -49,6 +78,7 @@ public class meleeEnemy : MonoBehaviour
                 //Debug.Log("Melee enemy attacks for " + damage + " damage!");
                 CooldownTimer = 0f; // Reset the cooldown timer after attacking
                 anim.SetTrigger("meleeAttack");
+                attack_anim.SetTrigger("Attacking");
                 SoundEffectManager.Instance.PlaySoundFXClip(meleeAttackSound, transform);
             }
         }
@@ -108,6 +138,16 @@ public class meleeEnemy : MonoBehaviour
         if (PlayerInRange())
         {
             playerhealth.TakeDamage(damage);
+            Rigidbody2D playerRB = playerhealth.GetComponent<Rigidbody2D>();
+            if (playerRB != null)
+            {
+                
+                Vector2 knockbackDir = (player.transform.position - transform.position).normalized;
+                knockbackDir = new Vector2(knockbackDir.x, 1.3f).normalized;
+                Debug.Log(knockbackDir);
+                playerRB.linearVelocity = Vector2.zero;
+                playerRB.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+            }
         }
     }
 
