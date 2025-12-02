@@ -14,6 +14,8 @@ public class PlayerClawAttack : MonoBehaviour
 
     public bool performed;
 
+    private GameObject enemy;
+
     private Animator animator;
 
     public PlayerUpdatedMovement playerMovement;
@@ -21,9 +23,12 @@ public class PlayerClawAttack : MonoBehaviour
     public Health enemyHealth;
     [SerializeField] AudioClip ClawAttackSound;
 
+    public SoundEffectManager soundEffectManager;
+
 
     void Awake()
     {
+        enemy = GameObject.FindWithTag("Enemy");
         actions = new InputSystem_Actions();
         actions.Player.Enable();
     }
@@ -48,6 +53,8 @@ public class PlayerClawAttack : MonoBehaviour
                 Debug.Log("ENEMY HIT CLAW");
                 enemyHealth = hit.GetComponent<Health>();
                 enemyHealth.TakeDamage(damage);
+                Debug.Log(damage);
+                Debug.Log("HITTING");
                 // Implement logic for when the claw attack hits an enemy
             }
         }

@@ -5,7 +5,6 @@ using System.Collections;
 public class playButton_action : MonoBehaviour
 {
     public string targetSceneName;
-    public GameObject playerPrefab;
     
     private void LoadSpecificScene(string sceneName)
     {
@@ -16,6 +15,7 @@ public class playButton_action : MonoBehaviour
     // What happens when button is clicked.
     public void action()
     {
+        var player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(LoadLevel(targetSceneName)); 
     }
 
@@ -29,9 +29,6 @@ public class playButton_action : MonoBehaviour
 
         //wait
         yield return new WaitForSeconds(transitionTime);
-
-        var player = Instantiate(playerPrefab, new Vector3(0f, 8f, 0f), Quaternion.identity);
-        DontDestroyOnLoad(player);
         
         //load new scene.
         LoadSpecificScene(targetSceneName);

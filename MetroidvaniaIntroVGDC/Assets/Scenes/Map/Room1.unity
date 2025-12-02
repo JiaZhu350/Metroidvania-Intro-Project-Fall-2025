@@ -25468,6 +25468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageScript
   damage: 2
   damageCooldown: 1
+  player: {fileID: 0}
 --- !u!1001 &1094483226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25902,6 +25903,18 @@ PrefabInstance:
     - target: {fileID: 3572763332805017582, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218799748278701716, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+      propertyPath: maxX
+      value: 44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218799748278701716, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+      propertyPath: maxY
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218799748278701716, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
+      propertyPath: minX
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 9218799748278701716, guid: 11a19abdee2cd544e8cf0af4d566f07f, type: 3}
       propertyPath: maxX
