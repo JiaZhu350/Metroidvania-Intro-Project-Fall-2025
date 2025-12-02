@@ -56,7 +56,7 @@ public class PlayerTongueGun : MonoBehaviour
 
     public InputSystem_Actions actions;
 
-    bool HasPerformed = false;
+    public bool HasPerformed = false;
 
     public Vector2 mousePos;
 
@@ -107,6 +107,7 @@ public class PlayerTongueGun : MonoBehaviour
     {
         if (context.performed && (currentTime >= shootDelay) && grappleAble)
         {
+            FlipTongue();
             Vector2 gun = gunPivot.position;
             SoundEffectManager.Instance.PlaySoundFXClip(grappleShootSound, transform);
             mousePos = m_camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -147,7 +148,25 @@ public class PlayerTongueGun : MonoBehaviour
         m_springJoint2D.enabled = false;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
-
+    void FlipTongue()
+    {
+        if (mouseClickPosition.x <= playerPosition.x)
+        {
+            //Moving Left
+            playerMovement.spriteRenderer.flipX = false;
+            Vector3 localTarget = new Vector3(1.25f, 1f, -0.1f);
+            gunPivot.localPosition = localTarget;
+            firePoint.localPosition = localTarget;
+        }
+        else if (mouseClickPosition.x > playerPosition.x)
+        {
+            //Moving Right
+            playerMovement.spriteRenderer.flipX = true;
+            Vector3 localTarget = new Vector3(-1.25f, 1f, -0.1f);
+            gunPivot.localPosition = localTarget;
+            firePoint.localPosition = localTarget;
+        }
+    }
     private void Update()
     {
         TimeFunction();

@@ -1,6 +1,3 @@
-using System.Runtime.CompilerServices;
-using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
@@ -20,6 +17,7 @@ public class PlayerAnimations : MonoBehaviour
     private bool isGrounded;
     private bool isTouchingLeftWall;
     private bool isTouchingRightWall;
+    private bool isSwinging;
     private float currentHealth;
     private float updatedHealth;
     private Collider2D hit;
@@ -30,7 +28,7 @@ public class PlayerAnimations : MonoBehaviour
     public PlayerUpdatedMovement playerMovement;
     public PlayerClawAttack playerClawAttack;
     public PlayerHealth playerHealth;
-    public PlayerClawAttack clawAttack;
+    public PlayerTongueAttack playerTongueAttack;
 
     private bool attackCondition = false;
     private bool damageCondition = false;
@@ -57,23 +55,23 @@ public class PlayerAnimations : MonoBehaviour
     }
     public void IdleAnimation()
     {
-        if(Mathf.Abs(velocity_x) < 0.1f && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
+        if(Mathf.Abs(velocity_x) < 0.1f && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && (hitPoint != target))
         {
-            Debug.Log("Idle");
+            //Debug.Log("Idle");
             ChangeAnimationState(Idle);
         }
     }
     public void MovingAnimation()
     {
-        if(Mathf.Abs(velocity_x) != 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
+        if(Mathf.Abs(velocity_x) != 0 && isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && (hitPoint != target))
         {
-            Debug.Log("Running");
+            //Debug.Log("Running");
             ChangeAnimationState(Running);
         }
     }
     public void JumpingAndFallingAnimation()
     {
-        if(Mathf.Abs(velocity_y) > 0.1f && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
+        if(Mathf.Abs(velocity_y) > 0.1f && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition && !isTouchingLeftWall && !isTouchingRightWall && (hitPoint != target))
         {
             if(velocity_y > 0)
             {
@@ -85,19 +83,31 @@ public class PlayerAnimations : MonoBehaviour
             }
         } 
     }
+    public void SwingingAnimation()
+    {
+        if((hitPoint == target) && !playerHealth.dead && currentHealth == updatedHealth && !attackCondition)
+        {
+            ChangeAnimationState(Falling);
+        }
+    }
     public void WallJumpingAnimation()
     {
-         if(isTouchingLeftWall || isTouchingRightWall)
+         if((isTouchingLeftWall || isTouchingRightWall) && !attackCondition && !damageCondition && move == 0 && !isGrounded && !playerHealth.dead && currentHealth == updatedHealth && (hitPoint != target))
         {
-            if(!isGrounded && !playerHealth.dead && playerHealth.currentHealth == playerHealth.previousHealth)
+            if(isTouchingLeftWall)
             {
-                ChangeAnimationState(WallJump);
+                playerMovement.spriteRenderer.flipX = false;
             }
+            if(isTouchingRightWall)
+            {
+                playerMovement.spriteRenderer.flipX = true;
+            }
+            ChangeAnimationState(WallJump);
         }
     }
     public void AttackAnimation()
     {
-        if((attackPerformed || attackCondition) && !playerHealth.dead && currentHealth == updatedHealth)
+        if((attackPerformed || attackCondition) && !playerHealth.dead && currentHealth == updatedHealth && !damageCondition && (hitPoint != target))
         {
             ChangeAnimationState(Attacking);
             if(spriteff.name != "0013_0")
@@ -108,12 +118,11 @@ public class PlayerAnimations : MonoBehaviour
             {
                 attackCondition = false;
             }
-            Debug.Log(playerMovement.spriteRenderer.sprite);
         }
     }
     public void DamageAnimation()
     {
-        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead && !attackCondition)
+        if((currentHealth != updatedHealth || damageCondition) && !playerHealth.dead && !attackCondition && (hitPoint != target))
         {
             ChangeAnimationState(Damage);
             if(spriteff.name != "0010_0")
@@ -125,7 +134,7 @@ public class PlayerAnimations : MonoBehaviour
                 damageCondition = false;
                 updatedHealth = currentHealth;
             }
-            Debug.Log(playerMovement.spriteRenderer.sprite);
+            //Debug.Log(playerMovement.spriteRenderer.sprite);
         }
     }
     public void DeathAnimation()
@@ -135,6 +144,8 @@ public class PlayerAnimations : MonoBehaviour
             ChangeAnimationState(Dead);
         }
     }
+    private Vector2 target;
+    private Vector2 hitPoint;
     // Update is called once per frame
     void Update()
     {
@@ -150,7 +161,8 @@ public class PlayerAnimations : MonoBehaviour
         attackPerformed = playerClawAttack.performed;
         spriteff = playerMovement.spriteRenderer.sprite;
         hit = playerClawAttack.hit;
-        
+        hitPoint = playerTongueAttack.hit;
+        target = playerTongueAttack.target;
 
     }
     void FixedUpdate()
@@ -162,5 +174,6 @@ public class PlayerAnimations : MonoBehaviour
         AttackAnimation();
         DamageAnimation();
         DeathAnimation();
+        SwingingAnimation();
     }
 }

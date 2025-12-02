@@ -98,14 +98,14 @@ public class PlayerTongueRope : MonoBehaviour
             }
         }
     }
-
+    public Vector2 targetPosition;
     void DrawRopeWaves()
     {
         for (int i = 0; i < percision; i++)
         {
             float delta = (float)i / ((float)percision - 1f);
             Vector2 offset = Vector2.Perpendicular(grapplingGun.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
-            Vector2 targetPosition = Vector2.Lerp(grapplingGun.firePoint.position, grapplingGun.grapplePoint, delta) + offset;
+            targetPosition = Vector2.Lerp(grapplingGun.firePoint.position, grapplingGun.grapplePoint, delta) + offset;
             currentPosition = Vector2.Lerp(grapplingGun.firePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
             m_lineRenderer.SetPosition(i, currentPosition);
             //Debug.Log("Current Position: " + currentPosition);

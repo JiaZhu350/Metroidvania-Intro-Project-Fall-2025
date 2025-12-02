@@ -68,9 +68,11 @@ public class PlayerTongueAttack : MonoBehaviour
     }
 
     // Update is called once per frame
+    public Vector2 target;
     void Update()
     {
         hit = grapplingRope.currentPosition;
+        target = grapplingRope.targetPosition;
         hitEM = Physics2D.OverlapCircle(hit, hitboxRadius, hitLayers);
     }
     void OnDrawGizmos()

@@ -71,10 +71,6 @@ public class PlayerUpdatedMovement : MonoBehaviour
 
     public float maxFallSpeed;
 
-
-    public bool doubleJumpAble = false;
-    public bool wallJumpAble = false;
-
     void Awake()
     {
         actions = new InputSystem_Actions();
@@ -134,11 +130,14 @@ public class PlayerUpdatedMovement : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+    float movementSpeed = 0;
+    float fastMovementSpeed;
+    float updatedVelocity;
     void Movement()
     {
-        float movementSpeed = move * speed;
-        float fastMovementSpeed = movementSpeed * 2f;
-        float updatedVelocity = grapplingGun.updatedVelocity;
+        movementSpeed = move * speed;
+        fastMovementSpeed = movementSpeed * 2f;
+        updatedVelocity = grapplingGun.updatedVelocity;
         if(moveCondition && (updatedVelocity > 0))
         {
             //Test later(swing keeps momentum of run if continosuly holding down the key)
@@ -221,7 +220,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
                 //Debug.Log("FALL");
                 //Debug.Log("g "+rb.gravityScale);
             }
-            if(condition && doubleJumpCounter == 0 && !doubleJumpUsed && doubleJumpAble)
+            if(condition && doubleJumpCounter == 0 && !doubleJumpUsed)
             {
                 rb.linearVelocityY = highJumpForce;
                 doubleJumpUsed = true;
@@ -233,7 +232,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
     private int doubleJumpCounter = 1;
     void JumpingMechanic()
     {
-        if (isGrounded || isTouchingLeftWall || isTouchingRightWall)
+        if (isGrounded || isTouchingLeftWall || isTouchingRightWall && move == 0)
         {
             DoubleJumpCounterReset();
             JumpForce();
@@ -293,21 +292,15 @@ public class PlayerUpdatedMovement : MonoBehaviour
     void WallJump()
     {
         
-        if(!isGrounded && isTouchingLeftWall && wallJumpAble)
+        if(!isGrounded && isTouchingLeftWall && condition && move == 0)
         {
-            if(condition)
-            {
-                rb.linearVelocityX = Mathf.Lerp(0,move,0.7f);
+                rb.linearVelocityX = speed * 1f;
                 rb.linearVelocityY = jumpForce;
-            }
         }
-        if(!isGrounded && isTouchingRightWall && wallJumpAble)
+        if(!isGrounded && isTouchingRightWall && condition && move == 0)
         {
-            if(condition)
-            {
-                rb.linearVelocityX = (Mathf.Lerp(0,move,0.7f)) * -1f;
+                rb.linearVelocityX = speed * -1f;
                 rb.linearVelocityY = jumpForce;
-            }
         }
     }
 
@@ -372,6 +365,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         isTouchingLeftWall = Physics2D.OverlapBox(leftWallCheckTransform.position, leftWallSize, 0f, leftWallLayer);
         isTouchingRightWall = Physics2D.OverlapBox(rightWallCheckTransform.position, rightWallSize, 0f, rightWallLayer);
         SlidingAlongWall();
+        WallJump();
 
     }
     void OnDrawGizmos()
