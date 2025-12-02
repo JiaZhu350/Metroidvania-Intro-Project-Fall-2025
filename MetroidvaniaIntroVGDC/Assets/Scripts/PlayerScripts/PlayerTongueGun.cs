@@ -80,6 +80,7 @@ public class PlayerTongueGun : MonoBehaviour
     private bool shootCondition;
 
     public float shootDelay;
+    public bool onCooldown = false; //for ability UI to read
 
     public bool grappleAble = false;
 
@@ -105,6 +106,7 @@ public class PlayerTongueGun : MonoBehaviour
 
     void GrappleAction(InputAction.CallbackContext context)
     {
+
         if (context.performed && (currentTime >= shootDelay) && grappleAble)
         {
             FlipTongue();
@@ -170,6 +172,7 @@ public class PlayerTongueGun : MonoBehaviour
     private void Update()
     {
         TimeFunction();
+        onCooldown = (currentTime >= shootDelay) ? true : false; //for ability UI to read
         if(m_rigidbody.linearVelocityX != 0)
         {
             updatedVelocity = m_rigidbody.linearVelocityX;

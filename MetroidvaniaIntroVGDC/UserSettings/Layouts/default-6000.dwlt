@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 892
     height: 1341.3334
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 13}
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 1004
+    y: 949.3333
     width: 1667
     height: 390.00006
   m_SerializedDataModeController:
@@ -588,7 +588,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 49.99994}
     m_SelectedIDs: 24c20000
     m_LastClickedID: 49700
-    m_ExpandedIDs: 00000000bec00000c0c00000c2c00000c4c00000c6c0000000ca9a3b
+    m_ExpandedIDs: 00000000cec00000d0c00000d2c00000d4c00000d6c00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -617,7 +617,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 7e020000
     m_LastClickedID: 638
-    m_ExpandedIDs: 00000000bec00000c0c00000c2c00000c4c00000c6c00000
+    m_ExpandedIDs: 00000000cec00000d0c00000d2c00000d4c00000d6c00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -696,8 +696,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1668
-    y: 78.66667
+    x: 1669
+    y: 24
     width: 891
     height: 1315.3334
   m_SerializedDataModeController:
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 78.66667
+    y: 24
     width: 335.66666
     height: 899.3333
   m_SerializedDataModeController:
@@ -1464,8 +1464,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 336.6667
-    y: 78.66667
+    x: 337.66666
+    y: 24
     width: 1329.3334
     height: 899.3333
   m_SerializedDataModeController:
@@ -1537,7 +1537,7 @@ MonoBehaviour:
       height: 878.3333
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1994, y: 1349}
+  m_LastWindowPixelSize: {x: 1329.3334, y: 899.3333}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100

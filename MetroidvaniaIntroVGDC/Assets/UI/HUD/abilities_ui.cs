@@ -15,7 +15,9 @@ public class ability_ui : MonoBehaviour
 
         ability_icons[0] = UIDoc.rootVisualElement.Q<VisualElement>("wall_1");
         ability_icons[1] = UIDoc.rootVisualElement.Q<VisualElement>("djump_1");
+        ability_icons[4] = UIDoc.rootVisualElement.Q<VisualElement>("djump_c");
         ability_icons[2] = UIDoc.rootVisualElement.Q<VisualElement>("tongue_1");
+        ability_icons[3] = UIDoc.rootVisualElement.Q<VisualElement>("tongue_c");
         //chargeChanged();
     }
 
@@ -42,8 +44,10 @@ public class ability_ui : MonoBehaviour
         ability_icons[0].style.display = (player.GetComponent<PlayerUpdatedMovement>().wallJumpAble == true) ? DisplayStyle.Flex : DisplayStyle.None;
 
         ability_icons[1].style.display = (player.GetComponent<PlayerUpdatedMovement>().doubleJumpAble == true) ? DisplayStyle.Flex : DisplayStyle.None;
+        ability_icons[4].style.display = (player.GetComponent<PlayerUpdatedMovement>().doubleJumpUsed == false || player.GetComponent<PlayerUpdatedMovement>().isGrounded == true) ? DisplayStyle.Flex : DisplayStyle.None;
 
         ability_icons[2].style.display = (player.GetComponentInChildren<PlayerTongueGun>().grappleAble == true) ? DisplayStyle.Flex : DisplayStyle.None;
+        ability_icons[3].style.display = (player.GetComponentInChildren<PlayerTongueGun>().onCooldown == true) ? DisplayStyle.Flex : DisplayStyle.None;
 
 
         //int CurrentHealth = (int)player.GetComponent<PlayerHealth>().currentHealth;

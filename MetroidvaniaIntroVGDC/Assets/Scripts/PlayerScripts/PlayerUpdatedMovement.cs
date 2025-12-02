@@ -31,7 +31,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
 
     public Vector2 rightWallSize;
 
-    bool doubleJumpUsed;
+    public bool doubleJumpUsed;
 
     bool doubleJumpMidAir;
     bool doubleJumpMidAirUsed;
@@ -266,6 +266,7 @@ public class PlayerUpdatedMovement : MonoBehaviour
         if(!condition)
         {
             doubleJumpCounter --;
+            
         }
     }
 
