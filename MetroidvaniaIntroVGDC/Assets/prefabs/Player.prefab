@@ -885,6 +885,7 @@ MonoBehaviour:
   performed: 0
   canceled: 0
   playerAnimations: {fileID: 0}
+  jumpPerformed: 0
 --- !u!231 &4149163757221645045
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -943,6 +944,7 @@ MonoBehaviour:
   startingHealth: 5
   currentHealth: 5
   previousHealth: 0
+  damageReceieved: 0
   dead: 0
   _heal: 2
   healthItems: 10
