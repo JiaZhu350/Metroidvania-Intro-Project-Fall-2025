@@ -16,6 +16,7 @@ public class meleeEnemy : MonoBehaviour
     //Refrences
     private PlayerHealth playerhealth;
     private Animator anim;
+    private Animator attack_anim;
 
     //Chase Parameters
     private GameObject player; // Reference to the player's transform
@@ -38,6 +39,15 @@ public class meleeEnemy : MonoBehaviour
         anim = GetComponent<Animator>();
         initScale = transform.localScale;
         walkingAudio = GetComponent<AudioSource>();
+        attack_anim = transform.Find("Attack_Animation").GetComponent<Animator>(); ;
+        if (attack_anim != null )
+        {             
+            Debug.Log("Attack animator found");
+        }
+        else
+        {
+            Debug.Log("Attack animator NOT found");
+        }
     }
 
     // Update is called once per frame
@@ -68,6 +78,7 @@ public class meleeEnemy : MonoBehaviour
                 //Debug.Log("Melee enemy attacks for " + damage + " damage!");
                 CooldownTimer = 0f; // Reset the cooldown timer after attacking
                 anim.SetTrigger("meleeAttack");
+                attack_anim.SetTrigger("Attacking");
                 SoundEffectManager.Instance.PlaySoundFXClip(meleeAttackSound, transform);
             }
         }
